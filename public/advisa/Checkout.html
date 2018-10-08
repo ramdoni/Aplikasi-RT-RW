@@ -1,0 +1,340 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Контроль</title>
+<meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+
+  <script src="js/jquery-2.0.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.selectbox.js"></script>
+  <script src="js/jquery.bxslider.min.js"></script>
+  <script src="js/myscript.js"></script>
+
+
+<!--[if !IE]><!-->
+<script>
+if (/*@cc_on!@*/false) {
+    document.documentElement.className+=' ie10';
+}
+</script>
+<!--[if IE 9]>
+      <link rel="stylesheet" type="text/css" media="screen" href="css/ie9.css">
+      <script src="js/myscriptie.js"></script>
+<![endif]-->
+</head>
+<body>
+<!--=====================================================================-->
+<!--==============================header=================================-->
+<div class="thetop">
+  <div class="wrap">
+    <div class="singorreg">
+      <a href="#">sing ifgfgdgfn</a>
+      <span>or</span>
+      <a href="#">register</a>
+    </div>
+    <div class="flike"><img src="img/like.png" alt="img"></div>
+
+    <div class="basket">
+      <a href="#">
+      <p>4 cart</p>
+      </a>
+    </div>
+    <div class="itselfbasket"></div>
+  </div><!-- end wrap -->
+</div>
+<div class="wrap">
+<header>
+<div class="logoandsearch">
+  <div class="logo">
+    <a href="#"><h1>BEAUTYFAIR</h1><img src="img/logo.png" alt="logo"></a>
+  </div>
+<div class="search">
+  <form>
+  <div class="input-append">
+    <input class="span2" size="14" type="text" placeholder='SEARCH'><button class="btn" type="button"><span class="lens"></span></button>
+  </div>
+  </form>
+</div>
+</div>
+<div class="clearfix"></div>
+<a href="index.html"><div class="home"></div></a>
+<div class="nav">
+  <nav>
+  <ul class="nav nav-pills">
+    <li><a href="Cart.html">Cart</a></li>
+    <li><a href="Checkout.html">Checkout</a></li>
+    <li><a href="Product.html">Product</a></li>
+    <li><a href="Category.html">Category</a></li>
+    <li><a href="#">bath &amp; body</a></li>
+    <li><a href="#">electrical</a></li>
+    <li><a href="#">accessories</a></li>
+  </ul>
+  </nav>
+</div>
+<div class="dropp">
+<div class="section3">
+  <select>
+    <option>BRAND</option>
+    <option>BRAND1</option>
+    <option>BRAND2</option>
+    <option>BRAND3</option>
+  </select>
+</div><!--end section-->
+</div>
+</header>
+
+
+<!--=====================================================================-->
+<!--==============================content================================-->
+<section>
+<div class="section">
+<article>
+
+<div class="check">
+  <h2>Checkout</h2>
+  <p>Welcome to the checkout. Fill in the fields below to complete your purchase! <a href="#">Already registered? Click here to login.</a></p>
+</div>
+<div class="clearfix"></div>
+
+
+<form>
+<div class="threecolumn">
+<div class="circleandh2">
+  <span class="circle">1</span>
+  <h2>Billing Address</h2>
+</div>
+
+<div class="pull-left">
+  <label for="for1">First Name *</label>
+  <input required class='sizeinp' type="text" id="for1">
+
+  <label for="for2">Email Adress *</label>
+  <input required class='sizeinp' type="text" id="for2">
+</div>
+
+<div class="pull-right">
+  <label for="for3">Last Name *</label>
+  <input required class='sizeinp' type="text" id="for3">
+
+  <label for="for4">Telephone *</label>
+  <input required class='sizeinp' type="text" id="for4">
+</div>
+
+<label for="for5">Address *</label>
+<input required class='sizeinp2' type="text" id="for5">
+<input required class='sizeinp2' type="text">
+
+<label>Country *</label>
+<div class="selcet">
+  <select>
+    <option>Country</option>
+    <option>Country1</option>
+    <option>Country2</option>
+    <option>Country3</option>
+  </select>
+</div>
+
+<label for="for6">City *</label>
+<input required class='sizeinp2' type="text" id="for6">
+
+<div class="pull-left">
+  <label for="for7">Zip Code *</label>
+  <input required class='sizeinp' type="text" id="for7">
+
+  <label for="for8">Company</label>
+  <input class='sizeinp' type="text" id="for8">
+</div>
+
+<div class="pull-right">
+  <label for="for9">State</label>
+  <input class='sizeinp' type="text" id="for9">
+</div>
+<div class="clearfix"></div>
+
+<div class="pull-left">
+  <label for="for11">Password</label>
+  <input class='sizeinp' type="password" id="for11">
+</div>
+
+<div class="pull-right">
+  <label for="for12">Confirm password</label>
+  <input class='sizeinp' type="password" id="for12">
+</div>
+<div class="clearfix"></div>
+<label class="checkbox">
+  <input type="checkbox">
+  Ship to the same adress
+</label>
+
+</div><!-- end threecolumn -->
+<div class="threecolumn">
+<div class="circleandh2">
+  <span class="circle">2</span>
+  <h2>Shipping Method</h2>
+</div>
+
+<b>Free Shipping</b><br>
+<label class="radio">
+
+  <input type="radio" name="optionsRadios2" id="optionsRadios1" value="option1" checked>
+ Free <b>AU$0.00</b>
+</label>
+<div class="clearfix"></div>
+<div class="circleandh2">
+  <span class="circle">3</span>
+  <h2>Payment Method</h2>
+</div>
+
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" checked>
+  Paypal Websity Payments Standerd<br> You will be redirected to the Paypal website<br>when you place an order.
+</label>
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+  PayPal Express Checkout
+</label>
+
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios4" value="option4">
+  Bank Transfer Payment
+</label>
+
+</div><!-- end threecolumn -->
+<div class="threecolumn withoutborder mywth">
+<div class="circleandh2">
+  <span class="circle">4</span>
+  <h2>Review Your Order</h2>
+</div>
+
+<table class='table table-condensed'>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Qty</th>
+      <th>Subtotal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Vertave - VE 2054 - 1001/87</td>
+      <td>1</td>
+      <td>AU$179.99</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>AU$179.99</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>AU$179.99</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><b>Grand total</b></td>
+      <td><b>AU$179.99</b></td>
+    </tr>
+  </tbody>
+</table>
+
+<label for="for13">Comments</label>
+<textarea maxlength='160' spellcheck="false" class='sizeinp3' id="for13"></textarea>
+
+<div class="twobuttons">
+  <button class="btn btn-primary pull-right" type="submit">COMPLETE YOUR PURC</button>
+</div>
+<div class="clearfix"></div>
+<div class="othercard">
+  <a href="#"><img src="img/norton.png" alt="img"></a>
+  <div class="clearfix"></div>
+  <a href="#"><img class='paypalfeatures' src="img/bigpaypal.png" alt="img"></a>
+  <div class="smallcard">
+    <a href="#"><img src="img/card5.png" alt="img"></a>
+    <a href="#"><img src="img/card6.png" alt="img"></a>
+    <a href="#"><img src="img/card7.png" alt="img"></a>
+    <a href="#"><img src="img/card8.png" alt="img"></a>
+    <a href="#"><img src="img/card9.png" alt="img"></a>
+  </div>
+</div>
+</div><!-- end threecolumn -->
+</form>
+</article>
+</div><!-- end section -->
+</section>
+<div class="clearfix"></div>
+
+
+<!--=====================================================================-->
+<!--==============================footer=================================-->
+<footer>
+<div class="footer">
+
+<div class="allcolumn">
+  <div class="column">
+    <h4>QUICK LINKS</h4>
+    <ul>
+      <li><a href="#">Hair Product</a></li>
+      <li><a href="#">Face Product</a></li>
+      <li><a href="#">Make Up</a></li>
+      <li><a href="#">Nails</a></li>
+      <li><a href="#">Bath & Body</a></li>
+      <li><a href="#">Electricals</a></li>
+    </ul>
+  </div>
+
+  <div class="column">
+    <h4>QUICK LINKS</h4>
+    <ul>
+      <li><a href="#">Hair Product</a></li>
+      <li><a href="#">Face Product</a></li>
+      <li><a href="#">Make Up</a></li>
+      <li><a href="#">Nails</a></li>
+      <li><a href="#">Bath & Body</a></li>
+      <li><a href="#">Electricals</a></li>
+    </ul>
+  </div>
+
+  <div class="column">
+    <h4>QUICK LINKS</h4>
+    <ul>
+      <li><a href="#">Hair Product</a></li>
+      <li><a href="#">Face Product</a></li>
+      <li><a href="#">Make Up</a></li>
+      <li><a href="#">Nails</a></li>
+      <li><a href="#">Bath & Body</a></li>
+      <li><a href="#">Electricals</a></li>
+    </ul>
+  </div>
+</div>
+<div class="infoinfooter">
+  <p>Receive the latest beauty offers by email</p>
+  <form>
+  <div class="input-append footerform">
+    <input class="span2" size="14" type="text" placeholder='SEARCH'><button class="btn" type="button">SING UP</button>
+  </div>
+  </form>
+<div class="cards">
+  <a class='pull-left' href="#"><img src="img/card1.png" alt="img"></a>
+  <a class='pull-right' href="#"><img src="img/card2.png" alt="img"></a>
+  <a class='pull-left' href="#"><img src="img/card3.png" alt="img"></a>
+  <a class='pull-right' href="#"><img src="img/card4.png" alt="img"></a>
+  <a href="#"><img src="img/paypal.png" alt="img"></a>
+</div>
+<div class="social">
+  <p>Connect width us:</p>
+  <a href="#"><img src="img/f.png" alt="social"></a>
+  <a href="#"><img src="img/t.png" alt="social"></a>
+  <a class='fixmar' href="#"><img src="img/p.png" alt="social"></a>
+</div>
+</div>
+</div><!-- end footer -->
+</footer>
+</div><!--end wrap-->
+</body>
+</html>
+<!-- Makeup done Alexander Polishchuk
+     Email: domino586378375@yandex.ua -->

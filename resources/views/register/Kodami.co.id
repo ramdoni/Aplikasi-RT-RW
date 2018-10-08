@@ -1,0 +1,27 @@
+Kodami.co.id
+	- pendaftaran anggota baru
+	- register
+		- data-data profile yang register
+	- Core System
+		- Data Peserta
+		- Simpan Pinjam
+		- SHU/BHU
+		- 
+
+Kodami.id
+	- Register
+		- setiap yang daftar harus dengan dengan
+		- ada proses approval
+
+Sembako.id / Sembako.co.id
+	- hanya data barang sembako
+Kurir
+	- System Pengiriman
+	- Kuper (Kurir Koperasi)
+
+
+Untuk calon anggota
+- mesti bayar iuran klo belum bayar maka belum aktif statusnya masih calon anggota
+- konfirmasi transfer
+- tambah field no rekening untuk kecocokan nominal transfer
+- jika profile kosong 

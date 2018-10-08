@@ -1,0 +1,109 @@
+@font-face {
+font-family: "wf_segoe-ui_light";
+src: local("Segoe UI Light"),
+        local("Segoe WP Light"),
+        url('https://r4.res.office365.com/owa/prem/16.2080.5.2459088/resources/styles/fonts/segoeui-light.woff') format('woff'),
+        url('https://r4.res.office365.com/owa/prem/16.2080.5.2459088/resources/styles/fonts/segoeui-light.ttf') format('truetype');
+}
+@font-face {
+    font-family: "wf_segoe-ui_normal";
+    src: local("Segoe UI"),
+         local("Segoe WP"),
+         url('https://r4.res.office365.com/owa/prem/16.2080.5.2459088/resources/styles/fonts/segoeui-regular.woff') format('woff'),
+         url('https://r4.res.office365.com/owa/prem/16.2080.5.2459088/resources/styles/fonts/segoeui-regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: "wf_segoe-ui_semibold";
+    src: local("Segoe UI Semibold"),
+         local("Segoe WP Semibold"),
+         url('https://r4.res.office365.com/owa/prem/16.2080.5.2459088/resources/styles/fonts/segoeui-semibold.woff') format('woff'),
+         url('https://r4.res.office365.com/owa/prem/16.2080.5.2459088/resources/styles/fonts/segoeui-semibold.ttf') format('truetype');
+    font-weight: bold;
+}
+@font-face {
+    font-family: "wf_segoe-ui_semilight";
+    src: local("Segoe UI Semilight"),
+         local("Segoe WP Semilight"),
+         url('https://r4.res.office365.com/owa/prem/16.2080.5.2459088/resources/styles/fonts/segoeui-semilight.woff') format('woff'),
+         url('https://r4.res.office365.com/owa/prem/16.2080.5.2459088/resources/styles/fonts/segoeui-semilight.ttf') format('truetype');
+}
+
+h1{
+
+    font-family: wf_segoe-ui_light,Segoe UI Light,Segoe WP Light,Segoe UI,Segoe WP,Tahoma,Arial,sans-serif;
+    font-size: 66px;
+    color: #fff;
+    margin-bottom: 26px;
+}
+h2 {
+    font-family: wf_segoe-ui_semilight,Segoe UI Semilight,Segoe WP Semilight,Segoe UI,Segoe WP,Tahoma,Arial,sans-serif;
+    font-size: 30px;
+    color: hsla(0,0%,100%,.8);
+    letter-spacing: 0;
+    line-height: 46px;
+    margin-bottom: 54px;
+}
+
+
+.tombol-register {
+    background: #fff;
+    font-family: wf_segoe-ui_semibold,Segoe UI Semibold,Segoe WP Semibold,Segoe UI,Segoe WP,Tahoma,Arial,sans-serif;
+    font-size: 22px;
+    color: #0078d7;
+    letter-spacing: 0;
+    min-width: 200px;
+    display: inline-block;
+    padding: 14px 10px 16px;
+    text-align: center;
+    -webkit-transition: box-shadow .3s;
+    transition: box-shadow .3s;
+    cursor: pointer;
+    text-decoration: none;
+}
+.tombol-signin {
+    background: hsla(0,0%,100%,.22);
+    font-family: wf_segoe-ui_semibold,Segoe UI Semibold,Segoe WP Semibold,Segoe UI,Segoe WP,Tahoma,Arial,sans-serif;
+    font-size: 22px;
+    color: #fff;
+    letter-spacing: 0;
+    min-width: 200px;
+    display: inline-block;
+    padding: 14px 10px 16px;
+    text-align: center;
+    -webkit-transition: box-shadow .3s;
+    transition: box-shadow .3s;
+    margin-left: 40px;
+    cursor: pointer;
+}
+
+#headerCurve {
+    width: 100%;
+    height: 70px;
+    background-color: #0078d7;
+}
+
+.content-header {
+    text-align: center;
+    background: #0078d7;
+    color: white;
+}
+.content-header .content-title {
+    padding: 88px 0 210px
+}
+.section1 {
+    background-color: #222;
+    text-align: center;
+    padding-top: 30px;
+    margin-top: -8px;
+}
+
+@media screen and (min-width: 480px) {
+    .tombol-signin {
+        margin-left: 0;
+    }
+}
+@media screen and (min-width: 320px) {
+    .tombol-signin {
+        margin-left: 0;
+    }
+}
