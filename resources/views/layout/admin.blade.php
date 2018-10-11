@@ -78,7 +78,7 @@
             <div class="navbar-header">
                 <div class="top-left-part">
                     <!-- Logo -->
-                    <a class="logo" href="{{ route('admin.dashboard') }}"><b>RT / RW PINTAR</b>
+                    <a class="logo" href="{{ route('admin.dashboard') }}"><b>RT KU</b>
                         <span class="hidden-xs">&nbsp;</span> 
                     </a>
                 </div>
@@ -136,24 +136,14 @@
                     </li>
                     <li class="devider"></li>
                     <li>
-                        <a href="javascript:void(0)" class="waves-effect">
+                        <a href="{{ route('admin.anggota.index') }}" class="waves-effect">
                             <i class="mdi mdi-account-multiple fa-fw"></i> <span class="hide-menu">Management Warga<span class="fa arrow"></span></span>
                         </a>
                     </li>
                     <li class="last-nav">
                         <a href="{{ route('admin.setting.index') }}" class="waves-effect">
-                            <i class="mdi mdi-settings fa-fw"></i> <span class="hide-menu">Setting<span class="fa arrow"></span></span>
+                            <i class="mdi mdi-settings fa-fw"></i> <span class="hide-menu">Setting</span>
                         </a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{ route('admin.setting.index') }}"><i class="ti-user fa-fw"></i><span class="hide-menu">General Setting</span></a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.iuran.index') }}" class="waves-effect">
-                                    <i class="ti-wallet fa-fw"></i> Iuran
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
             </div>
@@ -166,7 +156,7 @@
         <div class="modal fade" id="modal_status_anggota" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                  <form method="POST" action="{{ route('anggota.upload.confirmation') }}" enctype="multipart/form-data">
+                  <form method="POST" action="{{ route('warga.upload.confirmation') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}            
                     
                     <div class="modal-header">
@@ -244,6 +234,15 @@
             $(this).parents(".myadmin-alert").fadeToggle(350);
             return false;
         });
+    </script>
+    <script type="text/javascript">
+        @if(Session::has('message-success'))
+            bootbox.alert('<h3 class="text-success pull-left"><i class="fa fa-check"></i></h3><h4 class="pull-left" style="margin-left: 10px;"> {{ Session::get('message-success') }}</h4><br class="clearfix" /><br class="clearfix" />');
+        @endif
+        
+        @if(Session::has('message-error'))
+            bootbox.alert('<h3 class="text-danger pull-left"><i class="fa fa-check"></i></h3><h4 class="pull-left" style="margin-left: 10px;"> {{ Session::get('message-error') }}</h4><br class="clearfix" /><br class="clearfix" />');
+        @endif
     </script>
     @yield('footer-script')
 </body>

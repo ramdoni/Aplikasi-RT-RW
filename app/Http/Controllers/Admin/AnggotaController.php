@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\ControllerLogin;
-use App\ModelUser; 
+use App\Models\Users; 
 
 class AnggotaController extends ControllerLogin
 {	
@@ -14,7 +14,7 @@ class AnggotaController extends ControllerLogin
 	 */
     public function index()
     {
-    	$data = ModelUser::where('access_id', 2)->orderBy('id', 'DESC')->get();
+    	$data = Users::orderBy('id', 'DESC')->get();
 
     	return view('admin.anggota.index', compact('data'));
     }
@@ -26,7 +26,7 @@ class AnggotaController extends ControllerLogin
      */
     public function confirm($id)
     {
-        $params['data']         = Modeluser::where('id', $id)->first();
+        $params['data']         = Users::where('id', $id)->first();
         $params['deposit']      = \Kodami\Models\Mysql\Deposit::where('type', 1)->where('user_id', $id)->first();
 
         return view('admin.anggota.confirm')->with($params);
@@ -49,7 +49,7 @@ class AnggotaController extends ControllerLogin
             $user = \App\UserModel::where('id', $status->user_id)->first();
 
             /** Rubah status angota jadi active */
-            $user = ModelUser::where('id', $status->user_id)->first();
+            $user = Users::where('id', $status->user_id)->first();
             $user->status = 2;
             $user->save();
 
@@ -91,7 +91,7 @@ class AnggotaController extends ControllerLogin
             $deposit->save();
 
              /** Rubah status angota jadi reject */
-            $user = ModelUser::where('id', $deposit->user_id)->first();
+            $user = Users::where('id', $deposit->user_id)->first();
             $user->status = 3;
             $user->save();
         }
@@ -105,7 +105,7 @@ class AnggotaController extends ControllerLogin
      */
     public function create()
     {
-        $params['no_anggota'] = date('y').date('m').date('d'). (ModelUser::all()->count() + 1);
+        $params['no_anggota'] = date('y').date('m').date('d'). (Users::all()->count() + 1);
 
         return view('admin.anggota.create')->with($params);
     }
@@ -117,7 +117,7 @@ class AnggotaController extends ControllerLogin
      */
     public function edit($id)
     {
-        $user = \App\UserModel::where('id', $id)->first();
+        $user = Users::where('id', $id)->first();
         $data['data'] 	= $user;
         $data['id'] 	= $id;
         
@@ -133,7 +133,7 @@ class AnggotaController extends ControllerLogin
      */
     public function update(Request $request, $id)
     {
-        $data =  ModelUser::where('id', $id)->first();
+        $data =  Users::where('id', $id)->first();
         
         if($request->password != $data->password)
         {
@@ -157,20 +157,20 @@ class AnggotaController extends ControllerLogin
         $data->tanggal_lahir= $request->tanggal_lahir;
         $data->passport_number          = $request->passport_number;
         $data->kk_number                = $request->kk_number;
-        $data->npwp_number              = $request->npwp_number;
-        $data->bpjs_number              = $request->bpjs_number; 
-
-        $data->domisili_provinsi_id     = $request->domisili_provinsi_id;
-        $data->domisili_kabupaten_id    = $request->domisili_kabupaten_id;
-        $data->domisili_kecamatan_id    = $request->domisili_kecamatan_id;
-        $data->domisili_kelurahan_id    = $request->domisili_kelurahan_id;
-        $data->domisili_alamat          = $request->domisili_alamat;
-
         $data->ktp_provinsi_id      = $request->ktp_provinsi_id;
         $data->ktp_kabupaten_id     = $request->ktp_kabupaten_id;
         $data->ktp_kecamatan_id     = $request->ktp_kecamatan_id;
         $data->ktp_kelurahan_id     = $request->ktp_kelurahan_id;
         $data->ktp_alamat           = $request->ktp_alamat;
+        $data->blok_rumah           = $request->blok_rumah;
+        $data->perumahan_id         = $request->perumahan_id;
+        $data->rt_id                = $request->rt_id;
+        $data->rw_id                = $request->rw_id;
+        $data->jenis_bangunan       = $request->jenis_bangunan;
+        $data->status_tempat_tinggal    = $request->status_tempat_tinggal;
+        $data->status_kepemilikan_rumah = $request->status_kepemilikan_rumah;
+        $data->is_ktp_domisili          = $request->is_ktp_domisili;
+        $data->status_pernikahan        = $request->status_pernikahan;
 
         if ($request->hasFile('file_ktp'))
         {    
@@ -212,7 +212,7 @@ class AnggotaController extends ControllerLogin
      */
     public function destroy($id)
     {
-        $data = ModelUser::where('id', $id)->first();
+        $data = Users::where('id', $id)->first();
         $data->delete();
 
         return redirect()->route('admin.anggota.index')->with('message-sucess', 'Data berhasi di hapus');
@@ -226,8 +226,7 @@ class AnggotaController extends ControllerLogin
     */
     public function store(Request $request)
     {
-        $data               =  new ModelUser();
-        $data->no_anggota   = $request->no_anggota;
+        $data               =  new Users();
         $data->nik          = $request->nik; 
         $data->name         = $request->name; 
         $data->jenis_kelamin= $request->jenis_kelamin; 
@@ -241,21 +240,20 @@ class AnggotaController extends ControllerLogin
         $data->status       = 1; // menunggu pembayaran 
         $data->passport_number          = $request->passport_number;
         $data->kk_number                = $request->kk_number;
-        $data->npwp_number              = $request->npwp_number;
-        $data->bpjs_number              = $request->bpjs_number;
-
-        $data->domisili_provinsi_id     = $request->domisili_provinsi_id;
-        $data->domisili_kabupaten_id    = $request->domisili_kabupaten_id;
-        $data->domisili_kecamatan_id    = $request->domisili_kecamatan_id;
-        $data->domisili_kelurahan_id    = $request->domisili_kelurahan_id;
-        $data->domisili_alamat          = $request->domisili_alamat;
-
         $data->ktp_provinsi_id      = $request->ktp_provinsi_id;
         $data->ktp_kabupaten_id     = $request->ktp_kabupaten_id;
         $data->ktp_kecamatan_id     = $request->ktp_kecamatan_id;
         $data->ktp_kelurahan_id     = $request->ktp_kelurahan_id;
         $data->ktp_alamat           = $request->ktp_alamat;
-        
+        $data->blok_rumah           = $request->blok_rumah;
+        $data->perumahan_id         = $request->perumahan_id;
+        $data->rt_id                = $request->rt_id;
+        $data->rw_id                = $request->rw_id;
+        $data->jenis_bangunan       = $request->jenis_bangunan;
+        $data->status_tempat_tinggal    = $request->status_tempat_tinggal;
+        $data->status_kepemilikan_rumah = $request->status_kepemilikan_rumah;
+        $data->is_ktp_domisili          = $request->is_ktp_domisili;
+        $data->status_pernikahan        = $request->status_pernikahan;
         $data->save();
 
         if ($request->hasFile('file_ktp'))
@@ -352,10 +350,30 @@ class AnggotaController extends ControllerLogin
      */
     public function autologin($id)
     {
-        \Auth::loginUsingId($id);
-        \Session::put('is_login_admin', true);
-        
-        return redirect()->route('anggota.dashboard');
+        $user = Users::where('id', $id)->first();
+        if($user)
+        {
+            \Auth::loginUsingId($id);
+
+            if($user->access_id == 2)
+            {
+                \Session::put('is_login_admin', true);
+            
+                return redirect()->route('warga.dashboard');
+            }
+            if($user->access_id == 3)
+            {
+                \Session::put('is_login_admin', true);
+            
+                return redirect()->route('bendahara.dashboard');
+            }
+            if($user->access_id == 4)
+            {
+                \Session::put('is_login_admin', true);
+            
+                return redirect()->route('rt.dashboard');
+            }
+        }
     }
     /*
      * [deteleBank description]

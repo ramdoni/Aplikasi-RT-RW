@@ -49,5 +49,21 @@ function init_datatable(){
         buttons: [],
         pageLength : 20
     });
+    $('#data_table_no_search, #data_table_no_search2').DataTable({
+        dom: 'Bfrtip',
+        buttons: [],
+        pageLength : 20,
+        searching: false,
+        bPaginate: false
+    });
+
+    $('#data_table_no_search_no_sorting').DataTable({
+        dom: 'Bfrtip',
+        buttons: [],
+        pageLength : 20,
+        searching: false,
+        bPaginate: false,
+        "ordering": false
+    });
 
 }

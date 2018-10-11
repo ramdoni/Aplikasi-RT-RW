@@ -46,7 +46,7 @@ class LoginController extends Controller
     protected function credentials(Request $request)
     {
         if($request->get('email')){
-            return ['no_anggota'=>$request->get('email'),'password'=> $request->get('password'), 'status_login' => 1];
+            return ['email'=>$request->get('email'),'password'=> $request->get('password'), 'status_login' => 1];
         }
 
         return $request->only($this->username(), 'password');
@@ -67,23 +67,19 @@ class LoginController extends Controller
         }
         elseif(auth()->user()->access_id == 2)
         {
-            return $this->redirectTo = '/anggota';            
+            return $this->redirectTo = '/warga';            
         }
         elseif(auth()->user()->access_id == 3)
         {
-            return $this->redirectTo = '/kasir';
+            return $this->redirectTo = '/bendahara';
         }
         elseif(auth()->user()->access_id == 4)
         {
-            return $this->redirectTo = '/cs';
+            return $this->redirectTo = '/rt';
         }
         elseif(auth()->user()->access_id == 5)
         {
-            return $this->redirecTo = 'operator';
-        }
-        elseif(auth()->user()->access_id == 6)
-        {
-            return $this->redirectTo = 'admin-operator';
+            return $this->redirecTo = 'rw';
         }
         
         return $this->redirectTo = '/home';

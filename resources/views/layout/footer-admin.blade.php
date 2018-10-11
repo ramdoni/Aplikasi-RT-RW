@@ -1,6 +1,1 @@
-<?php 
-	/**
-	 * KODAMI POCKET SYSTEM
-	 */
-?>
-<footer class="footer text-center"> <?=date('Y')?> &copy; Kodami Pocket System </footer>
+<footer class="footer text-center"> <?=date('Y')?> &copy; Stalavista Evolusi Technology</footer>

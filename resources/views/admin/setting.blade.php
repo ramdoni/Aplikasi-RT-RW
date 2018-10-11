@@ -27,7 +27,6 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="white-box">
-                    
                     <hr /><br />
                     <div>
                         <div class="col-md-2">
@@ -40,14 +39,22 @@
                             <a href="{{ route('admin.bank.index') }}"><i class="mdi mdi-bank fa-fw"></i><span class="hide-menu">Master Bank</span></a>
                         </div>
                         <div class="col-md-2">
-                            <a href="{{ route('admin.rekening-bank.index') }}"><i class="mdi mdi-bank fa-fw"></i><span class="hide-menu">Rekening Bank KODAMI</span></a>
+                            <a href="{{ route('admin.iuran.index') }}"><i class="mdi mdi-wallet fa-fw"></i><span class="hide-menu">IURAN</span></a>
                         </div>
                         <div class="col-md-2">
-                            <a href="{{ route('admin.user.index') }}"><i class="mdi mdi-key fa-fw"></i><span class="hide-menu">User Karyawan</span></a>
+                            <a href="{{ route('admin.rw.index') }}"><i class="mdi mdi-home fa-fw"></i><span class="hide-menu">Rukun Warga (RW) </span></a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="{{ route('admin.rt.index') }}"><i class="mdi mdi-home fa-fw"></i><span class="hide-menu">Rukun Tetangga (RT) </span></a>
+                        </div>
+                        <div class="clearfix"></div><br /><hr />
+                        <div class="col-md-2">
+                            <a href="{{ route('admin.perumahan.index') }}"><i class="mdi mdi-home-variant fa-fw"></i><span class="hide-menu">Perumahan</span></a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="{{ route('admin.rekening-bank.index') }}"><i class="mdi mdi-bank fa-fw"></i><span class="hide-menu">Bank Pengurus</span></a>
                         </div>
                         <div class="clearfix"></div><hr />
-
-                        <div class="clearfix"></div><br />
                     </div>
                 </div>
             </div>                        

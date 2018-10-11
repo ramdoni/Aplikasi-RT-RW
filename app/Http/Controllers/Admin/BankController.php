@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\ControllerLogin;
-use Kodami\Models\Mysql\Bank; 
+use App\Models\Bank; 
 
 class BankController extends ControllerLogin
 {

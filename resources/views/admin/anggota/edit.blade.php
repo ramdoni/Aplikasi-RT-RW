@@ -1,6 +1,6 @@
 @extends('layout.admin')
 
-@section('title', 'Admin - Koperasi Daya Masyarakat Indonesia')
+@section('title', 'Warga')
 
 @section('sidebar')
 
@@ -20,7 +20,7 @@
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="javascript:void(0)">Dashboard</a></li>
-                    <li class="active">Anggota</li>
+                    <li class="active">Warga</li>
                 </ol>
             </div>
             <!-- /.col-lg-12 -->
@@ -29,51 +29,25 @@
         <div class="row">
             <div class="col-md-12">
             <div class="white-box">
-                <h3 class="box-title m-b-0">Data Anggota</h3>
+                <h3 class="box-title m-b-0">Data Warga</h3>
                 <hr />
                 <form class="form-horizontal" enctype="multipart/form-data" action="{{ route('admin.anggota.update', $data->id) }}" method="POST">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li class="active" role="presentation" class=""><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">Profile</span></a></li>
-                        <li role="presentation" class=""><a href="#simpanan" aria-controls="simpanan" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-email"></i></span> <span class="hidden-xs">Simpanan</span></a></li>
-                         <li role="presentation" class=""><a href="#upload_file" aria-controls="upload_file" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-email"></i></span> <span class="hidden-xs">Upload File</span></a></li>
-                         <li role="presentation" class=""><a href="#rekening_bank" aria-controls="upload_file" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-email"></i></span> <span class="hidden-xs">Rekening Bank</span></a></li>
-                         <li role="presentation" class=""><a href="#kartu_anggota" aria-controls="upload_file" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">Kartu Anggota</span></a></li>
+                        <li class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="false">Biodata</a></li>
+                        <li><a href="#alamat_domisili" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Alamat Domisili</a></li>                        
+                        <li><a href="#alamat_ktp" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Alamat KTP</a></li>
+                        <li><a href="#iuran" aria-controls="iuran" role="tab" data-toggle="tab" aria-expanded="false">Iuran</a></li>
+                        <li><a href="#upload_file" aria-controls="upload_file" role="tab" data-toggle="tab" aria-expanded="false">Upload File</a></li>
+                        <li><a href="#rekening_bank" aria-controls="upload_file" role="tab" data-toggle="tab" aria-expanded="false">Rekening Bank</a></li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
-
-                        <div role="tabpanel" class="tab-pane" id="kartu_anggota">
-                            <div class="col-md-4">
-                                <div>
-                                    <h2>KARTU ANGGOTA</h2>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <table id="data_table2" class="display nowrap" cellspacing="0" width="100%">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
                         <div role="tabpanel" class="tab-pane active" id="profile">
                             {{ csrf_field() }}
                             <input type="hidden" name="_method" value="PUT">
                             
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-6">No Anggota</label>
-                                    <label class="col-md-6">KTP Number</label>
-                                    <div class="col-md-6">
-                                        <input type="text" name="no_anggota" readonly="true" value="{{ $data->no_anggota }}" class="form-control"> 
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="nik" class="form-control" value="{{ $data->nik }}"> 
-                                    </div> 
-                                </div>
-                                <div class="form-group">
+                               <div class="form-group">
                                     <label class="col-md-6">Nama</label>
                                     <label class="col-md-6">Jenis Kelamin</label>
                                     <div class="col-md-6">
@@ -98,12 +72,40 @@
                                         <input type="text" name="telepon" class="form-control" value="{{ $data->telepon }}">
                                     </div>
                                 </div>
-                                
                                 <div class="form-group">
-                                    <label class="col-md-4">Agama</label>
-                                    <label class="col-md-4">Tempat Lahir</label>
-                                    <label class="col-md-4">Tanggal Lahir</label>
-                                    <div class="col-md-4"s>
+                                    <label class="col-md-6">Tempat Lahir</label>
+                                    <label class="col-md-6">Tanggal Lahir</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="tempat_lahir" class="form-control" value="{{ $data->tempat_lahir }}"> 
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" name="tanggal_lahir" class="form-control datepicker" value="{{ $data->tanggal_lahir }}"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-6">Status KTP</label>
+                                    <label class="col-md-6">Agama</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control">
+                                            <option>KTP</option>
+                                            <option>E-KTP</option>
+                                        </select>
+                                        <input type="text" name="nik" class="form-control" placeholder="KTP NUMBER" value="{{ $data->nik }}"> 
+                                    </div> 
+                                     <div class="col-md-6">
+                                        <?php $agama = ['Islam', 'Kristen', 'Budha', 'Hindu']; ?>
+                                        <select class="form-control" name="agama">
+                                            <option value=""> - Agama - </option>
+                                            @foreach($agama as $item)
+                                                <option value="{{ $item }}"> {{ $item }} </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>        
+                                <div class="form-group">
+                                    <label class="col-md-6">Agama</label>
+                                    <label class="col-md-6">Status Pernikahan</label>
+                                    <div class="col-md-6">
                                         <?php $agama = ['Islam', 'Kristen', 'Budha', 'Hindu']; ?>
                                         <select class="form-control" name="agama">
                                             <option value=""> - Agama - </option>
@@ -112,157 +114,171 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-md-4">
-                                        <input type="text" name="tempat_lahir" class="form-control" value="{{ $data->tempat_lahir }}"> 
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input type="text" name="tanggal_lahir" class="form-control datepicker" value="{{ $data->tanggal_lahir }}"> 
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="status_pernikahan">
+                                            <option>Nikah</option>
+                                            <option>Belum Menikah</option>
+                                        </select>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label class="col-md-4">Password</label>
-                                    <label class="col-md-4">Ketik Ulang Password</label>
-                                    <label class="col-md-4">Status Login</label>
-                                    <div class="col-md-4">
+                                    <label class="col-md-6">Password</label>
+                                    <label class="col-md-6">Status Login</label>
+                                    <div class="col-md-6">
                                         <input type="password" name="password" class="form-control" value="{{ $data->password }}">
-                                    </div>
-                                    <div class="col-md-4">
                                         <input type="password" name="confirmation" class="form-control" value="{{ $data->password }}"> 
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <label><input type="radio" name="status" value="1" {{ $data->status == 1 ? 'checked="true"' : '' }} /> Active </label> &nbsp;
                                         <label><input type="radio" name="status" value="0" {{ $data->status == 0 ? 'checked="true"' : '' }} /> Inactive </label>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-6"><input type="checkbox" name="is_dropshiper" value="1"> Aktifkan Sebagai Dropshiper</label>
-                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-md-12">Domisili Alamat</label>
-                                        <div  class="col-md-12">
-                                            <select name="domisili_provinsi_id" class="form-control">
-                                                <option value=""> - Provinsi - </option>
-                                                @foreach(get_provinsi() as $item)
-                                                <option value="{{ $item->id_prov }}" {{ $item->id_prov == $data->domisili_provinsi_id ? 'selected' : '' }} >{{ $item->nama }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group"> 
-                                        <div class="col-md-12">
-                                            <select name="domisili_kabupaten_id" class="form-control">
-                                                <option value=""> - Kota / Kabupaten - </option>
-                                                @if($data->domisiliKabupatenByProvinsi)
-                                                    @foreach($data->domisiliKabupatenByProvinsi as $item)
-                                                        <option value="{{ $item->id_kab }}" {{ $item->id_kab == $data->domisili_kabupaten_id ? 'selected' : '' }}>{{ $item->nama }}</option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <select name="domisili_kecamatan_id" class="form-control">
-                                                <option value=""> - Kecamatan - </option>
-                                                @if($data->domisiliKecamatanByKabupaten)
-                                                    @foreach($data->domisiliKecamatanByKabupaten as $item)
-                                                        <option value="{{ $item->id_kec }}" {{ $item->id_kec == $data->domisili_kecamatan_id ? 'selected' : '' }}>{{ $item->nama }}</option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <select name="domisili_kelurahan_id" class="form-control">
-                                                <option value=""> - Kelurahan - </option>
-                                                @if($data->domisiliKelurahanByKecamatan)
-                                                    @foreach($data->domisiliKelurahanByKecamatan as $item)
-                                                        <option value="{{ $item->id_kel }}" {{ $item->id_kel == $data->domisili_kelurahan_id ? 'selected' : '' }}>{{ $item->nama }}</option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <textarea class="form-control" name="domisili_alamat" placeholder="Alamat RT / RW">{{ $data->domisili_alamat }}</textarea>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="clearfix"></div>
+                        </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Alamat KTP</label>
-                                        <select name="ktp_provinsi_id" class="form-control">
-                                            <option value=""> - Provinsi - </option>
-                                            @foreach(get_provinsi() as $item)
-                                            <option value="{{ $item->id_prov }}" {{ $item->id_prov == $data->ktp_provinsi_id ? 'selected' : '' }} >{{ $item->nama }}</option>
+                        <div role="tabpanel" class="tab-pane fade" id="alamat_domisili">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-6">Perumahan</label>
+                                    <label class="col-md-6">Blok</label>
+                                    <div class="col-md-6">
+                                        <select name="perumahan_id" class="form-control">
+                                            <option value=""> - Pilih Perumahan - </option>
+                                            @foreach(getPerumahan() as $i)
+                                            <option value="{{ $i->id }}" {{ $data->perumahan_id == $i->id ? 'selected' : '' }} data-provinsi="{{ isset($i->provinsi->nama) ? $i->provinsi->nama : '' }}" data-kabupaten="{{ isset($i->kabupaten->nama) ? $i->kabupaten->nama : '' }}" data-kecamatan="{{ isset($i->kecamatan->nama) ? $i->kecamatan->nama : '' }}" data-kelurahan="{{ isset($i->kelurahan->nama) ? $i->kelurahan->nama : '' }}">{{ $i->nama_perumahan }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group">
-                                        <select name="ktp_kabupaten_id" class="form-control">
-                                            <option value=""> - Kota / Kabupaten - </option>
-                                            @if($data->ktpKabupatenByProvinsi)
-                                                @foreach($data->ktpKabupatenByProvinsi as $item)
-                                                    <option value="{{ $item->id_kab }}" {{ $item->id_kab == $data->ktp_kabupaten_id ? 'selected' : '' }}>{{ $item->nama }}</option>
+                                    <div class="col-md-6">
+                                        <select name="blok_rumah" class="form-control">
+                                            <option value="">- Pilih Blok Rumah -</option>
+                                            @if(isset($data->perumahan->getBlok))
+                                                @foreach($data->perumahan->getBlok as $item)
+                                                    <option value="{{ $item->id }}" {{ $item->id == $data->blok_rumah ? 'selected' : '' }}>{{ $item->blok }}</option>
                                                 @endforeach
                                             @endif
                                         </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <select name="ktp_kecamatan_id" class="form-control">
-                                            <option value=""> - Kecamatan - </option>
-                                            @if($data->ktpKecamatanByKabupaten)
-                                                @foreach($data->ktpKecamatanByKabupaten as $item)
-                                                    <option value="{{ $item->id_kec }}" {{ $item->id_kec == $data->ktp_kecamatan_id ? 'selected' : '' }}>{{ $item->nama }}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <select name="ktp_kelurahan_id" class="form-control">
-                                            <option value=""> - Kelurahan - </option>
-                                            @if($data->ktpKelurahanByKecamatan)
-                                                @foreach($data->ktpKelurahanByKecamatan as $item)
-                                                    <option value="{{ $item->id_kel }}" {{ $item->id_kel == $data->ktp_kelurahan_id ? 'selected' : '' }}>{{ $item->nama }}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea class="form-control" name="ktp_alamat" placeholder="Alamat RT / RW">{{ $data->ktp_alamat }}</textarea>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-md-6">Rukun Warga (RW)</label> 
+                                    <label class="col-md-6">Rukun Tetangga (RT)</label> 
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="rw_id">
+                                            <option>- Pilih Rukun Warga -</option>
+                                            @foreach(getRw() as $item)
+                                            <option value="{{ $item->id }}" {{ $data->rw_id == $item->id ? 'selected' : '' }}>{{ $item->no }}</option>
+                                            @endforeach
+                                        </select> 
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="rt_id">
+                                            <option>- Pilih Rukun Tetangga -</option>
+                                            @if(isset($data->rw->getRt))
+                                                @foreach($data->rw->getRt as $item)
+                                                    <option value="{{ $item->id }}" {{ $item->id == $data->rt_id ? 'selected' : '' }}>{{ $item->no }}</option>
+                                                @endforeach
+                                            @endif
+                                        </select> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-6">Status Kepemilikan Rumah</label>
+                                    <label class="col-md-6">Status Tempat Tinggal</label>
+                                    <div class="col-md-6">
+                                        <select name="status_kepemilikan_rumah" class="form-control">
+                                            @foreach(getKepemilikanRumah() as $i)
+                                            <option {{ $data->status_kepemilikan_rumah == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select name="status_tempat_tinggal" class="form-control">
+                                            <option {{ $data->status_tempat_tinggal == 'Tetap' ? 'selected' : '' }}>Tetap</option>
+                                            <option {{ $data->status_tempat_tinggal == 'Tidak Tetap' ? 'selected' : '' }}>Tidak Tetap</option>
+                                        </select>
+                                    </div> 
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Jenis Bangunan</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="jenis_bangunan">
+                                            <option value="">- Pilih Jenis Bagungan -</option>
+                                            @foreach(getJenisBangunan() as $item)
+                                            <option>{{ $item }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="background: #f5f5f5;padding:15px;">
+                                <h4>Domisili Perumahan</h4>
+                                <div class="form-group">
+                                    <label class="col-md-12">Provinsi</label>
+                                    <div class="col-md-12">
+                                        <input type="text" readonly="true" class="form-control domisili_provinsi" placeholder="Provinsi">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Kabupaten / Kota</label>
+                                    <div class="col-md-12">
+                                        <input type="text" readonly="true" class="form-control domisili_kabupaten" placeholder="Kabupaten">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Kecamatan</label>
+                                    <div class="col-md-12">
+                                        <input type="text" readonly="true" class="form-control domisili_kecamatan" placeholder="Kecamatan">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Kelurahan / Desa</label>
+                                    <div class="col-md-12">
+                                        <input type="text" readonly="true" class="form-control domisili_kelurahan" placeholder="Kelurahan / Desa">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane fade" id="alamat_ktp">        
+                            <div class="col-md-6">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="col-md-6">Passport Number</label>
-                                        <label class="col-md-6">KK Number</label>
-                                        <div class="col-md-6">
-                                            <input type="text" name="passport_number" class="form-control" value="{{ $data->passport_number }}">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" name="kk_number" class="form-control" value="{{ $data->kk_number }}">
-                                        </div>
+                                        <label><input type="checkbox" name="is_ktp_domisili" value="1"> Alamat KTP sama dengan Domisili</label>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-md-6">NPWP Number</label>
-                                        <label class="col-md-6">BPJS Number</label>
-                                        <div class="col-md-6">
-                                            <input type="text" name="npwp_number" class="form-control" value="{{ $data->npwp_number }}">
+                                    <div class="content-alamat-ktp">
+                                        <div class="form-group">
+                                            <label>Alamat KTP</label>
+                                            <select name="ktp_provinsi_id" class="form-control">
+                                                <option value=""> - Provinsi - </option>
+                                                @foreach(get_provinsi() as $item)
+                                                <option value="{{ $item->id_prov }}">{{ $item->nama }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        <div class="col-md-6">
-                                            <input type="text" name="bpjs_number" class="form-control" value="{{ $data->bpjs_number }}">
+                                        <div class="form-group">
+                                            <select name="ktp_kabupaten_id" class="form-control">
+                                                <option value=""> - Kota / Kabupaten - </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select name="ktp_kecamatan_id" class="form-control">
+                                                <option value=""> - Kecamatan - </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select name="ktp_kelurahan_id" class="form-control">
+                                                <option value=""> - Kelurahan - </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="ktp_alamat" placeholder="Alamat RT / RW"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="clearfix"></div>
                         </div>
 
                         <div role="tabpanel" class="tab-pane" id="rekening_bank">
@@ -329,26 +345,24 @@
                                 </div>
                             </div>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="simpanan">
+                        <div role="tabpanel" class="tab-pane" id="iuran">
                             <div class="col-md-2">
                                 <h3 style="margin-top: 0;"><small>Simpanan Wajib</small>
-                                    <br /> Rp. {{ number_format(simpanan_wajib($data->id)->where('status', 3)->sum('nominal')) }}
+                                    <br /> Rp. 0
                                                                 </h3>
                                 <label class="btn btn-info btn-xs" onclick="topup_simpanan_wajib()"><i class="fa fa-plus"></i> Topup</label>
                             
-                                <p>Jatuh tempo pembayaran selanjutnya<br /> <label class="text-danger">{{ date('d F Y', strtotime($data->first_durasi_pembayaran_date ." + ". $data->durasi_pembayaran ." month") ) }}</label></p>
+                                <p>Jatuh tempo pembayaran selanjutnya<br /> <label class="text-danger"> </label></p>
                             
                             </div>
                             <div class="col-md-2">simpanan
-                                <h3><small>Simpanan Pokok</small><br /> Rp. {{ number_format(simpanan_pokok($data->id)->where('status', 3)->sum('nominal')) }}</h3>
+                                <h3><small>Simpanan Pokok</small><br /> Rp. 0</h3>
                                 
-                                @if(simpanan_pokok($data->id)->where('status', 3)->sum('nominal') == 0)
                                     <label class="btn btn-info btn-xs" onclick="topup_simpanan_pokok()"><i class="fa fa-plus"></i> Topup</label>
-                                @endif
-
+                                
                             </div>
                             <div class="col-md-2">
-                                <h3><small>Simpanan Sukarela</small><br /> Rp. {{ number_format(simpanan_sukarela($data->id)->where('status', 3)->sum('nominal')) }}</h3>
+                                <h3><small>Simpanan Sukarela</small><br /> Rp. 0</h3>
                                 <label class="btn btn-info btn-xs" onclick="topup()"><i class="fa fa-plus"></i> Topup</label>
                             </div>
                             <div class="clearfix"></div>
@@ -386,17 +400,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach(simpanan_pokok($data->id)->orderBy('id', 'DESC')->get() as $no => $item)
-                                                    <tr>
-                                                        <td>{{ $no+1 }}</td>
-                                                        <td>{{ number_format($item->nominal) }}</td>    
-                                                        <td>{{ date('d F Y H:i:s', strtotime($item->created_at)) }}</td>    
-                                                        <td>{{ isset($item->user_proses->name) ? $item->user_proses->name : '' }}</td>
-                                                        <td>
-                                                            <a href="{{ route('admin.anggota.cetak-kwitansi', $item->id) }}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-print"></i> cetak kwitansi</a>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+                                               
                                                 </tbody>
                                             </table>
                                         </div>
@@ -412,19 +416,7 @@
                                                         <th></th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                @foreach(simpanan_pokok($data->id)->orderBy('id', 'DESC')->get() as $no => $item)
-                                                    <tr>
-                                                        <td>{{ $no+1 }}</td>
-                                                        <td>{{ number_format($item->nominal) }}</td>    
-                                                        <td>{{ date('d F Y H:i:s', strtotime($item->created_at)) }}</td>    
-                                                        <td>{{ isset($item->user_proses->name) ? $item->user_proses->name : '' }}</td>
-                                                        <td>
-                                                            <a href="{{ route('admin.anggota.cetak-kwitansi', $item->id) }}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-print"></i> cetak kwitansi</a>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                                </tbody>
+                                                <tbody></tbody>
                                             </table>
                                         </div>
                                         <div id="simpanan_sukarela" class="tab-pane">
@@ -440,17 +432,7 @@
                                                     </tr>
                                                 </thead>
                                                  <tbody>
-                                                @foreach(simpanan_sukarela($data->id)->orderBy('id', 'DESC')->get() as $no => $item)
-                                                    <tr>
-                                                        <td>{{ $no+1 }}</td>
-                                                        <td>{{ number_format($item->nominal) }}</td>    
-                                                        <td>{{ date('d F Y H:i:s', strtotime($item->created_at)) }}</td>    
-                                                        <td>{{ isset($item->user_proses->name) ? $item->user_proses->name : '' }}</td>
-                                                        <td>
-                                                            <a href="{{ route('admin.anggota.cetak-kwitansi', $item->id) }}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-print"></i> cetak kwitansi</a>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+                                                
                                                 </tbody>
                                             </table>
                                         </div>
@@ -466,19 +448,7 @@
                                                         <th></th>
                                                     </tr>
                                                 </thead>
-                                                 <tbody>
-                                                @foreach(simpanan_wajib($data->id)->orderBy('id', 'DESC')->get() as $no => $item)
-                                                    <tr>
-                                                        <td>{{ $no+1 }}</td>
-                                                        <td>{{ number_format($item->nominal) }}</td>    
-                                                        <td>{{ date('d F Y H:i:s', strtotime($item->created_at)) }}</td>  
-                                                        <td>{{ isset($item->user_proses->name) ? $item->user_proses->name : '' }}</td>  
-                                                        <td>
-                                                            <a href="{{ route('admin.anggota.cetak-kwitansi', $item->id) }}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-print"></i> cetak kwitansi</a>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                                </tbody>
+                                                 <tbody></tbody>
                                             </table>
                                         </div>
                                     </div>
@@ -644,11 +614,7 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
 
-<!-- ============================================================== -->
-<!-- End Page Content -->
-<!-- ============================================================== -->
 @section('footer-script')
     <style type="text/css">
         table#data_table, table#data_table2,table#data_table3 {
@@ -658,6 +624,63 @@
     <script src="{{ asset('admin-css/plugins/bower_components/blockUI/jquery.blockUI.js') }}"></script>
     <script type="text/javascript">
         
+        $("input[name='is_ktp_domisili']").click(function(){
+            if($(this).is(":checked"))
+            {
+                $('.content-alamat-ktp').find('select').attr('readonly', true);
+                $('.content-alamat-ktp').find('textarea').attr('readonly', true);
+            }
+            else
+            {
+                $('.content-alamat-ktp').find('textarea').removeAttr('readonly');
+                $('.content-alamat-ktp').find('select').removeAttr('readonly');
+            }
+        });
+
+        $("select[name='perumahan_id']").on('change', function(){
+
+            var id= $(this).val();
+            $.ajax({
+                url: "{{ route('ajax.get-blok-by-perumahan') }}",
+                method:"POST",
+                data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
+                dataType:"json",
+                success:function(data)
+                {
+                    var el = '<option value="">- Pilih Blok Rumah -</option>';
+
+                    $(data.data).each(function(k,v){
+                        el += '<option value="'+ v.id +'">'+ v.blok +'</option>';
+                    });
+
+                    $("select[name='blok_rumah']").html(el);
+                }
+            });
+
+        });
+
+        $("select[name='rw_id']").on('change', function(){
+
+            var id= $(this).val();
+            $.ajax({
+                url: "{{ route('ajax.get-rt-by-rw') }}",
+                method:"POST",
+                data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
+                dataType:"json",
+                success:function(data)
+                {
+                    var el = '<option value="">- Pilih Rukun Tetangga -</option>';
+
+                    $(data.data).each(function(k,v){
+                        el += '<option value="'+ v.id +'">'+ v.no +'</option>';
+                    });
+
+                    $("select[name='rt_id']").html(el);
+                }
+            });
+
+        });
+
         function add_bank()
         {
             $("#modal_add_bank").modal("show");

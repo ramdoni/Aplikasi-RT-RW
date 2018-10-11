@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\ControllerLogin;
-use Kodami\Models\Mysql\RekeningBank; 
-use Kodami\Models\Mysql\Bank;
+use App\Models\RekeningBank; 
+use App\Models\Bank;
 
 class RekeningBankController extends ControllerLogin
 {

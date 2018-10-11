@@ -1,6 +1,144 @@
 <?php
 
 /**
+ * [list_surat_pengantar description]
+ * @return [type] [description]
+ */
+function list_surat_pengantar()
+{
+  $arr = [ 
+          'Membuat Akta Kelahiran',
+          'Membuat Akta Kematian',
+          'Membuat KK Baru',
+          'Perubahan KK - Penambahan Anggota Keluarga yang mengalami kelahiran',
+          'Perubahan KK - Penambahan Anggota Keluarga yang menumang',
+          'Perubahan KK - Penambahan Anggota Keluarga dari WNA',
+          'Perubahan KK - Pengurangan Anggota Keluarga baik Meninggal atau Pindah',
+          'Perubahan KK - KK hilang / rusak',
+          'Perubahan KK - Pembetulan data KK',
+          'Penerbitan KTP / e-KTP baru',
+          'Perpanjang KTP',
+          'Surat Numpang Nikah',
+          'Surat Keterangan Tamu',
+          'Surat Keterangan Domisili',
+          'Surat Keterangan Domisili Usaha (SKDU)',
+          'Surat Keterangan Domisili Perusahaan (SKDP)',
+          'Surat Keterangan Tinggal Sementara (SKTS)',
+          'Surat Keterangan Pindah Alamat / KTP - Alamat Tujuan', 
+          'Surat Keterangan Pindah Alamat / KTP - Alamat Asal',
+          'Surat Keterangan/Pernyataan Tidak Mampu (SKTM)'
+        ];
+
+  return $arr;
+}
+
+
+/**
+ * [getRekeningBank description]
+ * @return [type] [description]
+ */
+function getRekeningBank()
+{
+    $data = \App\Models\RekeningBank::all();
+
+    return $data;
+}
+
+/**
+ * [nominal_iuran description]
+ * @param  [type] $user_id [description]
+ * @return [type]          [description]
+ */
+function nominal_iuran($user_id)
+{
+  $nominal = \App\Models\Iuran::sum('nominal');
+
+  return $nominal;
+}
+
+/**
+ * [chekcIuranWarga description]
+ * @param  [type] $user_id [description]
+ * @param  [type] $bulan   [description]
+ * @param  [type] $tahun   [description]
+ * @return [type]          [description]
+ */
+function check_iuran_warga($user_id, $bulan, $tahun, $boolean=false)
+{
+  $iuran = \App\Models\IuranWarga::where('user_id', $user_id)->where('bulan', $bulan)->where('tahun', $tahun)->first();
+
+  if($boolean)
+  {
+    return $iuran;
+  }
+
+  if($iuran)
+  {
+    if($iuran->status ==2)
+    {
+      return '<label class="btn btn-success btn-xs">Lunas</label>';
+    }
+    else
+    {
+      return '<label class="btn btn-danger btn-xs">Belum Lunas</label>';
+    }
+  }
+  else
+  {
+      return '<label class="btn btn-danger btn-xs">Belum Lunas</label>';
+  }
+  return $iuran;
+}
+
+/**
+ * [access_login description]
+ * @param  [type] $id [description]
+ * @return [type]     [description]
+ */
+function access_login($id)
+{
+  $arr = [1 => 'Admin', 2 => 'Warga', 3 => 'Bendahara', 4 => 'Rukun Tetangga', 5 => 'Rukun Warga'];
+
+  return $arr[$id];
+}
+
+/**
+ * [getKepemilikanRumah description]
+ * @return [type] [description]
+ */
+function getKepemilikanRumah()
+{
+  return ['Milik Sendiri', 'Keluarga', 'Kontrak / Sewa'];
+}
+
+/**
+ * [jenis_bangunan description]
+ * @return [type] [description]
+ */
+function getJenisBangunan()
+{
+  return ['Rumah','Ruko', 'Villa', 'Apartement', 'Lainnya'];
+}
+
+/**
+ * [getRw description]
+ * @return [type] [description]
+ */
+function getRw()
+{
+  return App\Models\Rw::all();
+}
+
+/**
+ * [getPerumahan description]
+ * @return [type] [description]
+ */
+function getPerumahan()
+{
+  return \App\Models\Perumahan::all();
+}
+
+/**
  * [all_simpanan_wajib description]
  * @return [type] [description]
  */
@@ -98,7 +236,7 @@ function type_deposit($key)
  */
 function list_bank()
 {
-  return \Kodami\Models\Mysql\Bank::all();
+  return \App\Models\Bank::all();
 }
 
 /**
@@ -109,12 +247,10 @@ function get_jabatan($key)
 {
 	$array_map = [
                   1 => 'Administrator',
-                  2 => 'Anggota',
-                  3 => 'Teller',
-                  4 => 'Customer Service',
-                  5 => 'Operator',
-                  6 => 'Admin Operator',
-                  7 => 'Dropshiper'
+                  2 => 'Warga',
+                  3 => 'Bendahara',
+                  4 => 'RT',
+                  5 => 'RW'
                ];
 
     if(array_key_exists($key, $array_map))

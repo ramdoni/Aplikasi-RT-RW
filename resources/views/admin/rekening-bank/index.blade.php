@@ -33,7 +33,7 @@
                     <h3 class="box-title m-b-0">MANAGE REKENING BANK</h3>
                     <br />
                     <div class="table-responsive">
-                        <table id="data_table" class="display nowrap" cellspacing="0" width="100%">
+                        <table id="data_table_no_button" class="display nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th width="70" class="text-center">#</th>
@@ -50,10 +50,10 @@
                                         <td class="text-center">{{ $no+1 }}</td>
                                         <td>{{ $item->owner }}</td>
                                         <td>{{ $item->no_rekening }}</td>
-                                        <td><img src="{{ asset('bank/'. $item->bank->image) }}" style="width: 80px;" /></td>
+                                        <td>{{ isset($item->bank->nama) ? $item->bank->nama : ''  }}</td>
                                         <td>{{ $item->created_at }}</td>
                                         <td>
-                                            <a href="{{ route('admin.rekening-bank.mutasi', $item->id) }}" class="btn btn-info btn-xs"><i class="fa fa-list"></i> Mutasi</a>
+                                            <!-- <a href="{{ route('admin.rekening-bank.mutasi', $item->id) }}" class="btn btn-info btn-xs"><i class="fa fa-list"></i> Mutasi</a> -->
                                         </td>
                                     </tr>
                                 @endforeach

@@ -7,7 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class UserModel extends Model
 {
     protected $table = 'users';
-    
+        
+    /**
+     * [perumahan description]
+     * @return [type] [description]
+     */
+    public function perumahan()
+    {
+        return $this->hasOne('\App\Models\Perumahan', 'id', 'perumahan_id');
+    }
+
     /**
      * [ktpProvinsi description]
      * @return [type] [description]
@@ -68,7 +77,7 @@ class UserModel extends Model
      */
     public function RekeningBankUser()
     {
-        return $this->hasMany('\Kodami\Models\Mysql\RekeningBankUser', 'user_id', 'id');
+        return $this->hasMany('\App\Models\RekeningBankUser', 'user_id', 'id');
     }
 
 }

@@ -16,7 +16,6 @@
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 <h4 class="page-title">Dashboard</h4> </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-
                 <ol class="breadcrumb">
                     <li><a href="javascript:void(0)">Dashboard </a></li>
                     <li class="active">Home</li>
@@ -70,19 +69,19 @@
         <!-- /.row -->
         <div class="row">
                     <!-- col-md-9 -->
-                    <div class="col-md-8 col-lg-9">
+                    <div class="col-md-4">
                         <div class="manage-users">
                             <div class="sttabs tabs-style-iconbox">
                                 <nav>
                                     <ul>
-                                        <li class="tab-current"><a href="#section-iconbox-1" class="sticon ti-user"><span>Aktivitas Warga</span></a></li>
+                                        <li class="tab-current"><a href="#section-iconbox-1" class="sticon ti-user"><span>Pembayaran Iuran Terbaru</span></a></li>
                                     </ul>
                                 </nav>
                                 <div class="content-wrap">
                                     <section id="section-iconbox-1" class="">
                                         <div class="p-20 row">
                                             <div class="col-sm-6">
-                                                <h3 class="m-t-0">Aktivitas Warga</h3>
+                                                <h3 class="m-t-0">Pembayaran Iuran Terbaru</h3>
                                             </div>
                                             <div class="col-sm-6">
                                                 <ul class="side-icon-text pull-right">
@@ -159,17 +158,13 @@
                     </div>
                     <!-- /col-md-9 -->
                     <!-- col-md-3 -->
-                    <div class="col-md-4 col-lg-3">
+                    <div class="col-md-8">
                         <div class="panel wallet-widgets">
                             <div class="panel-body">
                                 <ul class="side-icon-text">
-                                    <li class="m-0"><a href="#"><span class="circle circle-md bg-success di vm"><i class="ti-plus"></i></span><div class="di vm"><h1 class="m-b-0">RP. 0</h1><h5 class="m-t-0">Your wallet Banalce</h5></div></a></li>
+                                    <li class="m-0"><a href="#"><span class="circle circle-md bg-success di vm"><i class="ti-plus"></i></span><div class="di vm"><h1 class="m-b-0">RP. 0</h1><h5 class="m-t-0"></h5></div></a></li>
                                 </ul>
                             </div>
-                            <ul class="wallet-list">
-                                <li><i class="icon-wallet"></i><a href="javascript:void(0)">Withdrow</a></li>
-                                <li><i class="icon-wallet"></i><a href="javascript:void(0)">Deposit</a></li>
-                            </ul>
                         </div>
                     </div>
                     <!-- /col-md-3 -->

@@ -32,6 +32,65 @@ class AjaxController extends Controller
     }
 
     /**
+     * [getBlokByPerumahan description]
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function getBlokByPerumahan(Request $request)
+    {
+        $params = ['data' => [], 'message' => 'error'];
+        if($request->ajax())
+        {
+            $data =  \App\Models\PerumahanBlok::where('perumahan_id',$request->id )->get();
+            
+            return response()->json(['data' => $data, 'message' => 'success']);
+        }
+        
+        return response()->json($params);
+    }
+
+    /**
+     * [getRtByRw description]
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function getRtByRw(Request $request)
+    {
+        $params = ['data' => [], 'message' => 'error'];
+        if($request->ajax())
+        {
+            $data =  \App\Models\Rt::where('rw_id',$request->id )->get();
+            
+            return response()->json(['data' => $data, 'message' => 'success']);
+        }
+        
+        return response()->json($params);
+    }
+
+    /**
+     * [getKaryawan description]
+     * @return [type] [description]
+     */
+    public function getWarga(Request $request)
+    {
+        $params = [];
+        if($request->ajax())
+        {
+                $data =  \App\User::where('name', 'LIKE', "%". $request->name . "%")->where('access_id', 2)->get();
+
+                $params = [];
+                foreach($data as $k => $item)
+                {
+                    if($k >= 10) continue;
+
+                    $params[$k]['id'] = $item->id;
+                    $params[$k]['value'] = $item->nik .' - '. $item->name;
+                }
+        }
+        
+        return response()->json($params); 
+    }
+    /**
      * [getAnggotaById description]
      * @param  Request $request [description]
      * @return [type]           [description]
@@ -98,7 +157,7 @@ class AjaxController extends Controller
     {
         if($request->ajax())
         {
-            $data = \App\Kabupaten::where('id_prov', $request->id)->get();
+            $data = \App\Kabupaten::where('id_prov', $request->id)->orderBy('nama', 'ASC')->get();
 
             $this->respon = ['message' => 'success', 'data' => $data];
 
@@ -115,7 +174,7 @@ class AjaxController extends Controller
     {
         if($request->ajax())
         {
-            $data = \App\Kecamatan::where('id_kab', $request->id)->get();
+            $data = \App\Kecamatan::where('id_kab', $request->id)->orderBy('nama', 'ASC')->get();
 
             $this->respon = ['message' => 'success', 'data' => $data];
 
