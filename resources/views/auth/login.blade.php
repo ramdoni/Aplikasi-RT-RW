@@ -11,7 +11,7 @@
     <div class="white-box">
       <form class="form-horizontal form-material" id="loginform" action="{{ route('login') }}" method="POST">
         <a href="javascript:void(0)" class="text-center db"></a>  
-        <h3 class="box-title m-b-0">LOGIN HERE</h3>
+        <h3 class="box-title m-b-0">LOGIN PAK RT</h3>
         {{ csrf_field() }}
         @if ($errors->has('email'))
             <span class="help-block">
@@ -43,7 +43,7 @@
         </div>
         <div class="form-group m-b-0">
           <div class="col-sm-12 text-center">
-            <p>Don't have an account? <a href="{{ route('register') }}" class="text-primary m-l-5"><b>Sign Up</b></a></p>
+            <p>Belum punya akun Pak RT? <a href="{{ route('register') }}" class="text-primary m-l-5"><b>Daftar</b></a></p>
           </div>
         </div>
       </form>

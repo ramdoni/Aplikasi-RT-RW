@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Mail\RegisterMail;
-use Mail;
+use App\Models\Users;
 
 class RegisterController extends Controller
 {
@@ -18,6 +18,35 @@ class RegisterController extends Controller
     public function index()
     {
         return view('auth.register');
+    }
+
+    /**
+     * [submit description]
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function submit(Request $request)
+    {
+        $this->validate($request,[
+            'perumahan_id'      => 'required',
+            'telepon'           => 'required',
+            'name'              => 'required',
+            'password'          => 'required',
+            'confirm'           => 'required|same:password',
+        ]);
+
+        $no_anggota = date('y').date('m').date('d'). (ModelUser::all()->count() + 1);
+    
+        $data = new Users();
+        $data->name                 = $request->name;
+        $data->telepon              = $request->telepon;
+        $data->perumahan_id         = $request->perumahan_id;
+        $data->password             = bcrypt($request->password); 
+        $data->access_id            = 2;
+        $data->status               = 0;
+        $data->save();
+
+        return redirect()->route('register')->with('message-success', 'Pendaftaran Pak RT berhasil, silahkan hubungi Pak RT agar status warga anda Aktif.');
     }
 
     /**

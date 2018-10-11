@@ -8,7 +8,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
-<title>LOGIN - Kodami Pocket System</title>
+<title>Pak RT - Lapor ke Pak RT disini ajah</title>
 <!-- Bootstrap Core CSS -->
 <link href="{{ asset('admin-css/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 <!-- animation CSS -->
@@ -39,9 +39,7 @@
 </style>
 </head>
 <body>
-
 @yield('content')
-
 </section>
 <!-- jQuery -->
 <script src="{{ asset('admin-css/plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
@@ -58,5 +56,7 @@
 <script src="{{ asset('admin-css/js/custom.min.js') }}"></script>
 <!--Style Switcher -->
 <script src="{{ asset('admin-css/plugins/bower_components/styleswitcher/jQuery.style.switcher.js') }}"></script>
+<script src="{{ asset('js/bootbox.min.js') }}"></script>
+@yield('footer-script')
 </body>
 </html>

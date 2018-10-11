@@ -48,12 +48,10 @@ Route::get('home', function () {
 });
 
 Route::get('register/success', 'RegisterController@success');
-// Routing Menu Products
 Route::get('register', 'RegisterController@index');
-Route::post('registerPost', 'RegisterController@registerPost');
+Route::post('register-submit', 'RegisterController@submit')->name('register.submit');
 Route::get('logout', 'Auth\LoginController@logout');
-Route::post('contact-us', 'HomeController@postContactUs')->name('contact-us');
-Route::post('ajax/add-rekening-bank', 'AjaxController@addRekeningBank')->name('ajax.add.rekening.bank');
+ 
 // ROUTING LOGIN
 Route::group(['middleware' => ['auth']], function(){
 	Route::post('ajax/get-kabupaten-by-provinsi', 'AjaxController@getKabupatenByProvinsi')->name('ajax.get-kabupaten-by-provinsi-id');
@@ -87,6 +85,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::get('moote-bank','MootaBankController@index')->name('admin.moota-bank.index');
 	Route::get('moote-bank-mutasi/{bank_id}/{bank_type}','MootaBankController@mutasi')->name('admin.moota-bank.mutasi');
 	Route::get('user/delete-bank/{id}/{user_id}','AnggotaController@deleteBank')->name('admin.user.delete-bank');
+	Route::get('anggota/aktif/{id}', 'AnggotaController@aktif')->name('admin.anggota.aktif');
 	Route::post('anggota/topup-simpanan-pokok','AnggotaController@topupSimpananPokok')->name('admin.anggota.topup-simpanan-pokok');
 	Route::post('anggota/topup-simpanan-wajib','AnggotaController@topupSimpananWajib')->name('admin.anggota.topup-simpanan-wajib');
 	Route::post('anggota/add-rekening-bank','AnggotaController@addRekeningBank')->name('admin.anggota.add-rekening-bank');

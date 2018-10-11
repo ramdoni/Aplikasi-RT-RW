@@ -40,6 +40,7 @@
                                     <th>JENIS KELAMIN</th>
                                     <th>TELEPON</th>
                                     <th>AKSES LOGIN</th>
+                                    <th>STATUS WARGA</th>
                                     <th>#</th>
                                 </tr>
                             </thead>
@@ -52,6 +53,14 @@
                                         <td>{{ $item->jenis_kelamin }}</td>
                                         <td>{{ $item->telepon }}</td>
                                         <td>{{ access_login($item->access_id) }}</td>
+                                        <td>
+                                            @if($item->status == 0 || $item->status === NULL)
+                                                <a href="" class="btn btn-warning btn-xs">Belum Aktifivasi</a>
+                                            @endif
+                                            @if($item->status ==1)
+                                                <a href="" class="btn btn-success btn-xs">Aktif</a>
+                                            @endif
+                                        </td>
                                         <td>    
                                             <div class="btn-group m-r-10">
                                                 <button aria-expanded="false" data-toggle="dropdown" class="btn btn-xs btn-info dropdown-toggle waves-effect waves-light" type="button">Action 
@@ -60,6 +69,9 @@
                                                     <li><a href="{{ route('admin.anggota.edit', ['id' => $item->id]) }}"><i class="ti-pencil-alt"></i> Detail</a></li>
                                                     <li><a onclick="confirm_autologin('{{ route('admin.autologin', $item->id) }}', '{{ $item->name }}')"><i class="fa fa-key"></i> Autologin</a></li>
                                                     <li><a href="{{ route('admin.anggota.destroy', $item->id) }}" onclick="return confirm('Hapus data warga ?')"><i class="ti-trash"></i> Delete</a></li>
+                                                    @if($item->status == 0)
+                                                    <li><a href="{{ route('admin.anggota.aktif', $item->id) }}" onclick="return confirm('Konfirmasi data warga ?')"><i class="ti-check"></i> Konfirmasi Warga</a></li>
+                                                    @endif
                                                 </ul>
                                             </div>
                                         </td>
