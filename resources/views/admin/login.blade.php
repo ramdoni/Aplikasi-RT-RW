@@ -1,6 +1,6 @@
 @extends('layout.login')
 
-@section('title', 'Login Admin - Kodami Pocket System')
+@section('title', 'Login Admin')
 
 @section('sidebar')
 

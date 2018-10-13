@@ -70,7 +70,7 @@ class SettingController extends ControllerLogin
         $data = \App\Setting::where('id', $id)->first();
         $data->delete();
 
-        return redirect()->route('admin.setting.index')->with('message-sucess', 'Data berhasi di hapus');
+        return redirect()->route('admin.general-setting.index')->with('message-sucess', 'Data berhasi di hapus');
     }
 
    /**

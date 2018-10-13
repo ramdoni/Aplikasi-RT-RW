@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Kodami Pocket System - Koperasi Daya Masyarakat Indonesia')
+@section('title', 'PAK RT')
 
 @section('sidebar')
 

@@ -1,10 +1,6 @@
 @extends('layout.admin')
 
-@section('title', 'Admin - Koperasi Daya Masyarakat Indonesia')
-
-@section('sidebar')
-
-@endsection
+@section('title', 'PAK RT')
 
 @section('content')
 <!-- ============================================================== -->

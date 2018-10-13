@@ -1,6 +1,6 @@
 @extends('layout.admin')
 
-@section('title', 'MUTASI - Koperasi Daya Masyarakat Indonesia')
+@section('title', 'Rekening Bank')
 
 @section('sidebar')
 

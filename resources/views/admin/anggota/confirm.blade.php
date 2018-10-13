@@ -1,6 +1,6 @@
 @extends('layout.admin')
 
-@section('title', 'Konfirmasi Pembayaran - Koperasi Daya Masyarakat Indonesia')
+@section('title', 'Konfirmasi Pembayaran ')
 
 @section('sidebar')
 

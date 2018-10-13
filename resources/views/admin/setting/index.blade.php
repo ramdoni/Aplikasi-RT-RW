@@ -1,6 +1,6 @@
 @extends('layout.admin')
 
-@section('title', 'Setting - Koperasi Daya Masyarakat Indonesia')
+@section('title', 'Setting')
 
 @section('sidebar')
 
@@ -48,6 +48,11 @@
                                             <td>{{ $item->value }}</td>
                                             <td>
                                                 <a href="{{ route('admin.general-setting.edit', ['id' => $item->id]) }}"> <button class="btn btn-info btn-xs"><i class="ti-pencil-alt"></i> edit</button></a>
+                                                <form action="{{ route('admin.general-setting.destroy', $item->id) }}" onsubmit="return confirm('Hapus data ini?')" method="post" style="float: left; margin-right: 5px;">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}                                               
+                                                <button type="submit" class="btn btn-danger btn-xs"><i class="ti-trash"></i> hapus</button>
+                                            </form>
                                             </td>
                                         </tr>
                                     @endforeach
