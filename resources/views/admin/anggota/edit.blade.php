@@ -139,7 +139,7 @@
                                     <div class="col-md-6">
                                         <select class="form-control" name="access_id">
                                             @foreach(access_login() as $k => $item)
-                                                <option value="{{ $k }}" {{ $k == $data->acccess_id ? 'selected' : '' }}>{{ $item }}</option>
+                                                <option value="{{ $k }}" {{ $k == $data->access_id ? 'selected' : '' }}>{{ $item }}</option>
                                             @endforeach
                                         </select>
                                     </div>
