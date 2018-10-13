@@ -68,7 +68,9 @@
                                                 <ul role="menu" class="dropdown-menu">
                                                     <li><a href="{{ route('admin.anggota.edit', ['id' => $item->id]) }}"><i class="ti-pencil-alt"></i> Detail</a></li>
                                                     <li><a onclick="confirm_autologin('{{ route('admin.autologin', $item->id) }}', '{{ $item->name }}')"><i class="fa fa-key"></i> Autologin</a></li>
+                                                    @if($item->id != 3)
                                                     <li><a href="{{ route('admin.anggota.destroy', $item->id) }}" onclick="return confirm('Hapus data warga ?')"><i class="ti-trash"></i> Delete</a></li>
+                                                    @endif
                                                     @if($item->status == 0)
                                                     <li><a href="{{ route('admin.anggota.aktif', $item->id) }}" onclick="return confirm('Konfirmasi data warga ?')"><i class="ti-check"></i> Konfirmasi Warga</a></li>
                                                     @endif
