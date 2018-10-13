@@ -68,6 +68,6 @@ class Perumahan extends Model
      */
     public function getBlok()
     {
-        return $this->hasMany('App\Models\PerumahanBlok', 'perumahan_id', 'id')->orderBy('blok', 'ASC');
+        return $this->hasMany('App\Models\PerumahanBlok', 'perumahan_id', 'id')->orderBy('blok', 'DESC');
     }
 }
