@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <label class="col-md-12">Logo Perumahan</label>
                             <div class="col-md-12">
-                                <input type="file" name="logo" class="form-control" required />
+                                <input type="file" name="logo" class="form-control" />
                             </div>
                         </div>
                     </div>
