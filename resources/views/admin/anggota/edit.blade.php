@@ -36,7 +36,7 @@
                         <li class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="false">Biodata</a></li>
                         <li><a href="#alamat_domisili" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Alamat Domisili</a></li>                        
                         <li><a href="#alamat_ktp" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Alamat KTP</a></li>
-                        <li><a href="#iuran" aria-controls="iuran" role="tab" data-toggle="tab" aria-expanded="false">Iuran</a></li>
+                        <!-- <li><a href="#iuran" aria-controls="iuran" role="tab" data-toggle="tab" aria-expanded="false">Iuran</a></li> -->
                         <li><a href="#upload_file" aria-controls="upload_file" role="tab" data-toggle="tab" aria-expanded="false">Upload File</a></li>
                         <li><a href="#rekening_bank" aria-controls="upload_file" role="tab" data-toggle="tab" aria-expanded="false">Rekening Bank</a></li>
                     </ul>
