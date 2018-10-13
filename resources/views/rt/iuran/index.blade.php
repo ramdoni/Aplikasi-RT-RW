@@ -66,6 +66,9 @@
                                     </thead>
                                     <tbody>
                                     @foreach($data as $no => $item)
+                                        @if($item->id != 3)
+                                            <?php continue; ?>
+                                        @endif
                                         <tr>
                                             <td>{{ $no+1 }}</td>
                                             <td>{{ $item->name }}</td>
