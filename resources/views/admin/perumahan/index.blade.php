@@ -2,10 +2,6 @@
 
 @section('title', 'Perumahan')
 
-@section('sidebar')
-
-@endsection
-
 @section('content')
 <!-- ============================================================== -->
 <!-- Page Content -->
@@ -46,7 +42,11 @@
                                     <tr>
                                         <td class="text-center">{{ $no+1 }}</td>
                                         <td>{{ $item->nama_perumahan }}</td>
-                                        <td><img src="{{ asset('uploads/logo-perumahan/'. $item->logo) }}" style="width: 80px;" /></td>
+                                        <td>
+                                            @if(!empty($item->logo))
+                                            <img src="{{ asset('uploads/logo-perumahan/'. $item->logo) }}" style="width: 80px;" />
+                                            @endif
+                                        </td>
                                         <td>{{ $item->created_at }}</td>
                                         <td>
                                             <a href="{{ route('admin.perumahan.edit', ['id' => $item->id]) }}"> <button class="btn btn-default btn-xs"><i class="ti-pencil-alt"></i> edit</button></a>
