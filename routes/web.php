@@ -68,6 +68,21 @@ Route::group(['middleware' => ['auth']], function(){
 
 // ROUTING ADMIN
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'access:1']], function(){
+	Route::resource('user','UserController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
+	Route::resource('user-group','UserGroupController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'user-group']);
+	Route::resource('anggota','AnggotaController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
+	Route::resource('simpanan-sukarela','SimpananSukarelaController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
+	Route::resource('simpanan-pokok','SimpananPokokController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
+	Route::resource('simpanan-wajib','SimpananWajibController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
+	Route::resource('bank','BankController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
+	Route::resource('rekening-bank','RekeningBankController',['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
+	Route::resource('bank','BankController',['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
+	Route::resource('general-setting','SettingController',['as' => 'admin']);
+	Route::resource('iuran','IuranController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
+	Route::resource('perumahan','PerumahanController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
+	Route::resource('rw','RwController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
+	Route::resource('rt','RtController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
+	Route::resource('user-access','UserAccessController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
 	Route::get('/','IndexController@index')->name('admin.index');
 	Route::get('/','IndexController@index')->name('admin.dashboard');
 	Route::get('profile','UserController@profile')->name('admin.profile');
@@ -90,21 +105,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::post('anggota/topup-simpanan-wajib','AnggotaController@topupSimpananWajib')->name('admin.anggota.topup-simpanan-wajib');
 	Route::post('anggota/add-rekening-bank','AnggotaController@addRekeningBank')->name('admin.anggota.add-rekening-bank');
 	Route::post('anggota/confirm-submit','AnggotaController@confirmSubmit')->name('admin.anggota.confirm-submit');
-	Route::resource('user','UserController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
-	Route::resource('user-group','UserGroupController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'user-group']);
-	Route::resource('anggota','AnggotaController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
-	Route::resource('simpanan-sukarela','SimpananSukarelaController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
-	Route::resource('simpanan-pokok','SimpananPokokController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
-	Route::resource('simpanan-wajib','SimpananWajibController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
-	Route::resource('bank','BankController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
-	Route::resource('rekening-bank','RekeningBankController',['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
-	Route::resource('bank','BankController',['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
-	Route::resource('general-setting','SettingController',['as' => 'admin']);
-	Route::resource('iuran','IuranController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
-	Route::resource('perumahan','PerumahanController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
-	Route::resource('rw','RwController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
-	Route::resource('rt','RtController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
-	Route::resource('user-access','UserAccessController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
+	
 });
 
 // ROUTING WARGA

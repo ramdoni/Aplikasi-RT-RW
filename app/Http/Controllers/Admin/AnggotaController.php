@@ -211,7 +211,7 @@ class AnggotaController extends ControllerLogin
      * @return [type]     [description]
      */
     public function destroy($id)
-    {
+    { 
         $data = Users::where('id', $id)->first();
         $data->delete();
 
