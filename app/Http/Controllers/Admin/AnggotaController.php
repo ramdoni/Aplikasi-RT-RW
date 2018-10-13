@@ -200,6 +200,7 @@ class AnggotaController extends ControllerLogin
         }
         $data->status = $request->status;
         $data->no_rumah = $request->no_rumah;
+        $data->access_id    = $request->access_id; // Akses sebagai anggota
         $data->save();
 
         return redirect()->route('admin.anggota.edit', $data->id)->with('message-success', 'Data berhasil disimpan'); 
@@ -237,7 +238,7 @@ class AnggotaController extends ControllerLogin
         $data->tempat_lahir = $request->tempat_lahir;
         $data->tanggal_lahir= $request->tanggal_lahir;
         $data->password             = bcrypt($request->password); 
-        $data->access_id    = 2; // Akses sebagai anggota
+        $data->access_id    = $request->access_id; // Akses sebagai anggota
         $data->status       = 1; // menunggu pembayaran 
         $data->passport_number          = $request->passport_number;
         $data->kk_number                = $request->kk_number;

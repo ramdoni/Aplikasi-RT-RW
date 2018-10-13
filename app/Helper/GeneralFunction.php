@@ -95,11 +95,14 @@ function check_iuran_warga($user_id, $bulan, $tahun, $boolean=false)
  * @param  [type] $id [description]
  * @return [type]     [description]
  */
-function access_login($id)
+function access_login($id="")
 {
   $arr = [1 => 'Admin', 2 => 'Warga', 3 => 'Bendahara', 4 => 'Rukun Tetangga', 5 => 'Rukun Warga'];
-
-  return $arr[$id];
+  
+  if(empty($id))
+    return $arr;
+  else
+    return $arr[$id];
 }
 
 /**

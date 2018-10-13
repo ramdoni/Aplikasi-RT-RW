@@ -133,6 +133,16 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Akses Warga</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="access_id">
+                                            @foreach(access_login() as $k => $item)
+                                                <option value="{{ $k }}">{{ $item }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

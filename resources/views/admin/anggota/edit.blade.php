@@ -134,6 +134,16 @@
                                         <label><input type="radio" name="status" value="0" {{ $data->status == 0 ? 'checked="true"' : '' }} /> Inactive </label>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Akses Warga</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="access_id">
+                                            @foreach(access_login() as $k => $item)
+                                                <option value="{{ $k }}" {{ $k == $data->acccess_id ? 'selected' : '' }}>{{ $item }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="clearfix"></div>
                         </div>
