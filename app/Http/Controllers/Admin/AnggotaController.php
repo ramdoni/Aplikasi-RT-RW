@@ -199,6 +199,7 @@ class AnggotaController extends ControllerLogin
             $data->file_npwp = $name;
         }
         $data->status = $request->status;
+        $data->no_rumah = $request->no_rumah;
         $data->save();
 
         return redirect()->route('admin.anggota.edit', $data->id)->with('message-success', 'Data berhasil disimpan'); 
@@ -254,6 +255,7 @@ class AnggotaController extends ControllerLogin
         $data->status_kepemilikan_rumah = $request->status_kepemilikan_rumah;
         $data->is_ktp_domisili          = $request->is_ktp_domisili;
         $data->status_pernikahan        = $request->status_pernikahan;
+        $data->no_rumah                 = $request->no_rumah;
         $data->save();
 
         if ($request->hasFile('file_ktp'))

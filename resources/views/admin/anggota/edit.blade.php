@@ -142,7 +142,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="col-md-6">Perumahan</label>
-                                    <label class="col-md-6">Blok</label>
+                                    <label class="col-md-4">Blok</label>
+                                    <label class="col-md-2">No Rumah</label>
                                     <div class="col-md-6">
                                         <select name="perumahan_id" class="form-control">
                                             <option value=""> - Pilih Perumahan - </option>
@@ -151,7 +152,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <select name="blok_rumah" class="form-control">
                                             <option value="">- Pilih Blok Rumah -</option>
                                             @if(isset($data->perumahan->getBlok))
@@ -160,6 +161,9 @@
                                                 @endforeach
                                             @endif
                                         </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" name="no_rumah">
                                     </div>
                                 </div>
                                 <div class="form-group">

@@ -200,7 +200,7 @@ class WargaController extends ControllerLogin
         $data->status = $request->status;
         $data->save();
 
-        return redirect()->route('admin.anggota.edit', $data->id)->with('message-success', 'Data berhasil disimpan'); 
+        return redirect()->route('rt.anggota.edit', $data->id)->with('message-success', 'Data berhasil disimpan'); 
     }
 
 
@@ -214,7 +214,7 @@ class WargaController extends ControllerLogin
         $data = Users::where('id', $id)->first();
         $data->delete();
 
-        return redirect()->route('admin.anggota.index')->with('message-sucess', 'Data berhasi di hapus');
+        return redirect()->route('rt.anggota.index')->with('message-sucess', 'Data berhasi di hapus');
     }
 
    /**
@@ -295,7 +295,7 @@ class WargaController extends ControllerLogin
    {
         $params['data']     = \Kodami\Models\Mysql\Deposit::where('id', $id)->first();
 
-        return view('admin.anggota.kwitansi')->with($params);
+        return view('rt.anggota.kwitansi')->with($params);
    }
 
    /**
