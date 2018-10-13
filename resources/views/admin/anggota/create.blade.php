@@ -193,7 +193,7 @@
                                     <label class="col-md-12">Jenis Bangunan</label>
                                     <div class="col-md-6">
                                         <select class="form-control" name="jenis_bangunan">
-                                            <option value="">- Pilih Jenis Bagungan -</option>
+                                            <option value="">- Pilih Jenis Bangunan -</option>
                                             @foreach(getJenisBangunan() as $item)
                                             <option>{{ $item }}</option>
                                             @endforeach

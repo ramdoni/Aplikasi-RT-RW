@@ -11,7 +11,7 @@
     <div class="white-box">
       <form class="form-horizontal form-material" id="loginform" action="{{ route('login') }}" method="POST">
         <a href="javascript:void(0)" class="text-center db"></a>  
-        <h3 class="box-title m-b-0">LOGIN PAK RT</h3>
+        <h3 class="box-title m-b-0">LOGIN DISINI</h3>
         {{ csrf_field() }}
         @if ($errors->has('email'))
             <span class="help-block">

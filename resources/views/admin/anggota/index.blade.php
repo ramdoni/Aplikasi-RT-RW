@@ -30,7 +30,7 @@
                <div class="white-box">
                     <h3 class="box-title m-b-0"> Manage Warga</h3>
                     <br />
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="padding-bottom:60px">
                         <table id="data_table_no_button" class="display nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>

@@ -1,4 +1,4 @@
-@extends('layout.general')
+@extends('layout.admin')
 
 @section('title', 'Surat Pengantar')
 
@@ -51,7 +51,7 @@
                                         <td>{{ $item->created_at }}</td>
                                         <td>
                                             @if($item->status == 1)
-                                            <a href="{{ route('rt.surat-pengantar.proses', $item->id) }}" onclick="return confirm('Proses Surat Pengantar ?')" class="btn btn-info btn-xs"><i class="fa fa-check"></i> Approve Surat Pengantar</a>
+                                            <a href="{{ route('admin.surat-pengantar.proses', $item->id) }}" onclick="return confirm('Proses Surat Pengantar ?')" class="btn btn-info btn-xs"><i class="fa fa-check"></i> Approve Surat Pengantar</a>
                                             @endif
                                         </td>
                                     </tr>

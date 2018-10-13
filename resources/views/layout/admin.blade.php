@@ -140,6 +140,12 @@
                             <i class="mdi mdi-account-multiple fa-fw"></i> <span class="hide-menu">Management Warga<span class="fa arrow"></span></span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('admin.iuran-warga.index') }}" class="waves-effect"><i class="mdi mdi-account-card-details fa-fw"></i> IURAN</a>
+                    </li>
+                    <li class="last-nav">
+                        <a href="{{ route('admin.surat-pengantar.index') }}" class="waves-effect"><i class="mdi mdi-account-card-details fa-fw"></i> SURAT PENGANTAR</a>
+                    </li>
                     <li class="last-nav">
                         <a href="{{ route('admin.setting.index') }}" class="waves-effect">
                             <i class="mdi mdi-settings fa-fw"></i> <span class="hide-menu">Setting</span>

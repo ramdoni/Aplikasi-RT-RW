@@ -83,6 +83,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::resource('rw','RwController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
 	Route::resource('rt','RtController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
 	Route::resource('user-access','UserAccessController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
+	Route::resource('surat-pengantar', 'SuratPengantarController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
 	Route::get('/','IndexController@index')->name('admin.index');
 	Route::get('/','IndexController@index')->name('admin.dashboard');
 	Route::get('profile','UserController@profile')->name('admin.profile');
@@ -101,11 +102,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::get('moote-bank-mutasi/{bank_id}/{bank_type}','MootaBankController@mutasi')->name('admin.moota-bank.mutasi');
 	Route::get('user/delete-bank/{id}/{user_id}','AnggotaController@deleteBank')->name('admin.user.delete-bank');
 	Route::get('anggota/aktif/{id}', 'AnggotaController@aktif')->name('admin.anggota.aktif');
+	Route::get('iuran-warga', 'IuranWargaController@index')->name('admin.iuran-warga.index');
+	Route::get('surat-pengantar/proses/{id}', 'SuratPengantarController@proses')->name('admin.surat-pengantar.proses');
+	Route::get('iuran-warga/bayar-rollback/{id}', 'IuranWargaController@BayarRollback')->name('admin.iuran-warga.bayar-rollback');
 	Route::post('anggota/topup-simpanan-pokok','AnggotaController@topupSimpananPokok')->name('admin.anggota.topup-simpanan-pokok');
 	Route::post('anggota/topup-simpanan-wajib','AnggotaController@topupSimpananWajib')->name('admin.anggota.topup-simpanan-wajib');
 	Route::post('anggota/add-rekening-bank','AnggotaController@addRekeningBank')->name('admin.anggota.add-rekening-bank');
 	Route::post('anggota/confirm-submit','AnggotaController@confirmSubmit')->name('admin.anggota.confirm-submit');
-	
+	Route::post('iuran-warga/bayar', 'IuranWargaController@bayar')->name('admin.iuran-warga.bayar');
 });
 
 // ROUTING WARGA
