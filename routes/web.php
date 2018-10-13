@@ -66,7 +66,7 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::post('ajax/get-blok-by-perumahan', 'AjaxController@getBlokByPerumahan')->name('ajax.get-blok-by-perumahan');
 });
 
-// ROUTING ADMIN
+// ROUTING ADMIN 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'access:1']], function(){
 	Route::resource('user','UserController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
 	Route::resource('user-group','UserGroupController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'user-group']);
