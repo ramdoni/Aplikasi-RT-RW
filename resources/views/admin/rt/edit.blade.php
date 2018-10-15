@@ -82,6 +82,7 @@
                                         <td>{{ $no+1 }}</td>
                                         <td>{{ isset($item->user->name) ? $item->user->name : '' }}</td>
                                         <td>{{ $item->jabatan }}</td>
+                                        <td></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

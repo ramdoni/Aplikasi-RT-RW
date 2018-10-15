@@ -33,9 +33,6 @@
                             <a href="{{ route('admin.general-setting.index') }}"><i class="mdi mdi-settings fa-fw"></i><span class="hide-menu">General</span></a>
                         </div>
                         <div class="col-md-2">
-                            <a href="{{ route('admin.contact-us') }}"><i class="mdi mdi-account-multiple    multiple fa-fw"></i><span class="hide-menu">Submit Kontak Kami</span></a>
-                        </div>
-                        <div class="col-md-2">
                             <a href="{{ route('admin.bank.index') }}"><i class="mdi mdi-bank fa-fw"></i><span class="hide-menu">Master Bank</span></a>
                         </div>
                         <div class="col-md-2">
