@@ -3,13 +3,11 @@
 <ul class="nav" id="side-menu">
     <li class="user-pro">
         <a href="javascript:void(0)" class="waves-effect">
-            
             @if(Auth::user()->foto != "")
                 <img src="{{ asset('file_photo/'.  Auth::user()->id .'/'. Auth::user()->foto) }}" alt="{{ Auth::user()->name }}" class="img-circle img-responsive" style="width:50px; height: 50px;">
             @else 
                 <img src="{{ asset('admin-css/images/user.png') }}" alt="user-img" class="img-circle"> 
             @endif
-
             <span class="hide-menu"> {{ Auth::user()->name }}<span class="fa arrow"></span></span>
         </a>
         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
@@ -34,14 +32,20 @@
 @if(Auth::user()->access_id == 3)
 <ul class="nav" id="side-menu">
     <li class="user-pro">
-        <a href="javascript:void(0)" class="waves-effect"><img src="{{ asset('admin-css/images/user.png') }}" alt="user-img" class="img-circle"> <span class="hide-menu"> {{ Auth::user()->name }}<span class="fa arrow"></span></span>
+        <a href="javascript:void(0)" class="waves-effect">
+            @if(Auth::user()->foto != "")
+                <img src="{{ asset('file_photo/'.  Auth::user()->id .'/'. Auth::user()->foto) }}" alt="{{ Auth::user()->name }}" class="img-circle img-responsive" style="width:50px; height: 50px;">
+            @else 
+                <img src="{{ asset('admin-css/images/user.png') }}" alt="user-img" class="img-circle"> 
+            @endif
+            <span class="hide-menu"> {{ Auth::user()->name }}<span class="fa arrow"></span></span>
         </a>
         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
             <li><a href="{{ url('logout') }}"><i class="fa fa-power-off"></i> <span class="hide-menu">Logout</span></a></li>
         </ul>
     </li>
     <li>
-        <a href="{{ url('anggota') }}" class="waves-effect active"><i class="mdi mdi-av-timer fa-fw" data-icon="v"></i> <span class="hide-menu"> Dashboard <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right">4</span></span></a>
+        <a href="{{ url('anggota') }}" class="waves-effect active"><i class="mdi mdi-av-timer fa-fw" data-icon="v"></i> <span class="hide-menu"> Dashboard <span class="fa arrow"></span> </span></a>
     </li>
     <li class="last-nav"><a href="javascript:void(0)" class="waves-effect"><i class="mdi mdi-account-card-details fa-fw"></i> <span class="hide-menu">Iuran<span class="fa arrow"></span></span></a>
     </li>
@@ -52,7 +56,13 @@
 @if(Auth::user()->access_id == 4)
 <ul class="nav" id="side-menu">
     <li class="user-pro">
-        <a href="javascript:void(0)" class="waves-effect"><img src="{{ asset('admin-css/images/user.png') }}" alt="user-img" class="img-circle"> <span class="hide-menu"> {{ Auth::user()->name }}<span class="fa arrow"></span></span>
+        <a href="javascript:void(0)" class="waves-effect">
+            @if(Auth::user()->foto != "")
+                <img src="{{ asset('file_photo/'.  Auth::user()->id .'/'. Auth::user()->foto) }}" alt="{{ Auth::user()->name }}" class="img-circle img-responsive" style="width:50px; height: 50px;">
+            @else 
+                <img src="{{ asset('admin-css/images/user.png') }}" alt="user-img" class="img-circle"> 
+            @endif
+            <span class="hide-menu"> {{ Auth::user()->name }}<span class="fa arrow"></span></span>
         </a>
         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
             <li><a href="{{ url('logout') }}"><i class="fa fa-power-off"></i> <span class="hide-menu">Logout</span></a></li>

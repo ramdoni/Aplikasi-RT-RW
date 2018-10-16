@@ -86,7 +86,13 @@
                         <ul class="dropdown-menu dropdown-user animated flipInY">
                             <li>
                                 <div class="dw-user-box">
-                                    <div class="u-img"><img src="{{ asset('admin-css/images/user.png') }}" alt="user" /></div>
+                                    <div class="u-img pull-left">
+                                        @if(Auth::user()->foto != "")
+                                            <img src="{{ asset('file_photo/'.  Auth::user()->id .'/'. Auth::user()->foto) }}" alt="{{ Auth::user()->name }}" class="img-circle" style="width:36px; height: 36px;">
+                                        @else 
+                                            <img src="{{ asset('admin-css/images/user.png') }}" alt="user-img" width="36" class="img-circle"> 
+                                        @endif 
+                                    </div>
                                     <div class="u-text">
                                         <h4>{{ Auth::user()->name }}</h4>
                                         <p class="text-muted">{{ Auth::user()->email }}</p><a class="btn btn-rounded btn-danger btn-sm">{{ get_jabatan(\Auth::user()->access_id) }}</a></div>
