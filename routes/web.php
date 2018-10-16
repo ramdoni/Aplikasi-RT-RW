@@ -12,50 +12,36 @@
 */
 date_default_timezone_set("Asia/Bangkok");
 
-Route::get('/', function () {
 
+function routing_index()
+{
 	if(Auth::check())
     {
-    	switch (Auth::user()->access_id) {
-    		case 1:
-            	return redirect()->route('admin.dashboard');
-    			break;
-    		case 2:
-            	return redirect()->route('warga.dashboard');
-    			break;
-    		case 3:
-            	return redirect()->route('bendahara.dashboard');
-    			break;
-    		case 4:
-            	return redirect()->route('rt.dashboard');
-    			break;
-    		default:
-    			break;
-    	}
-    }
-
+		$access_id = Auth::user()->access_id;
+		if($access_id==1)
+		{
+            return redirect()->route('admin.dashboard');
+		}
+		if($access_id==2)
+		{
+            return redirect()->route('warga.dashboard');
+		}
+		if($access_id==3)
+		{
+            return redirect()->route('bendahara.dashboard');
+		}
+		if($access_id==4)
+		{
+            return redirect()->route('rt.dashboard');
+		}
+	}
+}
+Route::get('/', function () {
+	routing_index();
     return view('auth.register');
 });
 Route::get('home', function () {
-	if(Auth::check())
-    {
-    	switch (Auth::user()->access_id) {
-    		case 1:
-            	return redirect()->route('admin.dashboard');
-    			break;
-    		case 2:
-            	return redirect()->route('warga.dashboard');
-    			break;
-    		case 3:
-            	return redirect()->route('bendahara.dashboard');
-    			break;
-    		case 4:
-            	return redirect()->route('rt.dashboard');
-    			break;
-    		default:
-    			break;
-    	}
-    }
+	routing_index();
     return view('auth.register');
 });
 
