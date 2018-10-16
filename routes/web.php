@@ -14,30 +14,9 @@ date_default_timezone_set("Asia/Bangkok");
 
 Route::get('/', function () {	
 
-	if(\Auth::user()->access_id)
-    {
-		$access_id = Auth::user()->access_id;
-		if($access_id==1)
-		{			
-            return redirect()->route('admin.dashboard');
-		}
-		if($access_id==2)
-		{
-            return redirect()->route('warga.dashboard');
-		}
-		if($access_id==3)
-		{
-            return redirect()->route('bendahara.dashboard');
-		}
-		if($access_id==4)
-		{
-            return redirect()->route('rt.dashboard');
-		}
-	}
-	else
-	{
+	
     	return view('auth.register');
-	}
+	
 });
 Route::get('home', function () {
 
