@@ -22,7 +22,7 @@ Route::get('home', function () {
 
 	if(\Auth::user()->access_id)
     {
-		$access_id = Auth::user()->access_id;
+		$access_id = \Auth::user()->access_id;
 		if($access_id==1)
 		{			
             return redirect()->route('admin.dashboard');
