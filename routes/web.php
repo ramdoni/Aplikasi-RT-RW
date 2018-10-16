@@ -13,7 +13,8 @@
 date_default_timezone_set("Asia/Bangkok");
 
 Route::get('/', function () {	
-	if(\Auth::user()->access_id)
+
+	if(Auth::check())
     {
 		$access_id = \Auth::user()->access_id;
 		if($access_id==1)
@@ -44,7 +45,7 @@ Route::get('/', function () {
 });
 Route::get('home', function () {
 
-	if(\Auth::user()->access_id)
+	if(Auth::check())
     {
 		$access_id = \Auth::user()->access_id;
 		if($access_id==1)
