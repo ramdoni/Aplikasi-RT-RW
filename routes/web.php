@@ -13,7 +13,34 @@
 date_default_timezone_set("Asia/Bangkok");
 
 Route::get('/', function () {	
-    return view('auth.register');
+	if(\Auth::user()->access_id)
+    {
+		$access_id = \Auth::user()->access_id;
+		if($access_id==1)
+		{			
+            return redirect()->route('admin.dashboard');
+		}
+		if($access_id==2)
+		{
+            return redirect()->route('warga.dashboard');
+		}
+		if($access_id==3)
+		{
+            return redirect()->route('bendahara.dashboard');
+		}
+		if($access_id==4)
+		{
+            return redirect()->route('rt.dashboard');
+		}
+		if($access_id==5)
+		{
+            return redirect()->route('rw.dashboard');
+		}
+	}
+	else
+	{
+    	return view('auth.register');
+	}
 });
 Route::get('home', function () {
 
@@ -35,6 +62,10 @@ Route::get('home', function () {
 		if($access_id==4)
 		{
             return redirect()->route('rt.dashboard');
+		}
+		if($access_id==5)
+		{
+            return redirect()->route('rw.dashboard');
 		}
 	}
 	else
