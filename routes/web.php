@@ -100,6 +100,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::get('surat-pengantar/proses/{id}', 'SuratPengantarController@proses')->name('admin.surat-pengantar.proses');
 	Route::get('iuran-warga/bayar-rollback/{id}', 'IuranWargaController@BayarRollback')->name('admin.iuran-warga.bayar-rollback');
 	Route::get('rw/delete-pengurus/{id}/{rw_id}', 'RwController@deletePengurus')->name('admin.rw.delete-pengurus');
+	Route::get('rt/delete-pengurus/{id}/{rt_id}', 'RtController@deletePengurus')->name('admin.rt.delete-pengurus');
 	Route::get('keluhan-dan-saran', 'IndexController@keluhan')->name('admin.keluhan-dan-saran');
 	Route::post('anggota/topup-simpanan-pokok','AnggotaController@topupSimpananPokok')->name('admin.anggota.topup-simpanan-pokok');
 	Route::post('anggota/topup-simpanan-wajib','AnggotaController@topupSimpananWajib')->name('admin.anggota.topup-simpanan-wajib');

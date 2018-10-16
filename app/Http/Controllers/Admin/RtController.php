@@ -126,4 +126,17 @@ class RtController extends Controller
 
     	return redirect()->route('admin.rt.index')->with('message-success', 'Data RT berhasil di hapus !');
     }
+
+    /**
+     * [deletePengurus description]
+     * @param  [type] $id    [description]
+     * @param  [type] $rt_id [description]
+     * @return [type]        [description]
+     */
+    public function deletePengurus($id, $rt_id)
+    {
+        $pengurus = RtPengurus::where('id', $id)->delete();
+
+        return redirect()->route('admin.rt.edit', $rt_id)->with('message-success', 'Data Pengurus RT berhasil di hapus !');
+    }
 }

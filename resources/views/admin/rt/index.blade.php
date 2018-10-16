@@ -37,24 +37,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data as $no => $item)
-                                    <tr>
-                                        <td class="text-center">{{ $no+1 }}</td>
-                                        <td>{{ isset($item->rw->no) ? $item->rw->no : '' }}</td>
-                                        <td>{{ $item->no }}</td>
-                                        <td>{{ isset($item->ketuaRt->user->name) ? $item->ketuaRt->user->name : '' }}</td>
-                                        <td>{{ $item->created_at }}</td>
-                                        <td>
-                                            <a href="{{ route('admin.rt.edit', ['id' => $item->id]) }}"> <button class="btn btn-default btn-xs"><i class="ti-pencil-alt"></i> edit</button></a>
-
-                                            <form action="{{ route('admin.rt.destroy', $item->id) }}" onsubmit="return confirm('Hapus data ini?')" method="post" style="float: left; margin-right: 5px;">
-                                                {{ csrf_field() }}
-                                                {{ method_field('DELETE') }}                                               
-                                                <button type="submit" class="btn btn-danger btn-xs"><i class="ti-trash"></i> hapus</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                            @foreach($data as $no => $item)
+                                <tr>
+                                    <td class="text-center">{{ $no+1 }}</td>
+                                    <td>{{ isset($item->rw->no) ? $item->rw->no : '' }}</td>
+                                    <td>{{ $item->no }}</td>
+                                    <td>{{ isset($item->ketuaRt->user->name) ? $item->ketuaRt->user->name : '' }}</td>
+                                    <td>{{ $item->created_at }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.rt.edit', ['id' => $item->id]) }}"> <button class="btn btn-default btn-xs"><i class="ti-pencil-alt"></i> edit</button></a>
+                                        <form action="{{ route('admin.rt.destroy', $item->id) }}" onsubmit="return confirm('Hapus data ini?')" method="post" style="float: left; margin-right: 5px;">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}                                               
+                                            <button type="submit" class="btn btn-danger btn-xs"><i class="ti-trash"></i> hapus</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

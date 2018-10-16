@@ -82,7 +82,7 @@
                                         <td>{{ $no+1 }}</td>
                                         <td>{{ isset($item->user->name) ? $item->user->name : '' }}</td>
                                         <td>{{ $item->jabatan }}</td>
-                                        <td></td>
+                                        <td><a href="{{ route('admin.rt.delete-pengurus', [$item->id, $data->id]) }}" class="text-danger" onclick="return confirm('Hapus data ini ?')"><i class="fa fa-trash"></i> </a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -102,7 +102,7 @@
         <!-- /.row -->
         <!-- ============================================================== -->
     </div>
-    @extends('layout.footer-admin')
+    @include('layout.footer-admin')
 </div>
 
 <div class="modal fade" id="modal_add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
