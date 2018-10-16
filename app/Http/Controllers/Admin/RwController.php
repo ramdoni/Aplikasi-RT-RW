@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Rw;
 use App\Models\RwPengurus;
+use App\Models\Users;
 
 class RwController extends Controller
 {	

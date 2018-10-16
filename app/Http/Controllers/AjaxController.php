@@ -84,7 +84,7 @@ class AjaxController extends Controller
                     if($k >= 10) continue;
 
                     $params[$k]['id'] = $item->id;
-                    $params[$k]['value'] = $item->nik .' - '. $item->name;
+                    $params[$k]['value'] = $item->name;
                 }
         }
         
