@@ -15,36 +15,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
-                <div class="panel">
-                    @if(Auth::user()->status == 1)
-                        <span  class="btn btn-rounded btn-success" style="position: absolute;right: 25px;top: 10px;">Active</span>
-                    @endif
-                    @if(Auth::user()->status == 2)
-                        <span  class="btn btn-rounded btn-danger" style="position: absolute;right: 25px;top: 10px;">Inactive</span>
-                    @endif
-                    <div class="p-30">
-                        <div class="row">                                
-                            <div class="col-xs-4 col-sm-4">
-                                @if(Auth::user()->foto != "")
-                                    <img src="{{ asset('file_photo/'.  Auth::user()->id .'/'. Auth::user()->foto) }}" alt="{{ Auth::user()->name }}" class="img-circle img-responsive">
-                                @else 
-                                    <img src="{{ asset('images/user.png') }}" alt="{{ Auth::user()->name }}" class="img-circle img-responsive">
-                                @endif
-                            </div>
-                            <div class="col-xs-12 col-sm-8">
-                                <h2 class="m-b-0">{{ Auth::user()->name }}</h2>
-                            </div>
-                        </div>
-                        <hr class="m-t-10" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="white-box">
                     <h3>Profil</h3>
                     <hr />
-                   <form class="form-horizontal" action="{{ route('warga.update-profile') }}" method="POST">
+                   <form class="form-horizontal" action="{{ route('warga.update-profile') }}" method="POST" enctype="multipart/form-data" >
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="false">Biodata</a></li>
                             <li><a href="#alamat_domisili" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Alamat Domisili</a></li>                        
@@ -335,23 +310,60 @@
     @include('layout.footer-admin')
 </div>
 
-
+<!-- ============================================================== -->
 @section('footer-script')
-    <style type="text/css">
-        .price-lable {
-            width: auto;
-        }
-        .pricing-body {
-            padding: 20px 0 !important;
-        }
-        /* override paksa */
-        .blockUI.blockMsg.blockElement {
-            top: 0 !important;
-        }
-    </style>
     <script src="{{ asset('admin-css/plugins/bower_components/blockUI/jquery.blockUI.js') }}"></script>
     <script type="text/javascript">
         
+        $("select[name='perumahan_id']").on('change', function(){
+
+            var id= $(this).val();
+            $.ajax({
+                url: "{{ route('ajax.get-blok-by-perumahan') }}",
+                method:"POST",
+                data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
+                dataType:"json",
+                success:function(data)
+                {
+                    var el = '<option value="">- Pilih Blok Rumah -</option>';
+
+                    $(data.data).each(function(k,v){
+                        el += '<option value="'+ v.id +'">'+ v.blok +'</option>';
+                    });
+
+                    $("select[name='blok_rumah']").html(el);
+                }
+            });
+
+            var el = $("select[name='perumahan_id'] option:selected");
+            $(".domisili_provinsi").val(el.attr('data-provinsi'));
+            $(".domisili_kabupaten").val(el.attr('data-kabupaten'));
+            $(".domisili_kecamatan").val(el.attr('data-kecamatan'));
+            $(".domisili_kelurahan").val(el.attr('data-kelurahan'));
+        });
+
+        $("select[name='rw_id']").on('change', function(){
+
+            var id= $(this).val();
+            $.ajax({
+                url: "{{ route('ajax.get-rt-by-rw') }}",
+                method:"POST",
+                data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
+                dataType:"json",
+                success:function(data)
+                {
+                    var el = '<option value="">- Pilih Rukun Tetangga -</option>';
+
+                    $(data.data).each(function(k,v){
+                        el += '<option value="'+ v.id +'">'+ v.no +'</option>';
+                    });
+
+                    $("select[name='rt_id']").html(el);
+                }
+            });
+
+        });
+
         jQuery('.datepicker').datepicker({
             format: 'yyyy-mm-dd',
         });
@@ -506,52 +518,6 @@
         /**
          * END KTP LOKASI
          */
-
-        var simpanan_wajib = 10000;
-
-        $(".nominal").on('input', function(){ calculate(); });
-
-        function calculate()
-        {
-            var simpanan_sukarela = $(".nominal").val() == "" ? 0 : parseInt($(".nominal").val());
-
-            total_bayar = parseInt(simpanan_sukarela) + parseInt(simpanan_wajib) + 100000 + 10000;
-
-            $('.total_bayar').html(numberWithComma(total_bayar));
-        }
-
-
-        $("input[name='durasi_pembayaran']").each(function(){
-
-            $(this).click(function(){
-                if($(this).val() == 1)
-                {
-                    $('.nominal_simpanan_wajib').html( '10.000' );
-                    simpanan_wajib = 10000;
-                }
-
-                if($(this).val() == 3)
-                {
-                    $('.nominal_simpanan_wajib').html( '30.000' );
-                    simpanan_wajib = 30000; 
-                }
-
-                if($(this).val() == 6)
-                {
-                    $('.nominal_simpanan_wajib').html( '60.000' );
-                    simpanan_wajib = 60000;
-                }
-
-                if($(this).val() == 12)
-                {
-                    $('.nominal_simpanan_wajib').html( '120.000' );
-                    simpanan_wajib = 120000;
-                }
-
-                calculate();
-            });
-        });
-
     </script>
 @endsection
 
