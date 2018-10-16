@@ -62,6 +62,13 @@ class RwController extends Controller
                 $pengurus->jabatan  = $request->jabatan[$k];
                 $pengurus->keterangan = $request->keterangan[$k];
                 $pengurus->save();
+
+                if($request->jabatan[$k] == 'Ketua')
+                {
+                    $user               = Users::where('id', $request->user_id)->first();
+                    $user->access_id    = 5;
+                    $user->save();
+                }
             }
         }
 
@@ -89,6 +96,13 @@ class RwController extends Controller
                 $pengurus->jabatan  = $request->jabatan[$k];
                 $pengurus->keterangan = $request->keterangan[$k];
                 $pengurus->save();
+
+                if($request->jabatan[$k] == 'Ketua')
+                {
+                    $user               = Users::where('id', $request->user_id)->first();
+                    $user->access_id    = 5;
+                    $user->save();
+                }
             }
         }
 

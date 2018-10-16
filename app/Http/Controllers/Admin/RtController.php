@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Rt;
 use App\Models\RtPengurus;
+use App\Models\Users;
 
 class RtController extends Controller
 {	
@@ -63,6 +64,13 @@ class RtController extends Controller
                 $pengurus->jabatan  = $request->jabatan[$k];
                 $pengurus->keterangan = $request->keterangan[$k];
                 $pengurus->save();
+
+                if($request->jabatan[$k] == 'Ketua')
+                {
+                    $user               = Users::where('id', $request->user_id)->first();
+                    $user->access_id    = 4;
+                    $user->save();
+                }
             }
         }
 
@@ -91,6 +99,13 @@ class RtController extends Controller
                 $pengurus->jabatan  = $request->jabatan[$k];
                 $pengurus->keterangan = $request->keterangan[$k];
                 $pengurus->save();
+
+                if($request->jabatan[$k] == 'Ketua')
+                {
+                    $user               = Users::where('id', $request->user_id)->first();
+                    $user->access_id    = 4;
+                    $user->save();
+                }
             }
         }
 
