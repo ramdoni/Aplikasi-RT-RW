@@ -13,10 +13,7 @@
 date_default_timezone_set("Asia/Bangkok");
 
 Route::get('/', function () {	
-
-	
-    	return view('auth.register');
-	
+    return view('auth.register');
 });
 Route::get('home', function () {
 
