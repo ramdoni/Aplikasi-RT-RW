@@ -199,6 +199,38 @@
         
         @include('layout.alert')
 
+
+        <div class="modal fade" id="modal_keluhan" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <form method="POST" action="{{ route('warga.submit-keluhan') }}">
+                    {{ csrf_field() }}            
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Keluhan dan Saran</h4> 
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <select class="form-control" name="to">
+                                <option value="">- Ditujukan Untuk -</option>
+                                <option>Rukun Tetannga (RT)</option>
+                                <option>Rukun Warga (RW)</option>
+                                <option>Pakrt.id</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="pesan"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success btn-sm" id="add" data-dismiss="modal">Oke</button>
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
@@ -279,8 +311,6 @@
     });
 
     </script>
-
     @yield('footer-script')
-
 </body>
 </html>

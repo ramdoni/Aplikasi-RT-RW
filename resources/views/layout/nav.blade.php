@@ -12,9 +12,13 @@
     <li>
         <a href="{{ route('warga.iuran.index') }}" class="waves-effect"><i class="mdi mdi-apps fa-fw"></i> Iuran</a>
     </li>
-    <li class="last-nav">
+    <li>
         <a href="{{ route('warga.surat-pengantar.index') }}" class="waves-effect"><i class="mdi mdi-account-card-details fa-fw"></i> Surat Pengantar</a>
     </li>
+    <li class="last-nav" onclick="form_keluhan()">
+        <a class="waves-effect"><i class="mdi mdi-message-text-outline fa-fw"></i> Keluhan dan Saran</a>
+    </li>
+    
 </ul>
 @endif
 
@@ -28,7 +32,8 @@
             <li><a href="{{ url('logout') }}"><i class="fa fa-power-off"></i> <span class="hide-menu">Logout</span></a></li>
         </ul>
     </li>
-    <li> <a href="{{ url('anggota') }}" class="waves-effect active"><i class="mdi mdi-av-timer fa-fw" data-icon="v"></i> <span class="hide-menu"> Dashboard <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right">4</span></span></a>
+    <li>
+        <a href="{{ url('anggota') }}" class="waves-effect active"><i class="mdi mdi-av-timer fa-fw" data-icon="v"></i> <span class="hide-menu"> Dashboard <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right">4</span></span></a>
     </li>
     <li class="last-nav"><a href="javascript:void(0)" class="waves-effect"><i class="mdi mdi-account-card-details fa-fw"></i> <span class="hide-menu">Iuran<span class="fa arrow"></span></span></a>
     </li>

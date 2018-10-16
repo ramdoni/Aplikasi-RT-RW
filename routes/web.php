@@ -30,7 +30,6 @@ Route::get('/', function () {
             	return redirect()->route('rt.dashboard');
     			break;
     		default:
-    			# code...
     			break;
     	}
     }
@@ -101,6 +100,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::get('surat-pengantar/proses/{id}', 'SuratPengantarController@proses')->name('admin.surat-pengantar.proses');
 	Route::get('iuran-warga/bayar-rollback/{id}', 'IuranWargaController@BayarRollback')->name('admin.iuran-warga.bayar-rollback');
 	Route::get('rw/delete-pengurus/{id}/{rw_id}', 'RwController@deletePengurus')->name('admin.rw.delete-pengurus');
+	Route::get('keluhan-dan-saran', 'IndexController@keluhan')->name('admin.keluhan-dan-saran');
 	Route::post('anggota/topup-simpanan-pokok','AnggotaController@topupSimpananPokok')->name('admin.anggota.topup-simpanan-pokok');
 	Route::post('anggota/topup-simpanan-wajib','AnggotaController@topupSimpananWajib')->name('admin.anggota.topup-simpanan-wajib');
 	Route::post('anggota/add-rekening-bank','AnggotaController@addRekeningBank')->name('admin.anggota.add-rekening-bank');
@@ -118,6 +118,7 @@ Route::group(['prefix' => 'warga', 'namespace' => 'Warga', 'middleware' => ['aut
 	Route::get('user/post-submit-pembayaran-warga', 'UserController@submitkonfirmasianggota');
 	Route::get('bayar', 'BayarController@step1')->name('warga.bayar');
 	Route::get('iuran', 'IuranController@index')->name('warga.iuran.index');
+	Route::post('submit-keluhan', 'IndexController@submitKeluhan')->name('warga.submit-keluhan');
 	Route::post('user/post-konfirmasi-pembayaran', 'UserController@postKonfirmasiPembayaran');
 	Route::post('save-profile', 'IndexController@saveProfile')->name('warga.index.save.profile');
 	Route::post('submitstep1', 'BayarController@submitStep1')->name('warga.submit-step1');

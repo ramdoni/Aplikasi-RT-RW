@@ -144,6 +144,36 @@
         @yield('content')
         
         @include('layout.alert')
+        <div class="modal fade" id="modal_keluhan" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <form method="POST" action="{{ route('warga.submit-keluhan') }}">
+                    {{ csrf_field() }}            
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Keluhan dan Saran</h4> 
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <select class="form-control" name="to">
+                                <option value="">- Ditujukan Untuk -</option>
+                                <option>Rukun Tetannga (RT)</option>
+                                <option>Rukun Warga (RW)</option>
+                                <option>Pakrt.id</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="pesan"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success btn-sm">Oke</button>
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
 
     <!-- ============================================================== -->
     <!-- End Wrapper -->
@@ -223,8 +253,13 @@
 
     $(".myadmin-alert .closed").click(function(event) {
         $(this).parents(".myadmin-alert").fadeToggle(350);
-        return false;
+        return false;   
     });
+
+    function form_keluhan()
+    {
+        $("#modal_keluhan").modal("show");        
+    }
 
     </script>
 

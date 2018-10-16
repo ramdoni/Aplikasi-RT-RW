@@ -125,10 +125,6 @@
                         <a href="javascript:void(0)" class="waves-effect"><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span class="hide-menu"> {{ Auth::user()->name }}<span class="fa arrow"></span></span>
                         </a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                            <li><a href="javascript:void(0)"><i class="ti-user"></i> <span class="hide-menu">My Profile</span></a></li>
-                            <li><a href="javascript:void(0)"><i class="ti-wallet"></i> <span class="hide-menu">My Balance</span></a></li>
-                            <li><a href="javascript:void(0)"><i class="ti-email"></i> <span class="hide-menu">Inbox</span></a></li>
-                            <li><a href="javascript:void(0)"><i class="ti-settings"></i> <span class="hide-menu">Account Setting</span></a></li>
                             <li><a href="{{ url('logout') }}"><i class="fa fa-power-off"></i> <span class="hide-menu">Logout</span></a></li>
                         </ul>
                     </li>
@@ -143,8 +139,11 @@
                     <li>
                         <a href="{{ route('admin.iuran-warga.index') }}" class="waves-effect"><i class="mdi mdi-account-card-details fa-fw"></i> Iuran</a>
                     </li>
-                    <li class="last-nav">
+                    <li>
                         <a href="{{ route('admin.surat-pengantar.index') }}" class="waves-effect"><i class="mdi mdi-account-card-details fa-fw"></i> Surat Pengantar</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.keluhan-dan-saran') }}" class="waves-effect"><i class="mdi mdi-message-text-outline fa-fw"></i> Keluhan dan Saran</a>
                     </li>
                     <li class="last-nav">
                         <a href="{{ route('admin.setting.index') }}" class="waves-effect">
