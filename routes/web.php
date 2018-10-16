@@ -12,14 +12,13 @@
 */
 date_default_timezone_set("Asia/Bangkok");
 
+Route::get('/', function () {	
 
-function routing_index()
-{
-	if(Auth::check())
+	if(isset(\Auth::user()->access_id))
     {
 		$access_id = Auth::user()->access_id;
 		if($access_id==1)
-		{
+		{			
             return redirect()->route('admin.dashboard');
 		}
 		if($access_id==2)
@@ -35,14 +34,36 @@ function routing_index()
             return redirect()->route('rt.dashboard');
 		}
 	}
-}
-Route::get('/', function () {
-	routing_index();
-    return view('auth.register');
+	else
+	{
+    	return view('auth.register');
+	}
 });
 Route::get('home', function () {
-	routing_index();
-    return view('auth.register');
+	if(isset(\Auth::user()->access_id))
+    {
+		$access_id = Auth::user()->access_id;
+		if($access_id==1)
+		{			
+            return redirect()->route('admin.dashboard');
+		}
+		if($access_id==2)
+		{
+            return redirect()->route('warga.dashboard');
+		}
+		if($access_id==3)
+		{
+            return redirect()->route('bendahara.dashboard');
+		}
+		if($access_id==4)
+		{
+            return redirect()->route('rt.dashboard');
+		}
+	}
+	else
+	{
+    	return view('auth.register');
+	}
 });
 
 Route::get('register/success', 'RegisterController@success');
