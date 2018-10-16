@@ -76,7 +76,7 @@ class AjaxController extends Controller
         $params = [];
         if($request->ajax())
         {
-                $data =  \App\User::where('name', 'LIKE', "%". $request->name . "%")->where('access_id', 2)->get();
+                $data =  \App\User::where('name', 'LIKE', "%". $request->name . "%")->where('access_id', '<>', 1)->get();
 
                 $params = [];
                 foreach($data as $k => $item)
