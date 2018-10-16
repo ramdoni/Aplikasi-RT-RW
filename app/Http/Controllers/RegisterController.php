@@ -29,6 +29,7 @@ class RegisterController extends Controller
     {
         $this->validate($request,[
             'perumahan_id'      => 'required',
+            'email'           => 'required',
             'telepon'           => 'required',
             'name'              => 'required',
             'password'          => 'required',
@@ -38,7 +39,8 @@ class RegisterController extends Controller
         $no_anggota = date('y').date('m').date('d'). (ModelUser::all()->count() + 1);
     
         $data = new Users();
-        $data->name                 = $request->name;
+        $data->name                 = strtoupper($request->name);
+        $data->email                = $request->email;
         $data->telepon              = $request->telepon;
         $data->perumahan_id         = $request->perumahan_id;
         $data->password             = bcrypt($request->password); 

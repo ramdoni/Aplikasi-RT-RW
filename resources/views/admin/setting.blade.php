@@ -31,10 +31,10 @@
                     <div>
                         <div class="col-md-2">
                             <a href="{{ route('admin.general-setting.index') }}"><i class="mdi mdi-settings fa-fw"></i><span class="hide-menu">General</span></a>
-                        </div>
+                        </div><!-- 
                         <div class="col-md-2">
                             <a href="{{ route('admin.bank.index') }}"><i class="mdi mdi-bank fa-fw"></i><span class="hide-menu">Master Bank</span></a>
-                        </div>
+                        </div> -->
                         <div class="col-md-2">
                             <a href="{{ route('admin.iuran.index') }}"><i class="mdi mdi-wallet fa-fw"></i><span class="hide-menu">IURAN</span></a>
                         </div>
@@ -44,13 +44,12 @@
                         <div class="col-md-2">
                             <a href="{{ route('admin.rt.index') }}"><i class="mdi mdi-home fa-fw"></i><span class="hide-menu">Rukun Tetangga (RT) </span></a>
                         </div>
-                        <div class="clearfix"></div><br /><hr />
                         <div class="col-md-2">
                             <a href="{{ route('admin.perumahan.index') }}"><i class="mdi mdi-home-variant fa-fw"></i><span class="hide-menu">Perumahan</span></a>
                         </div>
-                        <div class="col-md-2">
+                        <!-- <div class="col-md-2">
                             <a href="{{ route('admin.rekening-bank.index') }}"><i class="mdi mdi-bank fa-fw"></i><span class="hide-menu">Bank Pengurus</span></a>
-                        </div>
+                        </div> -->
                         <div class="clearfix"></div><hr />
                     </div>
                 </div>

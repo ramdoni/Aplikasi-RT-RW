@@ -141,10 +141,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.iuran-warga.index') }}" class="waves-effect"><i class="mdi mdi-account-card-details fa-fw"></i> IURAN</a>
+                        <a href="{{ route('admin.iuran-warga.index') }}" class="waves-effect"><i class="mdi mdi-account-card-details fa-fw"></i> Iuran</a>
                     </li>
                     <li class="last-nav">
-                        <a href="{{ route('admin.surat-pengantar.index') }}" class="waves-effect"><i class="mdi mdi-account-card-details fa-fw"></i> SURAT PENGANTAR</a>
+                        <a href="{{ route('admin.surat-pengantar.index') }}" class="waves-effect"><i class="mdi mdi-account-card-details fa-fw"></i> Surat Pengantar</a>
                     </li>
                     <li class="last-nav">
                         <a href="{{ route('admin.setting.index') }}" class="waves-effect">

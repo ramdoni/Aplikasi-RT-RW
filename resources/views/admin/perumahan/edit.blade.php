@@ -58,7 +58,7 @@
                                     <select name="kecamatan_id" class="form-control">
                                         <option value=""> - Kecamatan - </option>
                                         @foreach($data->getKecamatanByKabupaten as $i)
-                                        <option value="{{ $i->id_kec }}">{{ $i->nama }}</option>
+                                        <option value="{{ $i->id_kec }}" {{ $i->id_kec == $data->kecamatan_id ? "selected" : "" }}>{{ $i->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -67,6 +67,9 @@
                                 <div class="col-md-12">
                                     <select name="kelurahan_id" class="form-control">
                                         <option value=""> - Desa / Kelurahan - </option>
+                                        @foreach($data->getKelurahanByKecamatan as $i)
+                                        <option value="{{ $i->id_kel }}" {{ $i->id_kel == $data->kelurahan_id ? "selected" : "" }}>{{ $i->nama }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -74,13 +77,16 @@
                             <label class="col-md-12">Logo Perumahan</label>
                             <div class="col-md-12">
                                 <input type="file" name="logo" class="form-control" />
+                                @if(!empty($data->logo))
+                                    <img src="{{ asset('uploads/logo-perumahan/'. $data->logo) }}" style="height:180px;" />
+                                @endif
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div style="background: #f5f5f5;padding:15px;margin-top: 22px;">
                             <h4>Blok Perumahan</h4>
-                            <div class="table-responsive">
+                            <div class="table-responsive" style="max-height: 300px; overflow: auto;">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -99,8 +105,8 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <a class="btn btn-default btn-sm btn-add-blok"><i class="fa fa-plus"></i> Tambah Blok</a>
                             </div>
+                            <a class="btn btn-default btn-sm btn-add-blok"><i class="fa fa-plus"></i> Tambah Blok</a>
                         </div>
                     </div>
                     <br style="clear: both;" />

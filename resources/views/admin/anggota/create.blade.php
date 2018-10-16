@@ -50,7 +50,7 @@
                                         <input type="text" name="name" class="form-control"> 
                                     </div>
                                     <div class="col-md-6">
-                                        <select class="form-control" name="jenis_kelamin" required>
+                                        <select class="form-control" name="jenis_kelamin">
                                             <option value=""> - Jenis Kelamin - </option>
                                             @foreach(['Laki-laki', 'Perempuan'] as $item)
                                                 <option>{{ $item }}</option>
@@ -96,17 +96,6 @@
                                                 <option value="{{ $item }}"> {{ $item }} </option>
                                             @endforeach
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-6">KTP</label>
-                                    <label class="col-md-6">Status Login</label>
-                                    <div class="col-md-6">
-                                        <input type="file" name="file_ktp" class="form-control">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label><input type="radio" name="status" value="1" /> Active </label> &nbsp;
-                                        <label><input type="radio" name="status" value="0" /> Inactive </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -174,7 +163,7 @@
                                     <label class="col-md-6">Rukun Tetangga (RT)</label> 
                                     <div class="col-md-6">
                                         <select class="form-control" name="rw_id">
-                                            <option>- Pilih Rukun Warga -</option>
+                                            <option value="">- Pilih Rukun Warga -</option>
                                             @foreach(getRw() as $item)
                                             <option value="{{ $item->id }}">{{ $item->no }}</option>
                                             @endforeach
@@ -182,7 +171,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <select class="form-control" name="rt_id">
-                                            <option>- Pilih Rukun Tetangga -</option>
+                                            <option value="">- Pilih Rukun Tetangga -</option>
                                         </select> 
                                     </div>
                                 </div>
@@ -322,6 +311,11 @@
                 }
             });
 
+            var el = $("select[name='perumahan_id'] option:selected");
+            $(".domisili_provinsi").val(el.attr('data-provinsi'));
+            $(".domisili_kabupaten").val(el.attr('data-kabupaten'));
+            $(".domisili_kecamatan").val(el.attr('data-kecamatan'));
+            $(".domisili_kelurahan").val(el.attr('data-kelurahan'));
         });
 
         $("select[name='rw_id']").on('change', function(){
@@ -348,15 +342,6 @@
 
         jQuery('.datepicker').datepicker({
             format: 'yyyy-mm-dd',
-        });
-
-        $("select[name='perumahan_id']").on('change', function(){
-            
-            var el = $("select[name='perumahan_id'] option:selected");
-            $(".domisili_provinsi").val(el.attr('data-provinsi'));
-            $(".domisili_kabupaten").val(el.attr('data-kabupaten'));
-            $(".domisili_kecamatan").val(el.attr('data-kecamatan'));
-            $(".domisili_kelurahan").val(el.attr('data-kelurahan'));
         });
 
         /**

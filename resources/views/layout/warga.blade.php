@@ -78,9 +78,9 @@
         <nav class="navbar navbar-default navbar-static-top m-b-0">
             <div class="navbar-header">
                 <div class="top-left-part">
-                    <!-- Logo -->`
-                    <a class="logo" href="{{ url('anggota') }}"><b>RT KU</b>
-                        <span class="hidden-xs">&nbsp;</span> 
+                    <!-- Logo --> 
+                    <a class="logo" href="{{ url('anggota') }}">
+                        <span class="hidden-xs"><b>RT</b></span> 
                     </a>
                 </div>
                 <!-- /Logo -->

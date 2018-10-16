@@ -10,14 +10,19 @@
     <div class="white-box">
       <form class="form-horizontal form-material" method="POST" action="{{ route('register.submit') }}">
         {{ csrf_field() }}
-        <h3 class="box-title m-t-40 m-b-0">Daftar Warga Pak RT</h3><small>Mudah daftar menjadi warga Pak RT </small>   
+        <h3 class="box-title m-t-40 m-b-0">Daftar Warga</h3><small>Mudah daftar menjadi warga Pak RT </small>   
 
         @if($errors->has('name'))
           <span class="help-block">
               <strong>{{ $errors->first('name') }}</strong>
           </span>
         @endif
-        @if($errors->has('telepon'))
+        @if($errors->has('email'))
+          <span class="help-block">
+              <strong>{{ $errors->first('email') }}</strong>
+          </span>
+        @endif
+         @if($errors->has('telepon'))
           <span class="help-block">
               <strong>{{ $errors->first('telepon') }}</strong>
           </span>
@@ -40,6 +45,11 @@
         <div class="form-group m-t-20">
           <div class="col-xs-12">
             <input class="form-control" name="name" type="text" required placeholder="Nama">
+          </div>
+        </div>
+        <div class="form-group ">
+          <div class="col-xs-12">
+            <input class="form-control" name="email" type="email" required placeholder="Email">
           </div>
         </div>
         <div class="form-group ">
@@ -74,7 +84,7 @@
         </div>
         <div class="form-group m-b-0">
           <div class="col-sm-12 text-center">
-            <p>Anda sudah punya akun Pak RT? <a href="{{ route('login') }}" class="text-primary m-l-5"><b>Login disini</b></a></p>
+            <p>Anda sudah punya akun Pak RT? <a href="{{ route('login') }}" class="text-primary m-l-5"><b>Login</b></a></p>
           </div>
         </div>
       </form>

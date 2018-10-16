@@ -12,8 +12,8 @@
 */
 date_default_timezone_set("Asia/Bangkok");
 
-function route_index()
-{
+Route::get('/', function () {
+
 	if(Auth::check())
     {
     	switch (Auth::user()->access_id) {
@@ -34,11 +34,6 @@ function route_index()
     			break;
     	}
     }
-}
-
-Route::get('/', function () {
-	
-	route_index();
 
     return view('auth.register');
 });
@@ -105,6 +100,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::get('iuran-warga', 'IuranWargaController@index')->name('admin.iuran-warga.index');
 	Route::get('surat-pengantar/proses/{id}', 'SuratPengantarController@proses')->name('admin.surat-pengantar.proses');
 	Route::get('iuran-warga/bayar-rollback/{id}', 'IuranWargaController@BayarRollback')->name('admin.iuran-warga.bayar-rollback');
+	Route::get('rw/delete-pengurus/{id}/{rw_id}', 'RwController@deletePengurus')->name('admin.rw.delete-pengurus');
 	Route::post('anggota/topup-simpanan-pokok','AnggotaController@topupSimpananPokok')->name('admin.anggota.topup-simpanan-pokok');
 	Route::post('anggota/topup-simpanan-wajib','AnggotaController@topupSimpananWajib')->name('admin.anggota.topup-simpanan-wajib');
 	Route::post('anggota/add-rekening-bank','AnggotaController@addRekeningBank')->name('admin.anggota.add-rekening-bank');
@@ -130,6 +126,7 @@ Route::group(['prefix' => 'warga', 'namespace' => 'Warga', 'middleware' => ['aut
 	Route::post('upload-confirmation', 'BayarController@confirmation')->name('warga.upload.confirmation');
 	Route::post('iuran/bayar', 'IuranController@bayar')->name('warga.iuran.bayar');
 	Route::post('surat-pengantar/request-submit', 'SuratPengantarController@requestSubmit')->name('warga.surat-pengantar.request-submit');
+	Route::post('update-profile', 'IndexController@updateProfile')->name('warga.update-profile');
 	Route::resource('rekening-bank-user', 'RekeningBankUserController');
 	Route::resource('simpanan-sukarela', 'SimpananSukarelaController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'warga']);
 	Route::resource('surat-pengantar-domisili', 'SuratPengantarDomisiliController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'warga']);

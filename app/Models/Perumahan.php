@@ -63,6 +63,15 @@ class Perumahan extends Model
     }
 
     /**
+     * [getKelurahanByKecamatan description]
+     * @return [type] [description]
+     */
+    public function getKelurahanByKecamatan()
+    {
+        return $this->hasMany('\App\Kelurahan', 'id_kec', 'kecamatan_id');
+    }
+
+    /**
      * [getBlok description]
      * @return [type] [description]
      */

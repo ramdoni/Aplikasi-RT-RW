@@ -9,7 +9,6 @@
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 <h4 class="page-title">Dashboard</h4> </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                <a href="{{ route('warga.profile')}}" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Profile</a>
                 <ol class="breadcrumb">
                     <li><a href="javascript:void(0)">Dashboard</a></li>
                 </ol>
@@ -35,12 +34,54 @@
                             </div>
                             <div class="col-xs-12 col-sm-8">
                                 <h2 class="m-b-0">{{ Auth::user()->name }}</h2>
+                            </div>
                         </div>
+                        <hr class="m-t-10" />
                     </div>
-                    <hr class="m-t-10" />
                 </div>
             </div>
+
             <div class="col-md-8">
+                <div class="white-box">
+                    <h3>Profil</h3>
+                    <hr />
+                    <form class="form-horizontal form-material" method="POST" action="{{ route('warga.update-profile') }}">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="col-md-12">Nama</label>
+                            <div class="col-md-12">
+                                <input type="text" name="name" value="{{ Auth::user()->name }}" class="form-control form-control-line"> </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="example-email" class="col-md-12">Email</label>
+                            <div class="col-md-12">
+                                <input type="email"  class="form-control form-control-line" value="{{ Auth::user()->email }}" name="email" id="example-email"> </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12">Telepon</label>
+                            <div class="col-md-12">
+                                <input type="text" name="telepon" value="{{ Auth::user()->telepon }}" class="form-control form-control-line"> </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-12">Agama</label>
+                            <div class="col-md-12">
+                                <?php $agama = ['Islam', 'Kristen', 'Budha', 'Hindu']; ?>
+                                <select class="form-control" name="agama">
+                                    <option value=""> - Agama - </option>
+                                    @foreach($agama as $item)
+                                        <option value="{{ $item }}" {{ $item == Auth::user()->agama ? 'selected' : '' }}> {{ $item }} </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button class="btn btn-success">Update Profile</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         <!-- /.row -->

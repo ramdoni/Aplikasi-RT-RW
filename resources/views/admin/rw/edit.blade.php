@@ -64,12 +64,17 @@
                                     </tr>
                                 </thead>
                                 <tbody class="tr-pengurus">
-                                    @foreach($data->pengurus as $no => $i)
-                                    <tr>
-                                        <td>{{ $no+1 }}</td>
-                                        <td>{{ $i->user->name }}</td>
-                                        <td>{{ $i->jabatan }}</td>
-                                    </tr>
+                                    @php($no=1)
+                                    @foreach($data->pengurus as $i)
+                                        @if(isset($i->user->name))
+                                        <tr>
+                                            <td>{{ $no }}</td>
+                                            <td>{{ $i->user->name }}</td>
+                                            <td>{{ $i->jabatan }}</td>
+                                            <td><a href="{{ route('admin.rw.delete-pengurus',['id' => $i->id, 'rw_id' => $data->id]) }}" class="text-danger" onclick="return confirm('Hapus data ini ?')"><i class="fa fa-trash"></i></a></td>
+                                        </tr>
+                                        @php($no++)
+                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>
@@ -78,7 +83,7 @@
                     </div>
                     <div class="clearfix"></div>
                     <hr />
-                    <a href="{{ route('admin.user.index') }}" class="btn btn-default btn-sm waves-effect waves-light m-r-10"><i class="fa fa-arrow-left"></i> Back</a>
+                    <a href="{{ route('admin.rw.index') }}" class="btn btn-default btn-sm waves-effect waves-light m-r-10"><i class="fa fa-arrow-left"></i> Back</a>
                     <button type="submit" class="btn btn-success btn-sm waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Save</button>
                     <br style="clear: both;" />
                 </form>
@@ -151,11 +156,11 @@
             el += "<td>"+ ($('.tr-pengurus tr').length + 1) +"</td>";
             el += "<td>"+ $("input[name='modal-nama']").val() +"</td>";
             el += "<td>"+ jabatan  +"</td>";
-            el += "<td></td>";
+            el += "<td><a href=\"javascript:void(0)\" class=\"text-danger\" onclick=\"delete_el(this)\"><i class=\"fa fa-trash\"></i></a>";
             el += "<input type=\"hidden\" name=\"user_id[]\" value=\""+ $( "input[name='modal-user_id']").val() +"\">";
             el += "<input type=\"hidden\" name=\"jabatan[]\" value=\""+ $( "select[name='modal-jabatan']").val() +"\">";
             el += "<input type=\"hidden\" name=\"keterangan[]\" value=\""+ $( "input[name='modal-keterangan']").val() +"\">";
-            el += "</tr>";
+            el += "</td></tr>";
 
         $('.tr-pengurus').append(el);
 
@@ -164,6 +169,14 @@
         $("select[name='modal-jabatan']").val("");
         $("input[name='modal-keterangan']").val("");
     });
+
+     function delete_el(el)
+     {
+        if(confirm('Hapus data ini ?'))
+        {
+            $(el).parent().parent().remove();
+        }
+     }
 
     $("select[name='modal-jabatan']").on('change', function(){
         if($(this).val() == 'Ketua')

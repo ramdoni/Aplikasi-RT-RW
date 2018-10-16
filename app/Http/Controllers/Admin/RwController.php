@@ -109,4 +109,17 @@ class RwController extends Controller
 
     	return redirect()->route('admin.rw.index')->with('message-success', 'Data RW berhasil di hapus !');
     }
+
+    /**
+     * [deletePengurus description]
+     * @param  [type] $id    [description]
+     * @param  [type] $rw_id [description]
+     * @return [type]        [description]
+     */
+    public function deletePengurus($id, $rw_id)
+    {
+        $pengurus = RwPengurus::where('id', $id)->delete();
+
+        return redirect()->route('admin.rw.edit', $rw_id)->with('message-success', 'Data Pengurus RW berhasil di hapus !');
+    }
 }
