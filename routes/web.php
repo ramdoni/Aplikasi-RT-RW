@@ -37,7 +37,25 @@ Route::get('/', function () {
     return view('auth.register');
 });
 Route::get('home', function () {
-	route_index();
+	if(Auth::check())
+    {
+    	switch (Auth::user()->access_id) {
+    		case 1:
+            	return redirect()->route('admin.dashboard');
+    			break;
+    		case 2:
+            	return redirect()->route('warga.dashboard');
+    			break;
+    		case 3:
+            	return redirect()->route('bendahara.dashboard');
+    			break;
+    		case 4:
+            	return redirect()->route('rt.dashboard');
+    			break;
+    		default:
+    			break;
+    	}
+    }
     return view('auth.register');
 });
 
