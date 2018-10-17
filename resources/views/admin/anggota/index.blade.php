@@ -44,7 +44,7 @@
                                         <td>{{ $item->jenis_kelamin }}</td>
                                         <td>{{ $item->telepon }}</td>
                                         <td>
-                                            @if(!epmty($item->access_id))
+                                            @if(!empty($item->access_id))
                                                 {{ access_login($item->access_id) }}
                                             @endif
                                         </td>
