@@ -188,8 +188,6 @@ class AnggotaController extends ControllerLogin
             $image->move($destinationPath, $name);
             $data->foto = $name;
         } 
-
-        $data->status = $request->status;
         $data->save();
 
         return redirect()->route('admin.anggota.edit', $data->id)->with('message-success', 'Data berhasil disimpan'); 
