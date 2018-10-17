@@ -135,7 +135,12 @@ class RtController extends Controller
      */
     public function deletePengurus($id, $rt_id)
     {
-        $pengurus = RtPengurus::where('id', $id)->delete();
+        $pengurus           = RtPengurus::where('id', $id)->first();
+        
+        $user               = Users::where('id', $pengurus->user_id)->first();
+        $user->access_id    = 2;
+        $user->save();
+        $pengurus->delete(); 
 
         return redirect()->route('admin.rt.edit', $rt_id)->with('message-success', 'Data Pengurus RT berhasil di hapus !');
     }

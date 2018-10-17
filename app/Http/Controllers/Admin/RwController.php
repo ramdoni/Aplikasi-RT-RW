@@ -133,8 +133,13 @@ class RwController extends Controller
      */
     public function deletePengurus($id, $rw_id)
     {
-        $pengurus = RwPengurus::where('id', $id)->delete();
-
+        $pengurus           = RwPengurus::where('id', $id)->first();
+        
+        $user               = Users::where('id', $pengurus->user_id)->first();
+        $user->access_id    = 2;
+        $user->save();
+        $pengurus->delete();
+        
         return redirect()->route('admin.rw.edit', $rw_id)->with('message-success', 'Data Pengurus RW berhasil di hapus !');
     }
 }

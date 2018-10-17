@@ -1,4 +1,16 @@
 <?php
+/**
+ * [total_iuran description]
+ * @return [type] [description]
+ */
+function total_iuran()
+{
+  $nominal = nominal_iuran();
+
+  $total = \App\Models\IuranWarga::where('status', 2)->count() * $nominal;
+
+  return $total;
+}
 
 /**
  * [list_surat_pengantar description]
@@ -49,7 +61,7 @@ function getRekeningBank()
  * @param  [type] $user_id [description]
  * @return [type]          [description]
  */
-function nominal_iuran($user_id)
+function nominal_iuran()
 {
   $nominal = \App\Models\Iuran::sum('nominal');
 
