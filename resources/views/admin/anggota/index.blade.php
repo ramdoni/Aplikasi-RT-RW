@@ -2,14 +2,7 @@
 
 @section('title', 'Manage Warga ')
 
-@section('sidebar')
-
-@endsection
-
 @section('content')
-<!-- ============================================================== -->
-<!-- Page Content -->
-<!-- ============================================================== -->
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row bg-title">
@@ -22,9 +15,7 @@
                     <li class="active">Warga</li>
                 </ol>
             </div>
-            <!-- /.col-lg-12 -->
-        </div>
-        <!-- .row --> 
+        </div> 
         <div class="row">
             <div class="col-md-12">
                <div class="white-box">
@@ -52,7 +43,11 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->jenis_kelamin }}</td>
                                         <td>{{ $item->telepon }}</td>
-                                        <td>{{ access_login($item->access_id) }}</td>
+                                        <td>
+                                            @if(!epmty($item->access_id))
+                                                {{ access_login($item->access_id) }}
+                                            @endif
+                                        </td>
                                         <td>
                                             @if($item->status == 0 || $item->status === NULL)
                                                 <a href="" class="btn btn-warning btn-xs">Belum Aktifivasi</a>
