@@ -35,7 +35,8 @@ Route::get('/', function () {
 		}
 		if($access_id==5)
 		{
-            return redirect()->route('rw.dashboard');
+            return redirect('logout');
+            #return redirect()->route('rw.dashboard');
 		}
 	}
 	else
@@ -66,7 +67,7 @@ Route::get('home', function () {
 		}
 		if($access_id==5)
 		{
-            return redirect()->route('rw.dashboard');
+            return redirect('logout');
 		}
 	}
 	else
@@ -78,7 +79,7 @@ Route::get('home', function () {
 Route::get('register/success', 'RegisterController@success');
 Route::get('register', 'RegisterController@index');
 Route::post('register-submit', 'RegisterController@submit')->name('register.submit');
-Route::get('logout', 'Auth\LoginController@logout');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
  
 // ROUTING LOGIN
 Route::group(['middleware' => ['auth']], function(){
