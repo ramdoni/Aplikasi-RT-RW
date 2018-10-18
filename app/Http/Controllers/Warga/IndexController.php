@@ -98,7 +98,6 @@ class IndexController extends Controller
         }
 
         $data->no_rumah = $request->no_rumah;
-        $data->access_id    = $request->access_id; // Akses sebagai anggota
         $data->save();
    
         return redirect()->route('warga.dashboard')->with('message-success', 'Profil berhasil disimpan');
