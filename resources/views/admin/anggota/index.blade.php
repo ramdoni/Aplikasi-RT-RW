@@ -28,6 +28,7 @@
                                     <th width="70" class="text-center">#</th>
                                     <th>PERUMAHAN</th>
                                     <th>NAME</th>
+                                    <th>EMAIL</th>
                                     <th>JENIS KELAMIN</th>
                                     <th>TELEPON</th>
                                     <th>AKSES LOGIN</th>
@@ -41,6 +42,7 @@
                                         <td class="text-center">{{ $no+1 }}</td>
                                         <td>{{ isset($item->perumahan->nama_perumahan) ? $item->perumahan->nama_perumahan : '' }}</td>
                                         <td>{{ $item->name }}</td>
+                                        <td>{{ $item->email }}</td>
                                         <td>{{ $item->jenis_kelamin }}</td>
                                         <td>{{ $item->telepon }}</td>
                                         <td>
