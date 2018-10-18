@@ -215,26 +215,25 @@ class AnggotaController extends ControllerLogin
         $user = Users::where('id', $id)->first();
         if($user)
         {
-            \Auth::loginUsingId($id);
-
             if($user->access_id == 2)
             {
+                \Auth::loginUsingId($id);
+
                 \Session::put('is_login_admin', true);
             
                 return redirect()->route('warga.dashboard');
             }
-            if($user->access_id == 3)
-            {
-                \Session::put('is_login_admin', true);
-            
-                return redirect()->route('bendahara.dashboard');
-            }
+
             if($user->access_id == 4)
             {
+                \Auth::loginUsingId($id);
+
                 \Session::put('is_login_admin', true);
             
                 return redirect()->route('rt.dashboard');
             }
+
+            return redirect()->back()->with('message-error', 'Maaf akses login ini belum tersedia !');
         }
     }
 
