@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Users;
 use App\Models\KeluhanDanSaran;
 use App\Models\IuranWarga;
+use App\Models\Pengeluaran;
 use Carbon\Carbon;
 use Auth;
 
@@ -40,9 +41,22 @@ class IndexController extends Controller
      */
     public function iuranAll()
     {  
-        $params['data'] = IuranWarga::all();
+        $params['data']             = IuranWarga::all();
+        $params['pengeluaran']      = Pengeluaran::all();
+        $params['total_iuran']      = IuranWarga::sum('nominal');
+        $params['total_pengeluaran']= Pengeluaran::sum('nominal');
 
-        return view('warga.iuran-all');
+        if(isset($_GET['tahun_iuran']) and $_GET['tahun_iuran'] != "")
+        {
+            $params['total_iuran'] = IuranWarga::whereYear('tanggal', $_GET['tahun_iuran'])->sum('nominal');
+        }
+
+        if(isset($_GET['tahun_pengeluaran']) and $_GET['tahun_pengeluaran'] != "")
+        {
+            $params['total_pengeluaran'] = Pengeluaran::whereYear('tanggal', $_GET['tahun_pengeluaran'])->sum('nominal');
+        }
+
+        return view('warga.iuran-all')->with($params);
     }
 
     /**

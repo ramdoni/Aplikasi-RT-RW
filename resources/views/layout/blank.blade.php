@@ -81,7 +81,7 @@
             <div class="navbar-header">
                 <div class="top-left-part">
                     <!-- Logo -->
-                    <a class="logo" href="{{ url('anggota') }}"><b>RT / RW Pintar</b>
+                    <a class="logo" href="/"><b>RT / RW Pintar</b>
                         <span class="hidden-xs">&nbsp;</span> 
                     </a>
                 </div>

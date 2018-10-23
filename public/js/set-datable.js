@@ -65,5 +65,13 @@ function init_datatable(){
         bPaginate: false,
         "ordering": false
     });
+    $('.data_table_no_search_no_sorting').DataTable({
+        dom: 'Bfrtip',
+        buttons: [],
+        pageLength : 20,
+        searching: false,
+        bPaginate: false,
+        "ordering": false
+    });
 
 }

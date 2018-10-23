@@ -71,26 +71,108 @@
                         </div>
                     </div>
                 </div>
-                <div class="white-box">
-                    <div class="table-responsive">
-                        <table id="data_table_no_search_no_sorting" class="display nowrap" cellspacing="0" width="auto" >
-                            <thead>
-                                <tr>
-                                    <th>NO</th>
-                                    <th>WARGA</th>
-                                    <th>TANGGAL PEMBAYARAN</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($iuran as $no => $item)
-                                <tr>
-                                    <td>{{ $no+1 }}</td>
-                                    <td>{{ isset($item->user->name) ? $item->user->name : '' }</td>
-                                    <td>{{ $item->created_at  }}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                <div class="col-md-6">
+                    <div class="white-box">
+                        <h5 class="pull-left">IURAN WARGA</h5>
+                        <h5 class="pull-right">TOTAL IURAN : Rp. {{ number_format($total_iuran) }}</h5>
+                        <div class="clearfix"></div>
+                        <hr />
+                        <form method="GET">
+                            <div class="col-md-4" style="padding-left: 0;margin-left:0;">
+                                <select class="form-control" name="tahun">
+                                    <option value="">Pilih Tahun</option>
+                                    @for($y = 2018; $y <= date('Y'); $y++)
+                                    <option>{{ $y }}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-control" name="bulan">
+                                    <option value="">Pilih Bulan</option>
+                                    @foreach(bulan() as $no => $str)
+                                    <option value="{{ $no }}">{{ $str }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="submit" class="btn btn-info btn-sm">Filter</button>
+                            </div>
+                        </form>
+                        <div class="clearfix"></div>
+                        <div class="table-responsive">
+                            <table id="data_table_no_search_no_sorting" class="display nowrap" cellspacing="0" width="auto" >
+                                <thead>
+                                    <tr>
+                                        <th>NO</th>
+                                        <th>WARGA</th>
+                                        <th>NOMINAL</th>
+                                        <th>TANGGAL PEMBAYARAN</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($data as $no => $item)
+                                    <tr>
+                                        <td>{{ $no+1 }}</td>
+                                        <td>{{ isset($item->user->name) ? $item->user->name : '' }}</td>
+                                        <td>{{ number_format($item->nominal) }}</td>
+                                        <td>{{ date('d F Y', strtotime($item->tanggal))  }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="white-box">
+                        <h5 class="pull-left">PENGELUARAN</h5>
+                        <h5 class="pull-right">TOTAL IURAN : Rp. {{ number_format($total_pengeluaran) }}</h5>
+                        <div class="clearfix"></div>
+                        <hr />
+                        <form method="GET">
+                            <div class="col-md-4" style="padding-left: 0;margin-left:0;">
+                                <select class="form-control" name="tahun">
+                                    <option value="">Pilih Tahun</option>
+                                    @for($y = 2018; $y <= date('Y'); $y++)
+                                    <option>{{ $y }}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-control" name="bulan">
+                                    <option value="">Pilih Bulan</option>
+                                    @foreach(bulan() as $no => $str)
+                                    <option value="{{ $no }}">{{ $str }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="submit" class="btn btn-info btn-sm">Filter</button>
+                            </div>
+                        </form>
+                        <div class="clearfix"></div>
+                        <div class="table-responsive">
+                            <table class="display nowrap data_table_no_search_no_sorting" cellspacing="0" width="auto" >
+                                <thead>
+                                    <tr>
+                                        <th>NO</th>
+                                        <th>JENIS PENGELUARAN</th>
+                                        <th>NOMINAL</th>
+                                        <th>TANGGAL</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($pengeluaran as $no => $item)
+                                    <tr>
+                                        <td>{{ $no+1 }}</td>
+                                        <td>{{ isset($item->pengeluaranType->name) ? $item->pengeluaranType->name : ''  }}</td>
+                                        <td>{{ number_format($item->nominal)  }}</td>
+                                        <td>{{ date('d F Y', strtotime($item->tanggal))  }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
