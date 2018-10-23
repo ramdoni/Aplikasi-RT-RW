@@ -137,7 +137,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.iuran-warga.index') }}" class="waves-effect"><i class="mdi mdi-account-card-details fa-fw"></i> Iuran</a>
+                        <a href="{{ route('admin.iuran-warga.index') }}" class="waves-effect"><i class="mdi mdi-account-plus fa-fw"></i> Iuran</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.pengeluaran.index') }}" class="waves-effect"><i class="mdi mdi-account-minus fa-fw"></i> Pengeluaran</a>
                     </li>
                     <li>
                         <a href="{{ route('admin.surat-pengantar.index') }}" class="waves-effect"><i class="mdi mdi-account-card-details fa-fw"></i> Surat Pengantar</a>

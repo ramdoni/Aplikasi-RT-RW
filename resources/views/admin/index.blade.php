@@ -3,9 +3,6 @@
 @section('title', 'PAK RT')
 
 @section('content')
-<!-- ============================================================== -->
-<!-- Page Content -->
-<!-- ============================================================== -->
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row bg-title">
@@ -17,9 +14,7 @@
                     <li class="active">Home</li>
                 </ol>
             </div>
-            <!-- /.col-lg-12 -->
         </div>
-        <!-- .row -->
         <div class="row">
             <div class="col-sm-12">
                 <div class="white-box">
@@ -30,7 +25,7 @@
                                     <span class="circle circle-md bg-danger"><i class="ti-clipboard"></i></span>
                                 </li>
                                 <li class="col-last">
-                                    <h3 class="counter text-right m-t-15">{{ $total_anggota }}</h3>
+                                    <h3 class="counter text-right m-t-15">{{ total_warga() }}</h3>
                                 </li>
                                 <li class="col-middle">
                                     <h4>Total Warga</h4>
@@ -41,7 +36,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-lg-3 col-sm-6 row-in-br  b-r-none">
+                        <div class="col-sm-3">
                             <ul class="col-in">
                                 <li>
                                     <span class="circle circle-md bg-info"><i class="ti-wallet"></i></span>
@@ -51,6 +46,23 @@
                                 </li>
                                 <li class="col-middle">
                                     <h4>Total Iuran</h4>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-3">
+                            <ul class="col-in">
+                                <li>
+                                    <span class="circle circle-md bg-info"><i class="ti-wallet"></i></span>
+                                </li>
+                                <li class="col-last">
+                                    <h3 class="counter text-right m-t-15">{{ number_format(total_pengeluaran()) }}</h3>
+                                </li>
+                                <li class="col-middle">
+                                    <h4>Total Pengeluaran</h4>
                                     <div class="progress">
                                         <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
                                         </div>
@@ -138,13 +150,9 @@
                                
                             </section>
                         </div>
-                        <!-- /content -->
                     </div>
-                    <!-- /tabs -->
                 </div>
             </div>
-            <!-- /col-md-9 -->
-            <!-- col-md-3 -->
             <div class="col-md-8">
                 <div class="panel wallet-widgets">
                     <div class="panel-body">
@@ -154,14 +162,13 @@
                     </div>
                 </div>
             </div>
-            <!-- /col-md-3 -->
         </div>
     </div>
-    <!-- /.container-fluid -->
     @include('layout.footer-admin')
 </div>
-<!-- ============================================================== -->
-<!-- End Page Content -->
-<!-- ============================================================== -->
-</div>
+<style type="text/css">
+    .col-in h3 {
+        font-size: 24px;
+    }
+</style>
 @endsection

@@ -273,6 +273,9 @@
     </script>
 
     @yield('footer-script')
+    
+    @yield('js')
+
      <script type="text/javascript">
         @if(Session::has('message-success'))
             bootbox.alert('<h3 class="text-success pull-left"><i class="fa fa-check"></i></h3><h4 class="pull-left" style="margin-left: 10px;"> {{ Session::get('message-success') }}</h4><br class="clearfix" /><br class="clearfix" />');

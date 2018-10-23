@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Warga;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\ModelUser;
 use App\Models\Users;
 use App\Models\KeluhanDanSaran;
+use App\Models\IuranWarga;
 use Carbon\Carbon;
 use Auth;
 
@@ -20,7 +20,7 @@ class IndexController extends Controller
     public function index()
     {
         $data = [];
-        $data['data']       = \App\UserModel::where('id', Auth::user()->id)->first();
+        $data['data']       = Users::where('id', Auth::user()->id)->first();
     
     	return view('warga.index')->with($data);
     }
@@ -32,6 +32,17 @@ class IndexController extends Controller
     public function profile()
     {
         return view('anggota.profile');
+    }
+
+    /**
+     * [iuranAll description]
+     * @return [type] [description]
+     */
+    public function iuranAll()
+    {  
+        $params['data'] = IuranWarga::all();
+
+        return view('warga.iuran-all');
     }
 
     /**

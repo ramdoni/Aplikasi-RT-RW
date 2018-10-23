@@ -312,5 +312,7 @@
 
     </script>
     @yield('footer-script')
+
+    @yield('js')
 </body>
 </html>

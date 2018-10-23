@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="row bg-title">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">Dashboard</h4> </div>
+                <h4 class="page-title">Manage Warga</h4> </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <a href="{{ route('admin.anggota.create') }}" class="btn btn-success btn-sm pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light"> <i class="fa fa-plus"></i> TAMBAH WARGA</a>
                 <ol class="breadcrumb">
@@ -19,8 +19,6 @@
         <div class="row">
             <div class="col-md-12">
                <div class="white-box">
-                    <h3 class="box-title m-b-0"> Manage Warga</h3>
-                    <br />
                     <div class="table-responsive" style="padding-bottom:60px">
                         <table id="data_table_no_button" class="display nowrap" cellspacing="0" width="100%">
                             <thead>

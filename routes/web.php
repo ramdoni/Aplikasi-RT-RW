@@ -44,38 +44,8 @@ Route::get('/', function () {
     	return view('auth.register');
 	}
 });
-Route::get('home', function () {
 
-	if(Auth::check())
-    {
-		$access_id = \Auth::user()->access_id;
-		if($access_id==1)
-		{			
-            return redirect()->route('admin.dashboard');
-		}
-		if($access_id==2)
-		{
-            return redirect()->route('warga.dashboard');
-		}
-		if($access_id==3)
-		{
-            return redirect()->route('bendahara.dashboard');
-		}
-		if($access_id==4)
-		{
-            return redirect()->route('rt.dashboard');
-		}
-		if($access_id==5)
-		{
-            return redirect('logout');
-		}
-	}
-	else
-	{
-    	return view('auth.register');
-	}
-});
-
+Route::get('home', function () { return redirect('/'); });
 Route::get('register/success', 'RegisterController@success');
 Route::get('register', 'RegisterController@index');
 Route::post('register-submit', 'RegisterController@submit')->name('register.submit');
@@ -91,6 +61,7 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::post('ajax/get-anggota-by-id', 'AjaxController@getAnggotaById')->name('ajax.get-anggota-by-id');
 	Route::post('ajax/get-anggota-by-id-html', 'AjaxController@getAnggotaByIdHtml')->name('ajax.get-anggota-by-id-html');
 	Route::post('ajax/get-warga', 'AjaxController@getWarga')->name('ajax.get-warga');
+	Route::post('ajax/get-warga-by-id', 'AjaxController@getWargaById')->name('ajax.get-warga-by-id');
 	Route::post('ajax/get-rt-by-rw', 'AjaxController@getRtByRw')->name('ajax.get-rt-by-rw');
 	Route::post('ajax/get-blok-by-perumahan', 'AjaxController@getBlokByPerumahan')->name('ajax.get-blok-by-perumahan');
 });
@@ -113,6 +84,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::resource('rt','RtController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
 	Route::resource('user-access','UserAccessController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
 	Route::resource('surat-pengantar', 'SuratPengantarController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
+	Route::resource('pengeluaran', 'PengeluaranController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
+	Route::resource('pengeluaran-type', 'PengeluaranTypeController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'admin']);
 	Route::get('/','IndexController@index')->name('admin.index');
 	Route::get('/','IndexController@index')->name('admin.dashboard');
 	Route::get('profile','UserController@profile')->name('admin.profile');
@@ -137,6 +110,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::get('rw/delete-pengurus/{id}/{rw_id}', 'RwController@deletePengurus')->name('admin.rw.delete-pengurus');
 	Route::get('rt/delete-pengurus/{id}/{rt_id}', 'RtController@deletePengurus')->name('admin.rt.delete-pengurus');
 	Route::get('keluhan-dan-saran', 'IndexController@keluhan')->name('admin.keluhan-dan-saran');
+	Route::get('pengeluaran-type/destroy/{id}', 'PengeluaranTypeController@destroy')->name('admin.pengeluaran-type.destroy');
 	Route::post('anggota/topup-simpanan-pokok','AnggotaController@topupSimpananPokok')->name('admin.anggota.topup-simpanan-pokok');
 	Route::post('anggota/topup-simpanan-wajib','AnggotaController@topupSimpananWajib')->name('admin.anggota.topup-simpanan-wajib');
 	Route::post('anggota/add-rekening-bank','AnggotaController@addRekeningBank')->name('admin.anggota.add-rekening-bank');
@@ -154,6 +128,7 @@ Route::group(['prefix' => 'warga', 'namespace' => 'Warga', 'middleware' => ['aut
 	Route::get('user/post-submit-pembayaran-warga', 'UserController@submitkonfirmasianggota');
 	Route::get('bayar', 'BayarController@step1')->name('warga.bayar');
 	Route::get('iuran', 'IuranController@index')->name('warga.iuran.index');
+	Route::get('iuran-all', 'IndexController@iuranAll')->name('warga.iuran-all');
 	Route::post('submit-keluhan', 'IndexController@submitKeluhan')->name('warga.submit-keluhan');
 	Route::post('user/post-konfirmasi-pembayaran', 'UserController@postKonfirmasiPembayaran');
 	Route::post('save-profile', 'IndexController@saveProfile')->name('warga.index.save.profile');

@@ -6,16 +6,72 @@
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row bg-title">
-            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">Dashboard</h4> </div>
-            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                <ol class="breadcrumb">
-                    <li><a href="javascript:void(0)">Dashboard</a></li>
-                </ol>
+            <div class="col-md-4">
+                <h4 class="page-title pull-left">Cari Warga</h4> 
+                <div class="col-md-6">
+                    <input type="text" class="form-control autocomplete-warga">
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
+                <div id="content_search_warga"></div><div class="clearfix"></div><br />
+                <div class="white-box">
+                    <div class="row row-in">
+                        <div class="col-lg-3 col-sm-6 row-in-br">
+                            <ul class="col-in">
+                                <li>
+                                    <span class="circle circle-md bg-danger"><i class="ti-clipboard"></i></span>
+                                </li>
+                                <li class="col-last">
+                                    <h3 class="counter text-right m-t-15">{{ total_warga() }}</h3>
+                                </li>
+                                <li class="col-middle">
+                                    <h4>Total Warga</h4>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-3">
+                            <ul class="col-in">
+                                <li>
+                                    <span class="circle circle-md bg-info"><i class="ti-wallet"></i></span>
+                                </li>
+                                <li class="col-last">
+                                    <a href="{{ route('warga.iuran-all') }}"><h3 class="counter text-right m-t-15">{{ number_format(total_iuran()) }}</h3></a>
+                                </li>
+                                <li class="col-middle">
+                                    <h4>Total Iuran</h4>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-3">
+                            <ul class="col-in">
+                                <li>
+                                    <span class="circle circle-md bg-info"><i class="ti-wallet"></i></span>
+                                </li>
+                                <li class="col-last">
+                                    <h3 class="counter text-right m-t-15">{{ number_format(total_pengeluaran()) }}</h3>
+                                </li>
+                                <li class="col-middle">
+                                    <h4>Total Pengeluaran</h4>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="white-box">
                     <h3>Profil</h3>
                     <hr />
@@ -293,222 +349,307 @@
                 </div>
             </div>
         </div>
-        <!-- /.row -->
-        <!-- ============================================================== -->
     </div>
-    <!-- /.container-fluid -->
     @include('layout.footer-admin')
 </div>
+<style type="text/css">
+    .col-in h3 {
+        font-size: 24px;
+    }
+</style>
+@section('js')
+<script type="text/javascript">
 
-<!-- ============================================================== -->
-@section('footer-script')
-    <script src="{{ asset('admin-css/plugins/bower_components/blockUI/jquery.blockUI.js') }}"></script>
-    <script type="text/javascript">
+    $(".autocomplete-warga").autocomplete({
+        minLength:0,
+        limit: 25,
+        source: function( request, response ) {
+            $.ajax({
+              url: "{{ route('ajax.get-warga') }}",
+              method : 'POST',
+              data: {
+                'name': request.term,'_token' : $("meta[name='csrf-token']").attr('content')
+              },
+              success: function( data ) {
+                response( data );
+              }
+            });
+        },
+        select: function( event, ui ) {
+            
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('ajax.get-warga-by-id') }}',
+                data: {'id' : ui.item.id, '_token' : $("meta[name='csrf-token']").attr('content')},
+                dataType: 'json',
+                success: function (data) {
+
+                    var el = '<div class="panel panel-themecolor" style="position:relative;"><div class="panel-body"><i class="ti-close" onclick="tutup_ini(this)" style=" position: absolute;right: 36px;top: 18px;color: red;cursor:pointer;"></i><div class="table-responsive">';
+                        el += '<table class="table table-striped">';
+                        el += '<thead><tr>';
+                        el += '<th>NAMA</th>';
+                        el += '<th>TELEPON</th>';
+                        el += '<th>EMAIL</th>';
+                        el += '<th>PERUMAHAN</th>';
+                        el += '<th>BLOCK</th>';
+                        el += '<th>NO RUMAH</th>';
+                        el += '</tr></thead>';
+
+                        el += '<tbody><tr>';
+                        el += '<td>'+ data.name +'</td>';
+                        el += '<td>'+ (data.telepon == null ? '' : data.telepon ) +'</td>';
+                        el += '<td>'+ (data.email == null ? '' : data.email ) +'</td>';
+                        el += '<td>'+ (data.nama_perumahan == null ? '' : data.nama_perumahan ) +'</td>';
+                        el += '<td>'+ (data.blok_rumah == null ? '' : data.blok_rumah ) +'</td>';
+                        el += '<td>'+ (data.no_rumah == null ? '' : data.no_rumah ) +'</td>';
+                        el += '</tr></tbody>';
+                        el += '</table>';
+                        el += '</div></div></div>'
+
+                        $("#content_search_warga").prepend(el);
+
+                    setTimeout(function(){
+                        $(".autocomplete-warga").val(" ");
+
+                        $(".autocomplete-warga").triggerHandler("focus");
+
+                    }, 500);
+                }
+            });
+
+            $(".autocomplete-warga" ).val("");
+        }
+    }).on('focus', function () {
+            $(this).autocomplete("search", "");
+
+    });
+
+    function tutup_ini(el)
+    {
+        $(el).parent().parent().hide("slow");
+    }
+</script>
+<script src="{{ asset('admin-css/plugins/bower_components/blockUI/jquery.blockUI.js') }}"></script>
+<script type="text/javascript">
+    
+    $("input[name='is_ktp_domisili']").click(function(){
+        if($(this).is(":checked"))
+        {
+            $('.content-alamat-ktp').find('select').attr('readonly', true);
+            $('.content-alamat-ktp').find('textarea').attr('readonly', true);
+        }
+        else
+        {
+            $('.content-alamat-ktp').find('textarea').removeAttr('readonly');
+            $('.content-alamat-ktp').find('select').removeAttr('readonly');
+        }
+    });
+    
+    $("select[name='perumahan_id']").on('change', function(){
+
+        var id= $(this).val();
+        $.ajax({
+            url: "{{ route('ajax.get-blok-by-perumahan') }}",
+            method:"POST",
+            data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
+            dataType:"json",
+            success:function(data)
+            {
+                var el = '<option value="">- Pilih Blok Rumah -</option>';
+
+                $(data.data).each(function(k,v){
+                    el += '<option value="'+ v.id +'">'+ v.blok +'</option>';
+                });
+
+                $("select[name='blok_rumah']").html(el);
+            }
+        });
+
+        var el = $("select[name='perumahan_id'] option:selected");
+        $(".domisili_provinsi").val(el.attr('data-provinsi'));
+        $(".domisili_kabupaten").val(el.attr('data-kabupaten'));
+        $(".domisili_kecamatan").val(el.attr('data-kecamatan'));
+        $(".domisili_kelurahan").val(el.attr('data-kelurahan'));
+    });
+
+    $("select[name='rw_id']").on('change', function(){
+
+        var id= $(this).val();
+        $.ajax({
+            url: "{{ route('ajax.get-rt-by-rw') }}",
+            method:"POST",
+            data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
+            dataType:"json",
+            success:function(data)
+            {
+                var el = '<option value="">- Pilih Rukun Tetangga -</option>';
+
+                $(data.data).each(function(k,v){
+                    el += '<option value="'+ v.id +'">'+ v.no +'</option>';
+                });
+
+                $("select[name='rt_id']").html(el);
+            }
+        });
+
+    });
+
+    jQuery('.datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+    });
+
+    /**
+     * DOMISILI LOKASI
+     */
+    $("select[name='domisili_provinsi_id']").on('change', function(){
+
+        var id = $(this).val();
         
-        $("select[name='perumahan_id']").on('change', function(){
+        // get kabupaten
+        $.ajax({
+            url: "{{ route('ajax.get-kabupaten-by-provinsi-id') }}",
+            method:"POST",
+            data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
+            dataType:"json",
+            success:function(data)
+            {
+                var el = '<option value="">- Kota / Kabupaten -</option>';
 
-            var id= $(this).val();
-            $.ajax({
-                url: "{{ route('ajax.get-blok-by-perumahan') }}",
-                method:"POST",
-                data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
-                dataType:"json",
-                success:function(data)
-                {
-                    var el = '<option value="">- Pilih Blok Rumah -</option>';
+                $(data.data).each(function(k,v){
+                    el += '<option value="'+ v.id_kab +'">'+ v.nama +'</option>';
+                });
 
-                    $(data.data).each(function(k,v){
-                        el += '<option value="'+ v.id +'">'+ v.blok +'</option>';
-                    });
-
-                    $("select[name='blok_rumah']").html(el);
-                }
-            });
-
-            var el = $("select[name='perumahan_id'] option:selected");
-            $(".domisili_provinsi").val(el.attr('data-provinsi'));
-            $(".domisili_kabupaten").val(el.attr('data-kabupaten'));
-            $(".domisili_kecamatan").val(el.attr('data-kecamatan'));
-            $(".domisili_kelurahan").val(el.attr('data-kelurahan'));
+                $("select[name='domisili_kabupaten_id']").html(el);
+            }
         });
+    });
 
-        $("select[name='rw_id']").on('change', function(){
+    $("select[name='domisili_kabupaten_id']").on('change', function(){
 
-            var id= $(this).val();
-            $.ajax({
-                url: "{{ route('ajax.get-rt-by-rw') }}",
-                method:"POST",
-                data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
-                dataType:"json",
-                success:function(data)
-                {
-                    var el = '<option value="">- Pilih Rukun Tetangga -</option>';
+        var id = $(this).val();
+        
+        // get kecamatan
+        $.ajax({
+            url: "{{ route('ajax.get-kecamatan-by-kabupaten-id') }}",
+            method:"POST",
+            data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
+            dataType:"json",
+            success:function(data)
+            {
+                var el = '<option value="">- Kecamatan -</option>';
 
-                    $(data.data).each(function(k,v){
-                        el += '<option value="'+ v.id +'">'+ v.no +'</option>';
-                    });
+                $(data.data).each(function(k,v){
+                    el += '<option value="'+ v.id_kec +'">'+ v.nama +'</option>';
+                });
 
-                    $("select[name='rt_id']").html(el);
-                }
-            });
-
+                $("select[name='domisili_kecamatan_id']").html(el);
+            }
         });
+    });
 
-        jQuery('.datepicker').datepicker({
-            format: 'yyyy-mm-dd',
+    $("select[name='domisili_kecamatan_id']").on('change', function(){
+
+        var id = $(this).val();
+        
+        // get kelurahan
+        $.ajax({
+            url: "{{ route('ajax.get-kelurahan-by-kecamatan-id') }}",
+            method:"POST",
+            data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
+            dataType:"json",
+            success:function(data)
+            {
+                var el = '<option value="">- Kelurahan -</option>';
+
+                $(data.data).each(function(k,v){
+                    el += '<option value="'+ v.id_kel +'">'+ v.nama +'</option>';
+                });
+
+                $("select[name='domisili_kelurahan_id']").html(el);
+            }
         });
+    });
+    /**
+     * END LOKASI
+     */
 
-        /**
-         * DOMISILI LOKASI
-         */
-        $("select[name='domisili_provinsi_id']").on('change', function(){
 
-            var id = $(this).val();
-            
-            // get kabupaten
-            $.ajax({
-                url: "{{ route('ajax.get-kabupaten-by-provinsi-id') }}",
-                method:"POST",
-                data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
-                dataType:"json",
-                success:function(data)
-                {
-                    var el = '<option value="">- Kota / Kabupaten -</option>';
+    /**
+     * KTP LOKASI
+     */
+    $("select[name='ktp_provinsi_id']").on('change', function(){
 
-                    $(data.data).each(function(k,v){
-                        el += '<option value="'+ v.id_kab +'">'+ v.nama +'</option>';
-                    });
+        var id = $(this).val();
+        
+        // get kabupaten
+        $.ajax({
+            url: "{{ route('ajax.get-kabupaten-by-provinsi-id') }}",
+            method:"POST",
+            data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
+            dataType:"json",
+            success:function(data)
+            {
+                var el = '<option value="">- Kota / Kabupaten -</option>';
 
-                    $("select[name='domisili_kabupaten_id']").html(el);
-                }
-            });
+                $(data.data).each(function(k,v){
+                    el += '<option value="'+ v.id_kab +'">'+ v.nama +'</option>';
+                });
+
+                $("select[name='ktp_kabupaten_id']").html(el);
+            }
         });
+    });
 
-        $("select[name='domisili_kabupaten_id']").on('change', function(){
+    $("select[name='ktp_kabupaten_id']").on('change', function(){
 
-            var id = $(this).val();
-            
-            // get kecamatan
-            $.ajax({
-                url: "{{ route('ajax.get-kecamatan-by-kabupaten-id') }}",
-                method:"POST",
-                data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
-                dataType:"json",
-                success:function(data)
-                {
-                    var el = '<option value="">- Kecamatan -</option>';
+        var id = $(this).val();
+        
+        // get kecamatan
+        $.ajax({
+            url: "{{ route('ajax.get-kecamatan-by-kabupaten-id') }}",
+            method:"POST",
+            data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
+            dataType:"json",
+            success:function(data)
+            {
+                var el = '<option value="">- Kecamatan -</option>';
 
-                    $(data.data).each(function(k,v){
-                        el += '<option value="'+ v.id_kec +'">'+ v.nama +'</option>';
-                    });
+                $(data.data).each(function(k,v){
+                    el += '<option value="'+ v.id_kec +'">'+ v.nama +'</option>';
+                });
 
-                    $("select[name='domisili_kecamatan_id']").html(el);
-                }
-            });
+                $("select[name='ktp_kecamatan_id']").html(el);
+            }
         });
+    });
 
-        $("select[name='domisili_kecamatan_id']").on('change', function(){
+    $("select[name='ktp_kecamatan_id']").on('change', function(){
 
-            var id = $(this).val();
-            
-            // get kelurahan
-            $.ajax({
-                url: "{{ route('ajax.get-kelurahan-by-kecamatan-id') }}",
-                method:"POST",
-                data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
-                dataType:"json",
-                success:function(data)
-                {
-                    var el = '<option value="">- Kelurahan -</option>';
+        var id = $(this).val();
+        
+        // get kelurahan
+        $.ajax({
+            url: "{{ route('ajax.get-kelurahan-by-kecamatan-id') }}",
+            method:"POST",
+            data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
+            dataType:"json",
+            success:function(data)
+            {
+                var el = '<option value="">- Kelurahan -</option>';
 
-                    $(data.data).each(function(k,v){
-                        el += '<option value="'+ v.id_kel +'">'+ v.nama +'</option>';
-                    });
+                $(data.data).each(function(k,v){
+                    el += '<option value="'+ v.id_kel +'">'+ v.nama +'</option>';
+                });
 
-                    $("select[name='domisili_kelurahan_id']").html(el);
-                }
-            });
+                $("select[name='ktp_kelurahan_id']").html(el);
+            }
         });
-        /**
-         * END LOKASI
-         */
-
-
-        /**
-         * KTP LOKASI
-         */
-        $("select[name='ktp_provinsi_id']").on('change', function(){
-
-            var id = $(this).val();
-            
-            // get kabupaten
-            $.ajax({
-                url: "{{ route('ajax.get-kabupaten-by-provinsi-id') }}",
-                method:"POST",
-                data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
-                dataType:"json",
-                success:function(data)
-                {
-                    var el = '<option value="">- Kota / Kabupaten -</option>';
-
-                    $(data.data).each(function(k,v){
-                        el += '<option value="'+ v.id_kab +'">'+ v.nama +'</option>';
-                    });
-
-                    $("select[name='ktp_kabupaten_id']").html(el);
-                }
-            });
-        });
-
-        $("select[name='ktp_kabupaten_id']").on('change', function(){
-
-            var id = $(this).val();
-            
-            // get kecamatan
-            $.ajax({
-                url: "{{ route('ajax.get-kecamatan-by-kabupaten-id') }}",
-                method:"POST",
-                data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
-                dataType:"json",
-                success:function(data)
-                {
-                    var el = '<option value="">- Kecamatan -</option>';
-
-                    $(data.data).each(function(k,v){
-                        el += '<option value="'+ v.id_kec +'">'+ v.nama +'</option>';
-                    });
-
-                    $("select[name='ktp_kecamatan_id']").html(el);
-                }
-            });
-        });
-
-        $("select[name='ktp_kecamatan_id']").on('change', function(){
-
-            var id = $(this).val();
-            
-            // get kelurahan
-            $.ajax({
-                url: "{{ route('ajax.get-kelurahan-by-kecamatan-id') }}",
-                method:"POST",
-                data: {'id' : id, '_token' : $("meta[name='csrf-token']").attr('content')},
-                dataType:"json",
-                success:function(data)
-                {
-                    var el = '<option value="">- Kelurahan -</option>';
-
-                    $(data.data).each(function(k,v){
-                        el += '<option value="'+ v.id_kel +'">'+ v.nama +'</option>';
-                    });
-
-                    $("select[name='ktp_kelurahan_id']").html(el);
-                }
-            });
-        });
-        /**
-         * END KTP LOKASI
-         */
-    </script>
+    });
+    /**
+     * END KTP LOKASI
+     */
+</script>
 @endsection
 
 @endsection

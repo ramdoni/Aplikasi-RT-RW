@@ -1,10 +1,6 @@
 @extends('layout.anggota')
 
-@section('title', 'Anggota - Koperasi Daya Masyarakat Indonesia')
-
-@section('sidebar')
-
-@endsection
+@section('title', 'Warga')
 
 @section('content')
 <div id="page-wrapper" style="min-height: 356px;">

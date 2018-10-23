@@ -1,4 +1,66 @@
 <?php
+
+/**
+ * [total_warga description]
+ * @return [type] [description]
+ */
+function total_warga()
+{
+  return \App\Models\Users::where('access_id', 2)->count();
+}
+
+/**
+ * [bulan description]
+ * @return [type] [description]
+ */
+function bulan()
+{
+  return [1=>'Januari',2=>'Februari',3=>'Maret',4=>'April',5=>'Mei',6=>'Juni',7=>'Juli',8=>'Agustus',9=>'September',10=>'Oktober',11=>'November',12=>'Desember'];
+}
+
+/**
+ * [pengeluaran_type description]
+ * @return [type] [description]
+ */
+function pengeluaran_type()
+{
+  return \App\Models\PengeluaranType::all();
+}
+
+/**
+ * [status_anggota description]
+ * @param  [type] $id [description]
+ * @return [type]     [description]
+ */
+function status_anggota($id)
+{
+   $user = App\ModelUser::where('id', $id)->first();
+
+   switch ($user->status) {
+      case 1:
+         return "<a class=\"btn btn-danger btn-xs\"><i class=\"fa fa-ban\"></i> Inactive</a>";
+         break;
+      case 2:
+            return "<a class=\"btn btn-success btn-xs\"><i class=\"fa fa-check\"></i> Active</a>";
+         break;
+      case 3:
+         return "<a class=\"btn btn-danger btn-xs\"><i class=\"fa fa-ban\"></i> Reject</a>";
+         break;
+      default:
+         return "<a class=\"btn btn-warning btn-xs\"><i class=\"fa fa-ban\"></i> Inactive</a>";
+         break;
+   }
+}
+
+/**
+ * [total_pengeluaran description]
+ * @return [type] [description]
+ */
+function total_pengeluaran()
+{
+  return \App\Models\Pengeluaran::sum('nominal');
+}
+
 /**
  * [total_iuran description]
  * @return [type] [description]
@@ -154,54 +216,6 @@ function getPerumahan()
 }
 
 /**
- * [all_simpanan_wajib description]
- * @return [type] [description]
- */
-function all_simpanan_wajib()
-{
-  return \Kodami\Models\Mysql\Deposit::where('type', 5);
-}
-
-/**
- * [simpanan_pokok description]
- * @param  [type] $id [description]
- * @return [type]     [description]
- */
-function all_simpanan_sukarela()
-{
-  return \Kodami\Models\Mysql\Deposit::where('type', 4);
-}
-
-/**
- * [simpanan_pokok description]
- * @param  [type] $id [description]
- * @return [type]     [description]
- */
-function all_simpanan_pokok()
-{
-  return \Kodami\Models\Mysql\Deposit::where('type', 3);
-}
-
-/**
- * [total_anggota description]
- * @param  string $status [description]
- * @return [type]         [description]
- */
-function total_anggota($status = 'all')
-{
-  if($status == 'all')
-  {
-    $count = \Kodami\Models\Mysql\Users::where('access_id', 2)->count();
-  }
-  if($status == 'active')
-  {
-    $count = \Kodami\Models\Mysql\Users::where('access_id', 2)->where('status', 1)->count();
-  }
-
-  return $count;
-}
-
-/**
  * [access_rules description]
  * @param  [type] $selected [description]
  * @return [type]           [description]
@@ -224,25 +238,6 @@ function access_rules($selected = 0)
    }
 
    return $array_map;
-}
-
-/**
- * [type_deposit description]
- * @param  [type] $id [description]
- * @return [type]     [description]
- */
-function type_deposit($key)
-{
-	$array_map = [
-                  3 => 'Simpanan Pokok',
-                  4 => 'Simpanan Sukarela',
-                  5 => 'Simpanan Wajib'
-               ];
-
-    if(array_key_exists($key, $array_map))
-    {
-    	return $array_map[$key];
-    }
 }
 
 /**
@@ -275,35 +270,6 @@ function get_jabatan($key)
 }
 
 /**
- * [status_deposit_awal description]
- * @return [type] [description]
- */
-function status_deposit_awal($user_id)
-{
-	$status = \Kodami\Models\Mysql\Deposit::where('type', 1)->where('user_id', $user_id)->first();
-
-	if($status)
-	{
-		return $status->status;
-	}
-	else
-	{
-		return 0;
-	}
-}
-
-/**
- * [no_invoice description]
- * @return [type] [description]
- */
-function no_invoice()
-{
-	$no = (\Kodami\Models\Mysql\Deposit::count()+1);
-
-	return  $no . \Auth::user()->id.'/INV/KDM/'. date('d').date('m').date('y');
-}
-
-/**
  * [status_deposit description]
  * @param  [type] $status [description]
  * @return [type]         [description]
@@ -330,62 +296,13 @@ function status_deposit($status)
 }
 
 /**
- * [simpanan_wajib description]
- * @param  [type] $id [description]
- * @return [type]     [description]
- */
-function simpanan_wajib($id)
-{
-	return \Kodami\Models\Mysql\Deposit::where('user_id', $id)->where('type', 5);
-}
-
-/**
- * [sum_simpanan_wajib description]
- * @param  [type] $id [description]
- * @return [type]     [description]
- */
-function sum_simpanan_wajib($id, $status=3)
-{
-	if($status == 'all')
-	{
-		$simpanan_wajib = \Kodami\Models\Mysql\Deposit::where('user_id', $id)->sum('nominal');
-	}
-	else
-	{
-		$simpanan_wajib = \Kodami\Models\Mysql\Deposit::where('user_id', $id)->where('status', $status)->where('type', 5)->sum('nominal');
-
-	}
-
-	return $simpanan_wajib;
-}
-
-/**
- * [simpanan_pokok description]
- * @param  [type] $id [description]
- * @return [type]     [description]
- */
-function simpanan_pokok($id)
-{
-	return \Kodami\Models\Mysql\Deposit::where('user_id', $id)->where('type', 3);
-}
-
-/**
- * [cek_tagihan description]
- * @return [type] [description]
- */
-function simpanan_sukarela($id)
-{
-	return \Kodami\Models\Mysql\Deposit::where('user_id', $id)->where('type', 4);
-}
-
-/**
  * [get_setting description]
  * @param  [type] $field [description]
  * @return [type]        [description]
  */
 function get_setting($field)
 {
-	$item = \App\Setting::where('field', $field)->first();
+	$item = \App\Models\Setting::where('field', $field)->first();
 
 	if($item)
 	{
@@ -401,7 +318,7 @@ function get_setting($field)
  */
 function get_provinsi()
 {
-   return \App\Provinsi::orderBy('nama', 'ASC')->get();
+   return \App\Models\Provinsi::orderBy('nama', 'ASC')->get();
 }
 
 /**
@@ -411,7 +328,7 @@ function get_provinsi()
  */
 function get_kabupaten_by_provinsi($id)
 {
-	return \App\Kabupaten::where('id_prov', $id)->get();
+	return \App\Models\Kabupaten::where('id_prov', $id)->get();
 }
 
 /**
@@ -421,7 +338,7 @@ function get_kabupaten_by_provinsi($id)
  */
 function get_kecamatan_by_kabupaten($id)
 {
-	return \App\Kecamatan::where('id_kab', $id)->get();
+	return \App\Models\Kecamatan::where('id_kab', $id)->get();
 }
 
 /**
@@ -431,7 +348,7 @@ function get_kecamatan_by_kabupaten($id)
  */
 function get_kelurahan_by_kecamatan($id)
 {
-	return \App\Kelurahan::where('id_kec', $id)->get();
+	return \App\Models\Kelurahan::where('id_kec', $id)->get();
 }
 
 ?>

@@ -47,9 +47,9 @@
                         <div class="col-md-2">
                             <a href="{{ route('admin.perumahan.index') }}"><i class="mdi mdi-home-variant fa-fw"></i><span class="hide-menu">Perumahan</span></a>
                         </div>
-                        <!-- <div class="col-md-2">
-                            <a href="{{ route('admin.rekening-bank.index') }}"><i class="mdi mdi-bank fa-fw"></i><span class="hide-menu">Bank Pengurus</span></a>
-                        </div> -->
+                        <div class="col-md-2">
+                            <a href="{{ route('admin.pengeluaran-type.index') }}"><i class="mdi mdi-information fa-fw"></i><span class="hide-menu">Jenis Pengeluaran</span></a>
+                        </div>
                         <div class="clearfix"></div><hr />
                     </div>
                 </div>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Kodami\Models\Mysql\RekeningBankUser;
 
 class AjaxController extends Controller
 {
@@ -76,7 +75,7 @@ class AjaxController extends Controller
         $params = [];
         if($request->ajax())
         {
-                $data =  \App\User::where('name', 'LIKE', "%". $request->name . "%")->where('access_id', '<>', 1)->get();
+                $data =  \App\Models\Users::where('name', 'LIKE', "%". $request->name . "%")->where('access_id', '<>', 1)->get();
 
                 $params = [];
                 foreach($data as $k => $item)
@@ -90,62 +89,28 @@ class AjaxController extends Controller
         
         return response()->json($params); 
     }
+
     /**
-     * [getAnggotaById description]
+     * [getWargaById description]
      * @param  Request $request [description]
      * @return [type]           [description]
      */
-    public function getAnggotaByIdHtml(Request $request)
+    public function getWargaById(Request $request)
     {
-        $this->respon = ['message' => 'error', 'data' => []];
-        
+        $params = [];
         if($request->ajax())
         {
-            $data =  \Kodami\Models\Mysql\Users::where('id',$request->id)->first();
+            $data =  \App\Models\Users::where('id', $request->id)->first();
+            
             if($data)
             {
-                $data = view('kasir.partial.anggota-search')->with(['data' => $data])->render();
+                $data->nama_perumahan = isset($data->perumahan->nama_perumahan) ? $data->perumahan->nama_perumahan : '';
 
-                $this->respon = ['message' => 'success', 'data' => $data];
-            }
-            else
-            {
-                $this->respon = ['message' => 'error', 'data' => []];
+                return response()->json($data); 
             }
         }
-
-        return response()->json($this->respon);
-    }
-
-    /**
-     * [getAnggota description]
-     * @param  Request $request [description]
-     * @return [type]           [description]
-     */
-    public function getAnggota(Request $request)
-    {
-        $this->respon = ['message' => 'error', 'data' => []];
         
-        if($request->ajax())
-        {
-            $data =  \Kodami\Models\Mysql\Users::where('access_id', 2)->where(function($table) use ($request){
-                $table->where('name', 'LIKE', "%". $request->name . "%")
-                      ->orWhere('no_anggota', 'LIKE', '%'. $request->name .'%');
-            })->get();
-
-            $params = [];
-            foreach($data as $k => $item)
-            {
-                if($k >= 10) continue;
-
-                $params[$k]['id'] = $item->id;
-                $params[$k]['value'] = $item->no_anggota .' - '. $item->name;
-            }
-
-            $this->respon = ['message' => 'success', 'data' => $params];
-        }
-
-        return response()->json($this->respon);
+        return response()->json($params); 
     }
 
     /**
@@ -157,7 +122,7 @@ class AjaxController extends Controller
     {
         if($request->ajax())
         {
-            $data = \App\Kabupaten::where('id_prov', $request->id)->orderBy('nama', 'ASC')->get();
+            $data = \App\Models\Kabupaten::where('id_prov', $request->id)->orderBy('nama', 'ASC')->get();
 
             $this->respon = ['message' => 'success', 'data' => $data];
 
@@ -174,7 +139,7 @@ class AjaxController extends Controller
     {
         if($request->ajax())
         {
-            $data = \App\Kecamatan::where('id_kab', $request->id)->orderBy('nama', 'ASC')->get();
+            $data = \App\Models\Kecamatan::where('id_kab', $request->id)->orderBy('nama', 'ASC')->get();
 
             $this->respon = ['message' => 'success', 'data' => $data];
 
@@ -191,7 +156,7 @@ class AjaxController extends Controller
     {
         if($request->ajax())
         {
-            $data = \App\Kelurahan::where('id_kec', $request->id)->get();
+            $data = \App\Models\Kelurahan::where('id_kec', $request->id)->get();
 
             $this->respon = ['message' => 'success', 'data' => $data];
 

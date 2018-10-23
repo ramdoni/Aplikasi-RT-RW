@@ -193,18 +193,6 @@ class AnggotaController extends ControllerLogin
         return redirect()->route('admin.anggota.edit', $data->id)->with('message-success', 'Data berhasil disimpan'); 
    }
 
-   /**
-    * [cetakKwitansi description]
-    * @param  [type] $id [description]
-    * @return [type]     [description]
-    */
-   public function cetakKwitansi($id)
-   {
-        $params['data']     = \Kodami\Models\Mysql\Deposit::where('id', $id)->first();
-
-        return view('admin.anggota.kwitansi')->with($params);
-   }
-
     /**
      * [autologin description]
      * @param  [type] $id [description]

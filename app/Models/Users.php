@@ -33,7 +33,7 @@ class Users extends Model
      */
     public function domisiliKabupatenByProvinsi()
     {
-    	return $this->hasMany('\App\Kabupaten', 'id_prov', 'domisili_provinsi_id');
+    	return $this->hasMany('\App\Models\Kabupaten', 'id_prov', 'domisili_provinsi_id');
     }
 
     /**
@@ -51,7 +51,7 @@ class Users extends Model
      */
     public function domisiliKelurahanByKecamatan()
     {
-    	return $this->hasMany('\App\Kelurahan', 'id_kec', 'domisili_kecamatan_id');
+    	return $this->hasMany('\App\Models\Kelurahan', 'id_kec', 'domisili_kecamatan_id');
     }
 
      /**
@@ -60,7 +60,7 @@ class Users extends Model
      */
     public function ktpKabupatenByProvinsi()
     {
-    	return $this->hasMany('\App\Kabupaten', 'id_prov', 'ktp_provinsi_id');
+    	return $this->hasMany('\App\Models\Kabupaten', 'id_prov', 'ktp_provinsi_id');
     }
 
     /**
@@ -69,7 +69,7 @@ class Users extends Model
      */
     public function ktpKecamatanByKabupaten()
     {
-    	return $this->hasMany('\App\Kecamatan', 'id_kab', 'ktp_kabupaten_id');
+    	return $this->hasMany('\App\Models\Kecamatan', 'id_kab', 'ktp_kabupaten_id');
     }
 
     /**
@@ -78,7 +78,7 @@ class Users extends Model
      */
     public function ktpKelurahanByKecamatan()
     {
-    	return $this->hasMany('\App\Kelurahan', 'id_kec', 'ktp_kecamatan_id');
+    	return $this->hasMany('\App\Models\Kelurahan', 'id_kec', 'ktp_kecamatan_id');
     }
 
     /**

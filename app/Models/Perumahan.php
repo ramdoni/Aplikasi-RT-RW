@@ -14,7 +14,7 @@ class Perumahan extends Model
      */
     public function provinsi()
     {
-    	return $this->hasOne('\App\Provinsi', 'id_prov', 'provinsi_id');
+    	return $this->hasOne('\App\Models\Provinsi', 'id_prov', 'provinsi_id');
     }
 
     /**
@@ -23,7 +23,7 @@ class Perumahan extends Model
      */
     public function kabupaten()
     {
-    	return $this->hasOne('\App\Kabupaten', 'id_kab', 'kabupaten_id');
+    	return $this->hasOne('\App\Models\Kabupaten', 'id_kab', 'kabupaten_id');
     }
 
     /**
@@ -32,7 +32,7 @@ class Perumahan extends Model
      */
     public function kecamatan()
     {
-    	return $this->hasOne('\App\Kecamatan', 'id_kec', 'kecamatan_id');
+    	return $this->hasOne('\App\Models\Kecamatan', 'id_kec', 'kecamatan_id');
     }
 
     /**
@@ -41,7 +41,7 @@ class Perumahan extends Model
      */
     public function kelurahan()
     {
-    	return $this->hasOne('\App\Kelurahan', 'id_kel', 'kelurahan_id');
+    	return $this->hasOne('\App\Models\Kelurahan', 'id_kel', 'kelurahan_id');
     }
 
     /**
@@ -50,7 +50,7 @@ class Perumahan extends Model
      */
     public function getKabupatenByProvinsi()
     {
-        return $this->hasMany('\App\Kabupaten', 'id_prov', 'provinsi_id');
+        return $this->hasMany('\App\Models\Kabupaten', 'id_prov', 'provinsi_id');
     }
 
     /**
@@ -59,7 +59,7 @@ class Perumahan extends Model
      */
     public function getKecamatanByKabupaten()
     {
-        return $this->hasMany('\App\Kecamatan', 'id_kab', 'kabupaten_id');
+        return $this->hasMany('\App\Models\Kecamatan', 'id_kab', 'kabupaten_id');
     }
 
     /**
@@ -68,7 +68,7 @@ class Perumahan extends Model
      */
     public function getKelurahanByKecamatan()
     {
-        return $this->hasMany('\App\Kelurahan', 'id_kec', 'kecamatan_id');
+        return $this->hasMany('\App\Models\Kelurahan', 'id_kec', 'kecamatan_id');
     }
 
     /**

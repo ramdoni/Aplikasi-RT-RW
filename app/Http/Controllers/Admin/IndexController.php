@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\ControllerLogin;
-use App\ModelUser;
 use App\Models\KeluhanDanSaran;
 
 class IndexController extends ControllerLogin
@@ -14,13 +13,8 @@ class IndexController extends ControllerLogin
 	 * @return [type] [description]
 	 */
     public function index()
-    {	
-    	$total_anggota 			= ModelUser::where('access_id', 2)->get()->count();
-    	$total_simpanan_pokok 	= 0;
-    	$total_simpanan_sukarela=0;
-    	$total_simpanan_wajib 	=0;
-
-    	return view('admin.index', compact('total_anggota','total_simpanan_pokok','total_simpanan_sukarela', 'total_simpanan_wajib'));
+    {
+    	return view('admin.index');
     }
 
     /**

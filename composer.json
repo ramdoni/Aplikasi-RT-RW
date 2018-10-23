@@ -32,7 +32,6 @@
             "Tests\\": "tests/"
         },
          "files": [
-            "app/helper.php"
         ]
     },
     "extra": {
