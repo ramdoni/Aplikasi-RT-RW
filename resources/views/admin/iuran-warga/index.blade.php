@@ -3,30 +3,23 @@
 @section('title', 'Manage Iuran Warga ')
 
 @section('content')
-<!-- ============================================================== -->
-<!-- Page Content -->
-<!-- ============================================================== -->
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row bg-title">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">Dashboard</h4> </div>
+                <h4 class="page-title">Manage Iuran Warga</h4> </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="javascript:void(0)">Dashboard</a></li>
                     <li class="active">Iuran Warga</li>
                 </ol>
             </div>
-            <!-- /.col-lg-12 -->
         </div>
-        <!-- .row --> 
         <div class="row">
             <div class="col-md-12">
                <div class="white-box">
-                    <h3 class="box-title m-b-0"> Manage Iuran Warga</h3>
-                    <hr />
                     <form method="GET">
-                        <div class="col-md-3" style="padding-left:0;">
+                        <div class="col-md-2" style="padding-left:0;">
                             <select class="form-control" name="tahun">
                                 <option value="">- Pilih Tahun - </option>
                                 @for($t = 2018; $t <= date('Y'); $t++)
@@ -34,7 +27,11 @@
                                 @endfor
                             </select>
                         </div>
+                        
                         <button type="submit" class="btn btn-info">Filter</button>
+                         <div class="col-md-6 pull-right text-right">
+                            <h3>Total Iuran : Rp. {{ number_format($total_iuran) }}</h3>
+                        </div>
                         <div class="clearfix"></div>
                     </form>
                     <br />
@@ -230,11 +227,6 @@
         </div>
     </div>
 </div>
-
-<style>
-    active-blok
-</style>
-
 @section('footer-script')
 <script type="text/javascript">
     

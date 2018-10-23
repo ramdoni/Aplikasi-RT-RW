@@ -98,7 +98,6 @@
                                         <input type="text" name="kk_number" class="form-control" value="{{ $data->kk_number }}">
                                     </div>
                                 </div>
-                                
                                 <div class="form-group">
                                     <label class="col-md-6">Password</label>
                                     <label class="col-md-6">Status Pernikahan</label>
@@ -126,7 +125,6 @@
                             </div>
                             <div class="clearfix"></div>
                         </div>
-
                         <div role="tabpanel" class="tab-pane fade" id="alamat_domisili">
                             <div class="col-md-6">
                                 <div class="form-group">

@@ -18,6 +18,15 @@ class Users extends Model
     }
 
     /**
+     * [blokrumah description]
+     * @return [type] [description]
+     */
+    public function blokrumah()
+    {
+        return $this->hasOne('\App\Models\PerumahanBlok', 'id', 'blok_rumah');
+    }
+
+    /**
      * [rw description]
      * @return [type] [description]
      */
@@ -25,7 +34,6 @@ class Users extends Model
     {
     	return $this->hasOne('App\Models\Rw', 'id', 'rw_id');
     }
-
     
     /**
      * [ktpProvinsi description]

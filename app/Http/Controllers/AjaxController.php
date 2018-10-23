@@ -75,7 +75,7 @@ class AjaxController extends Controller
         $params = [];
         if($request->ajax())
         {
-                $data =  \App\Models\Users::where('name', 'LIKE', "%". $request->name . "%")->where('access_id', '<>', 1)->get();
+                $data =  \App\Models\Users::where('name', 'LIKE', "%". $request->name . "%")->where('id', '<>', \Auth::user()->id)->where('access_id', '<>', 1)->get();
 
                 $params = [];
                 foreach($data as $k => $item)
@@ -104,7 +104,8 @@ class AjaxController extends Controller
             
             if($data)
             {
-                $data->nama_perumahan = isset($data->perumahan->nama_perumahan) ? $data->perumahan->nama_perumahan : '';
+                $data->nama_perumahan   = isset($data->perumahan->nama_perumahan) ? $data->perumahan->nama_perumahan : '';
+                $data->blok_rumah       = isset($data->blokrumah->blok) ? $data->blokrumah->blok : ''; 
 
                 return response()->json($data); 
             }

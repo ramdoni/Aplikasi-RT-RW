@@ -15,8 +15,14 @@ class IuranWargaController extends Controller
 	 */
     public function index()
     {	
-    	$params['data'] 	= Users::orderBy('id','DESC')->get();	
-    	$params['tahun']	= 2018;
+    	$params['data'] 	      = Users::orderBy('id','DESC')->get();	
+    	$params['tahun']	      = 2018;
+        $params['total_iuran']    = IuranWarga::sum('nominal');
+        
+        if(isset($_GET['tahun']) and !empty($_GET['tahun']))
+        {
+            $params['total_iuran'] = IuranWarga::whereYear('')->sum('nominal');
+        }
 
     	return view('admin.iuran-warga.index')->with($params);
     }
