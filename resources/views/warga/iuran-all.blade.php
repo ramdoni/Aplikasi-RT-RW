@@ -115,7 +115,7 @@
                                         <td>{{ $no+1 }}</td>
                                         <td>{{ isset($item->user->name) ? $item->user->name : '' }}</td>
                                         <td>{{ number_format($item->nominal) }}</td>
-                                        <td>{{ date('d F Y', strtotime($item->tanggal))  }}</td>
+                                        <td>{{ date('d F Y', strtotime($item->date_proses))  }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
