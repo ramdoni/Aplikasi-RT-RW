@@ -26,7 +26,7 @@ class IndexController extends Controller
      */
     public function iuranAll()
     {  
-        $params['data']             = IuranWarga::select('iuran_warga.*')->join('users','users.id','=','iuran_warga.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->toSql();
+        $params['data']             = IuranWarga::select('iuran_warga.*')->join('users','users.id','=','iuran_warga.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->get();
         $params['pengeluaran']      = Pengeluaran::select('pengeluaran.*')->join('users','users.id','=','pengeluaran.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->get();
         $total_iuran                = IuranWarga::select('iuran_warga.*')->join('users','users.id','=','iuran_warga.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->where('iuran_warga.status', 2);
         $total_pengeluaran          = Pengeluaran::select('pengeluaran.*')->join('users','users.id','=','pengeluaran.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id);
