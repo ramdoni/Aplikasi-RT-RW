@@ -162,6 +162,7 @@ Route::group(['prefix' => 'rt', 'namespace' => 'Rt', 'middleware' => ['auth', 'a
 	Route::get('surat-pengantar', 'SuratPengantarController@index')->name('rt.surat-pengantar.index');
 	Route::get('surat-pengantar/proses/{id}', 'SuratPengantarController@proses')->name('rt.surat-pengantar.proses');
 	Route::get('warga/aktif/{id}', 'WargaController@aktif')->name('rt.warga.aktif');
+	Route::get('iuran-all', 'IndexController@iuranAll')->name('rt.iuran-all');
 	Route::post('iuran/bayar', 'IuranController@bayar')->name('rt.iuran.bayar');
 	Route::resource('warga', 'WargaController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'rt']);
 });

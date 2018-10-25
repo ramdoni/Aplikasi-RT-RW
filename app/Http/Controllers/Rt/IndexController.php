@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Rt;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\KeluhanDanSaran;
+use App\Models\IuranWarga;
+use App\Models\Pengeluaran;
 
 class IndexController extends Controller
 {	
@@ -13,9 +16,32 @@ class IndexController extends Controller
 	 * @return [type] [description]
 	 */
     public function index()
-    {;
+    {
+        return view('rt.index');
+    }
 
-    	return view('rt.index');
+    /**
+     * [iuranAll description]
+     * @return [type] [description]
+     */
+    public function iuranAll()
+    {  
+        $params['data']             = IuranWarga::select('iuran_warga.*')->join('users','users.id','=','iuran_warga.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->get();
+        $params['pengeluaran']      = Pengeluaran::select('pengeluaran.*')->join('users','users.id','=','pengeluaran.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->get();
+        $params['total_iuran']      = IuranWarga::select('iuran_warga.*')->join('users','users.id','=','iuran_warga.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->where('iuran_warga.status', 2)->sum('nominal');
+        $params['total_pengeluaran']= Pengeluaran::select('pengeluaran.*')->join('users','users.id','=','pengeluaran.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->sum('nominal');
+
+        if(isset($_GET['tahun_iuran']) and $_GET['tahun_iuran'] != "")
+        {
+            $params['total_iuran'] = IuranWarga::whereYear('tanggal', $_GET['tahun_iuran'])->sum('nominal');
+        }
+
+        if(isset($_GET['tahun_pengeluaran']) and $_GET['tahun_pengeluaran'] != "")
+        {
+            $params['total_pengeluaran'] = Pengeluaran::whereYear('tanggal', $_GET['tahun_pengeluaran'])->sum('nominal');
+        }
+
+        return view('rt.iuran-all')->with($params);
     }
 
     /**
