@@ -213,7 +213,7 @@
                         <div class="form-group">
                             <select class="form-control" name="to">
                                 <option value="">- Ditujukan Untuk -</option>
-                                <option>Rukun Tetannga (RT)</option>
+                                <option>Rukun Tetangga (RT)</option>
                                 <option>Rukun Warga (RW)</option>
                                 <option>Pakrt.id</option>
                             </select>
