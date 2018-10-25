@@ -24,7 +24,7 @@
                                     <span class="circle circle-md bg-danger"><i class="ti-clipboard"></i></span>
                                 </li>
                                 <li class="col-last">
-                                    <h3 class="counter text-right m-t-15">{{ total_warga() }}</h3>
+                                    <h3 class="counter text-right m-t-15">{{ total_warga_rt() }}</h3>
                                 </li>
                                 <li class="col-middle">
                                     <h4>Total Warga</h4>

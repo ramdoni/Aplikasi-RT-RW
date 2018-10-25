@@ -29,6 +29,7 @@
                                     <th>TELEPON</th>
                                     <th>BLOK RUMAH</th>
                                     <th>NO RUMAH</th>
+                                    <th>STATUS WARGA</th>
                                     <th>#</th>
                                 </tr>
                             </thead>
@@ -41,6 +42,14 @@
                                         <td>{{ $item->telepon }}</td>
                                         <td>{{ isset($item->blokrumah->blok) ? $item->blokrumah->blok : '' }}</td>
                                         <td>{{ $item->no_rumah }}</td>
+                                         <td>
+                                            @if($item->status == 0 || $item->status === NULL)
+                                                <a href="" class="btn btn-warning btn-xs">Belum Aktifivasi</a>
+                                            @endif
+                                            @if($item->status ==1)
+                                                <a href="" class="btn btn-success btn-xs">Aktif</a>
+                                            @endif
+                                        </td>
                                         <td>    
                                             <div class="btn-group m-r-10">
                                                 <button aria-expanded="false" data-toggle="dropdown" class="btn btn-xs btn-info dropdown-toggle waves-effect waves-light" type="button">Action 

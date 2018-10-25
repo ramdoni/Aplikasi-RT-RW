@@ -43,7 +43,7 @@ class IndexController extends Controller
     {  
         $params['data']             = IuranWarga::all();
         $params['pengeluaran']      = Pengeluaran::all();
-        $params['total_iuran']      = IuranWarga::sum('nominal');
+        $params['total_iuran']      = IuranWarga::where('status', 2)->sum('nominal');
         $params['total_pengeluaran']= Pengeluaran::sum('nominal');
 
         if(isset($_GET['tahun_iuran']) and $_GET['tahun_iuran'] != "")
