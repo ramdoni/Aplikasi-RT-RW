@@ -164,7 +164,12 @@ Route::group(['prefix' => 'rt', 'namespace' => 'Rt', 'middleware' => ['auth', 'a
 	Route::get('warga/aktif/{id}', 'WargaController@aktif')->name('rt.warga.aktif');
 	Route::get('iuran-all', 'IndexController@iuranAll')->name('rt.iuran-all');
 	Route::get('keluhan-dan-saran', 'IndexController@keluhan')->name('rt.keluhan-dan-saran');
+	Route::get('setting', 'IndexController@setting')->name('rt.setting.index');
+	Route::get('setting', 'IndexController@setting')->name('rt.setting.index');
 	Route::post('iuran/bayar', 'IuranController@bayar')->name('rt.iuran.bayar');
+	Route::resource('setting-iuran', 'SettingIuranController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'rt']);
+	Route::resource('pengeluaran', 'PengeluaranController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'rt']);
+	Route::resource('pengeluaran-type', 'PengeluaranTypeController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'rt']);
 	Route::resource('warga', 'WargaController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'rt']);
 });
 

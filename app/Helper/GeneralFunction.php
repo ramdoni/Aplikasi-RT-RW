@@ -7,7 +7,11 @@
  */
 function total_warga_rt()
 {
-  return \App\Models\Users::where('access_id', 2)->where('perumahan_id', \Auth::user()->perumahan_id)->count();
+  return \App\Models\Users::where('access_id', 2)
+                            ->where('perumahan_id', \Auth::user()->perumahan_id)
+                            ->where('rt_id', \Auth::user()->rt_id)
+                            ->where('rw_id', \Auth::user()->rw_id)
+                            ->count();
 }
 
 /**
@@ -16,7 +20,12 @@ function total_warga_rt()
  */
 function total_iuran_rt()
 {
-  return \App\Models\IuranWarga::join('users', 'users.id','=','iuran_warga.user_id')->where('iuran_warga.status', 2)->where('users.perumahan_id', \Auth::user()->perumahan_id)->sum('nominal');
+  return \App\Models\IuranWarga::join('users', 'users.id','=','iuran_warga.user_id')
+                                ->where('iuran_warga.status', 2)
+                                ->where('users.perumahan_id', \Auth::user()->perumahan_id)
+                                ->where('users.rt_id', \Auth::user()->rt_id)
+                                ->where('users.rw_id', \Auth::user()->rw_id)
+                                ->sum('nominal');
 }
 
 /**
@@ -25,7 +34,12 @@ function total_iuran_rt()
  */
 function total_pengeluaran_rt()
 {
-  return \App\Models\IuranWarga::join('users', 'users.id','=','iuran_warga.user_id')->where('iuran_warga.status', 2)->where('users.perumahan_id', \Auth::user()->perumahan_id)->sum('nominal');
+  return \App\Models\IuranWarga::join('users', 'users.id','=','iuran_warga.user_id')
+                                ->where('iuran_warga.status', 2)
+                                ->where('users.perumahan_id', \Auth::user()->perumahan_id)
+                                ->where('users.rt_id', \Auth::user()->rt_id)
+                                ->where('users.rw_id', \Auth::user()->rw_id)
+                                ->sum('nominal');
 }
 
 /**
@@ -50,8 +64,13 @@ function bulan()
  * [pengeluaran_type description]
  * @return [type] [description]
  */
-function pengeluaran_type()
+function pengeluaran_type($user_id = NULL)
 {
+  if($user_id !== NULL)
+  {
+  return \App\Models\PengeluaranType::where('user_id', $user_id)->get();
+  }
+
   return \App\Models\PengeluaranType::all();
 }
 

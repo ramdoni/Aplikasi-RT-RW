@@ -28,16 +28,14 @@
     <link href="{{ asset('admin-css/css/style.css') }}?time=<?=date('His')?>" rel="stylesheet">
     <!-- color CSS -->
     <link href="{{ asset('admin-css/css/colors/green.css') }}" id="theme" rel="stylesheet">
-
     <link href="{{ asset('admin-css/plugins/bower_components/datatables/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
-    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <![endif]-->
     <style type="text/css">
         body {
             font-size: 12px;
@@ -45,31 +43,19 @@
     </style>
 </head>
 <body class="fix-header">
-    <!-- ============================================================== -->
-    <!-- Preloader -->
-    <!-- ============================================================== -->
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
             <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
         </svg>
     </div>
-    <!-- ============================================================== -->
-    <!-- Wrapper -->
-    <!-- ============================================================== -->
     <div id="wrapper">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
         <nav class="navbar navbar-default navbar-static-top m-b-0">
             <div class="navbar-header">
                 <div class="top-left-part">
-                    <!-- Logo -->
-                    <a class="logo" href="{{ url('anggota') }}">
-                        <span class="hidden-xs"><b>RT KU</b></span> 
+                    <a class="logo" href="{{ url('/') }}">
+                        <span class="hidden-xs"><b> PAK RT</b></span> 
                     </a>
                 </div>
-                <!-- /Logo -->
-                <!-- Search input and Toggle icon -->
                 <ul class="nav navbar-top-links navbar-left">
                     <li><a href="javascript:void(0)" class="open-close waves-effect waves-light visible-xs"><i class="ti-close ti-menu"></i></a></li>
                 </ul>
@@ -95,7 +81,8 @@
                                     </div>
                                     <div class="u-text">
                                         <h4>{{ Auth::user()->name }}</h4>
-                                        <p class="text-muted">{{ Auth::user()->email }}</p><a class="btn btn-rounded btn-danger btn-sm">{{ get_jabatan(\Auth::user()->access_id) }}</a></div>
+                                        <p class="text-muted">{{ Auth::user()->email }}</p><a class="btn btn-rounded btn-danger btn-sm">{{ get_jabatan(\Auth::user()->access_id) }}</a>
+                                    </div>
                                 </div>
                             </li>
                             <li role="separator" class="divider"></li>
@@ -125,19 +112,10 @@
                             @endif
                             <li><a href="{{ url('logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
-                        <!-- /.dropdown-user -->
                     </li>
-                    <!-- /.dropdown -->
                 </ul>
             </div>
-            <!-- /.navbar-header -->
-            <!-- /.navbar-top-links -->
-            <!-- /.navbar-static-side -->
         </nav>
-        <!-- End Top Navigation -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav">
                 <div class="sidebar-head">
@@ -146,13 +124,11 @@
                 @include('layout.nav')
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar -->
-        <!-- ============================================================== -->
-
-        @yield('content')
         
+        @yield('content')
+
         @include('layout.alert')
+        
         <div class="modal fade" id="modal_keluhan" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -184,12 +160,6 @@
             </div>
         </div>
 
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
     <script src="{{ asset('admin-css/plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('admin-css/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -233,6 +203,7 @@
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <script src="{{ asset('js/general.js?v='. date('His')) }}"></script>
+    <script src="{{ asset('js/bootbox.min.js') }}"></script>
     <script src="{{ asset('js/set-datable.js?v='. date('His')) }}"></script>
     
     <script type="text/javascript">

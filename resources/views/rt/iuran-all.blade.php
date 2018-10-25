@@ -79,18 +79,18 @@
                         <hr />
                         <form method="GET">
                             <div class="col-md-4" style="padding-left: 0;margin-left:0;">
-                                <select class="form-control" name="tahun">
+                                <select class="form-control" name="tahun_iuran">
                                     <option value="">Pilih Tahun</option>
                                     @for($y = 2018; $y <= date('Y'); $y++)
-                                    <option>{{ $y }}</option>
+                                    <option  {{ isset($_GET['tahun_uraian']) and $_GET['tahun_uraian'] == $y ? 'selected' : '' }}>{{ $y }}</option>
                                     @endfor
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <select class="form-control" name="bulan">
+                                <select class="form-control" name="bulan_iuran">
                                     <option value="">Pilih Bulan</option>
                                     @foreach(bulan() as $no => $str)
-                                    <option value="{{ $no }}">{{ $str }}</option>
+                                    <option value="{{ $no }}" {{ isset($_GET['bulan_uraian']) and $_GET['bulan_uraian'] == $no ? 'selected' : '' }}>{{ $str }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -139,18 +139,18 @@
                         <hr />
                         <form method="GET">
                             <div class="col-md-4" style="padding-left: 0;margin-left:0;">
-                                <select class="form-control" name="tahun">
+                                <select class="form-control" name="tahun_pengeluaran">
                                     <option value="">Pilih Tahun</option>
                                     @for($y = 2018; $y <= date('Y'); $y++)
-                                    <option>{{ $y }}</option>
+                                    <option {{ isset($_GET['tahun_pengeluaran']) and $_GET['tahun_pengeluaran'] == $y ? 'selected' : '' }}>{{ $y }}</option>
                                     @endfor
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <select class="form-control" name="bulan">
+                                <select class="form-control" name="bulan_pengeluaran">
                                     <option value="">Pilih Bulan</option>
                                     @foreach(bulan() as $no => $str)
-                                    <option value="{{ $no }}">{{ $str }}</option>
+                                    <option value="{{ $no }}" {{ isset($_GET['bulan_pengeluaran']) and $_GET['bulan_pengeluaran'] == $no ? 'selected' : '' }}>{{ $str }}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -191,14 +191,9 @@
                 </ul>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar -->
-        <!-- ============================================================== -->
-
         @yield('content')
         
         @include('layout.alert')
-
 
         <div class="modal fade" id="modal_keluhan" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">

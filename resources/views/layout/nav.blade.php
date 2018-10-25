@@ -77,11 +77,19 @@
     <li>
         <a href="{{ route('rt.iuran.index') }}" class="waves-effect"><i class="mdi mdi-account-card-details fa-fw"></i> Iuran</a>
     </li>
+     <li>
+        <a href="{{ route('rt.pengeluaran.index') }}" class="waves-effect"><i class="mdi mdi-account-minus fa-fw"></i> Pengeluaran</a>
+    </li>
     <li class="last-nav">
         <a href="{{ route('rt.surat-pengantar.index') }}" class="waves-effect"><i class="mdi mdi-account-card-details fa-fw"></i> Surat Pengantar</a>
     </li>
     <li>
         <a href="{{ route('rt.keluhan-dan-saran') }}" class="waves-effect"><i class="mdi mdi-message-text-outline fa-fw"></i> Keluhan dan Saran</a>
+    </li>
+    <li class="last-nav">
+        <a href="{{ route('rt.setting.index') }}" class="waves-effect">
+            <i class="mdi mdi-settings fa-fw"></i> <span class="hide-menu">Setting</span>
+        </a>
     </li>
 </ul>
 @endif

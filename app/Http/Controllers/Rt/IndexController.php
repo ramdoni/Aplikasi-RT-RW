@@ -21,24 +21,65 @@ class IndexController extends Controller
     }
 
     /**
+     * [setting description]
+     * @return [type] [description]
+     */
+    public function setting()
+    {
+        return view('rt.setting');
+    }
+
+    /**
      * [iuranAll description]
      * @return [type] [description]
      */
     public function iuranAll()
     {  
-        $params['data']             = IuranWarga::select('iuran_warga.*')->join('users','users.id','=','iuran_warga.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->get();
-        $params['pengeluaran']      = Pengeluaran::select('pengeluaran.*')->join('users','users.id','=','pengeluaran.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->get();
-        $total_iuran                = IuranWarga::select('iuran_warga.*')->join('users','users.id','=','iuran_warga.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->where('iuran_warga.status', 2);
-        $total_pengeluaran          = Pengeluaran::select('pengeluaran.*')->join('users','users.id','=','pengeluaran.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id);
+        $params['data']             = IuranWarga::select('iuran_warga.*')
+                                                ->join('users','users.id','=','iuran_warga.user_id')
+                                                ->where('users.perumahan_id', \Auth::user()->perumahan_id)
+                                                ->where('users.rt_id', \Auth::user()->rt_id)
+                                                ->where('users.rw_id', \Auth::user()->rw_id)
+                                                ->get();
+
+        $params['pengeluaran']      = Pengeluaran::select('pengeluaran.*')
+                                                 ->join('users','users.id','=','pengeluaran.user_id')
+                                                 ->where('users.perumahan_id', \Auth::user()->perumahan_id)
+                                                ->where('users.rt_id', \Auth::user()->rt_id)
+                                                ->where('users.rw_id', \Auth::user()->rw_id)
+                                                 ->get();
+
+        $total_iuran                = IuranWarga::select('iuran_warga.*')
+                                                 ->join('users','users.id','=','iuran_warga.user_id')
+                                                 ->where('users.perumahan_id', \Auth::user()->perumahan_id)
+                                                 ->where('iuran_warga.status', 2)
+                                                ->where('users.rt_id', \Auth::user()->rt_id)
+                                                ->where('users.rw_id', \Auth::user()->rw_id)
+                                                 ;
+
+        $total_pengeluaran          = Pengeluaran::select('pengeluaran.*')
+                                                 ->join('users','users.id','=','pengeluaran.user_id')
+                                                 ->where('users.perumahan_id', \Auth::user()->perumahan_id)
+                                                 ->where('users.rt_id', \Auth::user()->rt_id)
+                                                 ->where('users.rw_id', \Auth::user()->rw_id)
+                                                 ;
 
         if(isset($_GET['tahun_iuran']) and $_GET['tahun_iuran'] != "")
         {
-            $total_iuran = $total_iuran->whereYear('iuran_warga.tanggal', $_GET['tahun_iuran'])->sum('nominal');
+            $total_iuran = $total_iuran->whereYear('iuran_warga.tanggal', $_GET['tahun_iuran']);
+        }
+        if(isset($_GET['bulan_iuran']) and $_GET['bulan_iuran'] != "")
+        {
+            $total_iuran = $total_iuran->whereMonth('iuran_warga.tanggal', $_GET['bulan_iuran']);
         }
 
         if(isset($_GET['tahun_pengeluaran']) and $_GET['tahun_pengeluaran'] != "")
         {
             $params['total_pengeluaran'] = $total_pengeluaran->whereYear('pengeluaran.tanggal', $_GET['tahun_pengeluaran']);
+        }
+        if(isset($_GET['bulan_pengeluaran']) and $_GET['bulan_pengeluaran'] != "")
+        {
+            $params['bulan_pengeluaran'] = $total_pengeluaran->whereMonth('pengeluaran.tanggal', $_GET['bulan_pengeluaran']);
         }
 
         $params['total_iuran']          = $total_iuran->sum('nominal');

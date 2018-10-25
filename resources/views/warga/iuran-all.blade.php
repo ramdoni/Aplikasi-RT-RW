@@ -73,13 +73,13 @@
                 </div>
                 <div class="col-md-6">
                     <div class="white-box">
-                        <h5 class="pull-left">IURAN WARGA</h5>
-                        <h5 class="pull-right">TOTAL IURAN : Rp. {{ number_format($total_iuran) }}</h5>
+                        <h5 class="pull-left"><strong>IURAN WARGA</strong></h5>
+                        <h5 class="pull-right"><strong>TOTAL IURAN : Rp. {{ number_format($total_iuran) }}</strong></h5>
                         <div class="clearfix"></div>
                         <hr />
                         <form method="GET">
                             <div class="col-md-4" style="padding-left: 0;margin-left:0;">
-                                <select class="form-control" name="tahun">
+                                <select class="form-control" name="tahun_iuran">
                                     <option value="">Pilih Tahun</option>
                                     @for($y = 2018; $y <= date('Y'); $y++)
                                     <option>{{ $y }}</option>
@@ -87,7 +87,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <select class="form-control" name="bulan">
+                                <select class="form-control" name="bulan_iuran">
                                     <option value="">Pilih Bulan</option>
                                     @foreach(bulan() as $no => $str)
                                     <option value="{{ $no }}">{{ $str }}</option>
@@ -133,13 +133,13 @@
                 </div>
                 <div class="col-md-6">
                     <div class="white-box">
-                        <h5 class="pull-left">PENGELUARAN</h5>
-                        <h5 class="pull-right">TOTAL IURAN : Rp. {{ number_format($total_pengeluaran) }}</h5>
+                        <h5 class="pull-left"><strong>PENGELUARAN</strong></h5>
+                        <h5 class="pull-right"><strong>TOTAL IURAN : Rp. {{ number_format($total_pengeluaran) }}</strong></h5>
                         <div class="clearfix"></div>
                         <hr />
                         <form method="GET">
                             <div class="col-md-4" style="padding-left: 0;margin-left:0;">
-                                <select class="form-control" name="tahun">
+                                <select class="form-control" name="tahun_pengeluaran">
                                     <option value="">Pilih Tahun</option>
                                     @for($y = 2018; $y <= date('Y'); $y++)
                                     <option>{{ $y }}</option>
@@ -147,7 +147,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <select class="form-control" name="bulan">
+                                <select class="form-control" name="bulan_pengeluaran">
                                     <option value="">Pilih Bulan</option>
                                     @foreach(bulan() as $no => $str)
                                     <option value="{{ $no }}">{{ $str }}</option>
