@@ -14,7 +14,7 @@ class WargaController extends ControllerLogin
 	 */
     public function index()
     {
-    	$data = Users::where('access_id', 2)->orderBy('id', 'DESC')->get();
+    	$data = Users::where('access_id', 2)->where('perumahan_id', \Auth::user()->perumahan_id)->orderBy('id', 'DESC')->get();
 
     	return view('rt.warga.index', compact('data'));
     }

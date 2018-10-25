@@ -1,6 +1,34 @@
 <?php
 
 /**
+ * [total_warga_rt description]
+ * @param  [type] $rt [description]
+ * @return [type]     [description]
+ */
+function total_warga_rt()
+{
+  return \App\Models\Users::where('access_id', 2)->where('perumahan_id', \Auth::user()->perumahan_id)->count();
+}
+
+/**
+ * [total_iuran_rt description]
+ * @return [type] [description]
+ */
+function total_iuran_rt()
+{
+  return \App\Models\IuranWarga::join('users', 'users.id','=','iuran_warga.user_id')->where('iuran_warga.status', 2)->where('users.perumahan_id', \Auth::user()->perumahan_id)->sum('nominal');
+}
+
+/**
+ * [total_iuran_rt description]
+ * @return [type] [description]
+ */
+function total_pengeluaran_rt()
+{
+  return \App\Models\IuranWarga::join('users', 'users.id','=','iuran_warga.user_id')->where('iuran_warga.status', 2)->where('users.perumahan_id', \Auth::user()->perumahan_id)->sum('nominal');
+}
+
+/**
  * [total_warga description]
  * @return [type] [description]
  */

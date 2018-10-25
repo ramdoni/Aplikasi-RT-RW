@@ -34,7 +34,7 @@
                                     <span class="circle circle-md bg-danger"><i class="ti-clipboard"></i></span>
                                 </li>
                                 <li class="col-last">
-                                    <h3 class="counter text-right m-t-15">0</h3>
+                                    <h3 class="counter text-right m-t-15">{{ number_format(total_warga_rt()) }}</h3>
                                 </li>
                                 <li class="col-middle">
                                     <h4>Total Warga</h4>
@@ -51,10 +51,27 @@
                                     <span class="circle circle-md bg-info"><i class="ti-wallet"></i></span>
                                 </li>
                                 <li class="col-last">
-                                    <h3 class="counter text-right m-t-15">0</h3>
+                                    <h3 class="counter text-right m-t-15">{{ number_format(total_iuran_rt()) }}</h3>
                                 </li>
                                 <li class="col-middle">
                                     <h4>Total Iuran</h4>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 row-in-br  b-r-none">
+                            <ul class="col-in">
+                                <li>
+                                    <span class="circle circle-md bg-info"><i class="ti-wallet"></i></span>
+                                </li>
+                                <li class="col-last">
+                                    <h3 class="counter text-right m-t-15"></h3>
+                                </li>
+                                <li class="col-middle">
+                                    <h4>Total Pengeluaran</h4>
                                     <div class="progress">
                                         <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
                                         </div>
@@ -67,11 +84,11 @@
             </div>
         </div>
     </div>
-    <!-- /.container-fluid -->
     @include('layout.footer-admin')
 </div>
-<!-- ============================================================== -->
-<!-- End Page Content -->
-<!-- ============================================================== -->
-</div>
+<style type="text/css">
+.col-in h3 {
+    font-size: 23px;
+}
+</style>
 @endsection

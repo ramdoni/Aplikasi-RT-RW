@@ -17,7 +17,7 @@ class IuranWargaController extends Controller
     {	
     	$params['data'] 	      = Users::orderBy('id','DESC')->get();	
     	$params['tahun']	      = 2018;
-        $params['total_iuran']    = IuranWarga::sum('nominal');
+        $params['total_iuran']    = IuranWarga::where('status',2)->sum('nominal');
         
         if(isset($_GET['tahun']) and !empty($_GET['tahun']))
         {
