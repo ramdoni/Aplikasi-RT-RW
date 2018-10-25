@@ -15,7 +15,7 @@ class SuratPengantarController extends Controller
 	 */
     public function index()
     {
-        $params['data'] = SuratPengantar::all();
+        $params['data'] = SuratPengantar::join('users','users.id','=','surat_pengantar.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->get();
 
     	return view('rt.surat-pengantar.index')->with($params);
     }

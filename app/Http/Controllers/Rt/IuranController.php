@@ -15,7 +15,7 @@ class IuranController extends Controller
 	 */
     public function index()
     {	
-    	$params['data'] 	= Users::orderBy('id','DESC')->get();	
+    	$params['data'] 	= Users::where('perumahan_id', \Auth::user()->perumahan_id)->orderBy('id','DESC')->get();	
     	$params['tahun']	= 2018;
 
     	return view('rt.iuran.index')->with($params);
