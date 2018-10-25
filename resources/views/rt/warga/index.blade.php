@@ -58,6 +58,9 @@
                                                     <li><a href="{{ route('rt.warga.edit', ['id' => $item->id]) }}"><i class="ti-pencil-alt"></i> Detail</a></li>
                                                     <li><a onclick="confirm_autologin('{{ route('rt.autologin', $item->id) }}', '{{ $item->name }}')"><i class="fa fa-key"></i> Autologin</a></li>
                                                     <li><a href="{{ route('rt.warga.destroy', $item->id) }}" onclick="return confirm('Hapus data warga ?')"><i class="ti-trash"></i> Delete</a></li>
+                                                    @if($item->status == 0)
+                                                    <li><a href="{{ route('rt.warga.aktif', $item->id) }}" onclick="return confirm('Konfirmasi data warga ?')"><i class="ti-check"></i> Konfirmasi Warga</a></li>
+                                                    @endif
                                                 </ul>
                                             </div>
                                         </td>

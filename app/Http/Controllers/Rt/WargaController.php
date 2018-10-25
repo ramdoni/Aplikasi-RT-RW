@@ -402,4 +402,17 @@ class WargaController extends ControllerLogin
 
         return redirect()->route('admin.anggota.edit', $request->user_id)->with('message-success', 'Data Rekening Bank berhasil disimpan !');
     }
+
+    /**
+     * [aktif description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function aktif($id)
+    {
+        $data           = Users::where('id', $id)->first();
+        $data->status   = 1;
+        $data->save();
+        return redirect()->route('rt.warga.index')->with('message-success', 'Status warga sudah Aktif');
+    }
 }
