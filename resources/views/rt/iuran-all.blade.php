@@ -107,16 +107,24 @@
                                         <th>WARGA</th>
                                         <th>NOMINAL</th>
                                         <th>TANGGAL PEMBAYARAN</th>
+                                        <th>STATUS</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($data as $no => $item)
-                                    <tr>
-                                        <td>{{ $no+1 }}</td>
-                                        <td>{{ isset($item->user->name) ? $item->user->name : '' }}</td>
-                                        <td>{{ number_format($item->nominal) }}</td>
-                                        <td>{{ date('d F Y', strtotime($item->date_proses))  }}</td>
-                                    </tr>
+                                <tr>
+                                    <td>{{ $no+1 }}</td>
+                                    <td>{{ isset($item->user->name) ? $item->user->name : '' }}</td>
+                                    <td>{{ number_format($item->nominal) }}</td>
+                                    <td>{{ date('d F Y', strtotime($item->date_proses))  }}</td>
+                                    <td>
+                                        @if($item->status ==1 )
+                                            <label class="btn btn-warning btn-xs">Menunggu Konfirmasi RT</label>
+                                        @else 
+                                            <label class="btn btn-success btn-xs">Berhasil</label>
+                                        @endif
+                                    </td>
+                                </tr>
                                 @endforeach
                                 </tbody>
                             </table>
