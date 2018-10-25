@@ -48,6 +48,17 @@ class IndexController extends Controller
     }
 
     /**
+     * [keluhan description]
+     * @return [type] [description]
+     */
+    public function keluhan()
+    {
+        $params['data'] = KeluhanDanSaran::join('users', 'users.id', '=', 'keluhan_dan_saran.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->get();
+
+        return view('rt.keluhan')->with($params);
+    }
+
+    /**
      * [backtoadmin description]
      * @return [type] [description]
      */

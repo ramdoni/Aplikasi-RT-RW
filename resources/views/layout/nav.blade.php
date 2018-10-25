@@ -80,5 +80,8 @@
     <li class="last-nav">
         <a href="{{ route('rt.surat-pengantar.index') }}" class="waves-effect"><i class="mdi mdi-account-card-details fa-fw"></i> Surat Pengantar</a>
     </li>
+    <li>
+        <a href="{{ route('rt.keluhan-dan-saran') }}" class="waves-effect"><i class="mdi mdi-message-text-outline fa-fw"></i> Keluhan dan Saran</a>
+    </li>
 </ul>
 @endif
