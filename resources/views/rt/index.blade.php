@@ -70,7 +70,9 @@
                                     <span class="circle circle-md bg-info"><i class="ti-wallet"></i></span>
                                 </li>
                                 <li class="col-last">
-                                    <h3 class="counter text-right m-t-15">{{ number_format(total_pengeluaran_rt()) }}</h3>
+                                    <a href="{{ route('rt.iuran-all') }}">
+                                        <h3 class="counter text-right m-t-15">{{ number_format(total_pengeluaran_rt()) }}</h3>
+                                    <a href="{{ route('rt.iuran-all') }}">
                                 </li>
                                 <li class="col-middle">
                                     <h4>Total Pengeluaran</h4>
