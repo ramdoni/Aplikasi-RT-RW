@@ -7,7 +7,7 @@
  */
 function total_warga_rt()
 {
-  return \App\Models\Users::where('access_id', 2)->where('access_id', 4)
+  return \App\Models\Users::where('access_id', 2)
                             ->where('perumahan_id', \Auth::user()->perumahan_id)
                             ->where('rt_id', \Auth::user()->rt_id)
                             ->where('rw_id', \Auth::user()->rw_id)
