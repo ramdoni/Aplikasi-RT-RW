@@ -179,6 +179,8 @@ class IndexController extends Controller
     {
         if(\Session::get('is_login_admin'))
         {
+            \Session::forget('is_login_admin');
+            
             $find = \App\Models\Users::where('access_id', 1)->first();
             
             if($find)

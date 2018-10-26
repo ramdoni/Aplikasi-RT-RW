@@ -9,7 +9,7 @@
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 <h4 class="page-title">SETTING IURAN</h4> </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                <a href="{{ route('rt.setting-iuran.create') }}" class="btn btn-success  btn-sm pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light"> <i class="fa fa-plus"></i> TAMBAH</a>
+                <a href="{{ route('rt.setting-iuran.create') }}" class="btn btn-success btn-sm pull-right m-l-20 waves-effect waves-light"> <i class="fa fa-plus"></i> TAMBAH</a>
                 <ol class="breadcrumb">
                     <li><a href="javascript:void(0)">Dashboard</a></li>
                     <li class="active">IURAN</li>

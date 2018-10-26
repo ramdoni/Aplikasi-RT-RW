@@ -129,6 +129,7 @@ Route::group(['prefix' => 'warga', 'namespace' => 'Warga', 'middleware' => ['aut
 	Route::get('profile', 'IndexController@profile')->name('warga.profile');
 	Route::get('user/konfirmasi-pembayaran', 'UserController@konfirmasiPembayaran');
 	Route::get('back-to-admin', 'IndexController@backtoadmin')->name('warga.back-to-admin');	
+	Route::get('back-to-rt', 'IndexController@backtort')->name('rt.back-to-rt');
 	Route::get('user/submit-pembayaran-warga', 'UserController@submitkonfirmasianggota');
 	Route::get('user/post-submit-pembayaran-warga', 'UserController@submitkonfirmasianggota');
 	Route::get('bayar', 'BayarController@step1')->name('warga.bayar');

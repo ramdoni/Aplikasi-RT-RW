@@ -355,24 +355,13 @@ class WargaController extends ControllerLogin
 
             if($user->access_id == 2)
             {
-                \Session::put('is_login_admin', true);
+                \Session::put('is_login_rt', true);
             
                 return redirect()->route('warga.dashboard');
             }
-            if($user->access_id == 3)
-            {
-                \Session::put('is_login_admin', true);
-            
-                return redirect()->route('bendahara.dashboard');
-            }
-            if($user->access_id == 4)
-            {
-                \Session::put('is_login_admin', true);
-            
-                return redirect()->route('rt.dashboard');
-            }
         }
     }
+
     /*
      * [deteleBank description]
      * @param  [type] $id [description]

@@ -63,7 +63,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="javascript:void(0)">
                           @if(Auth::user()->foto != "")
-                                <img src="{{ asset('file_photo/'.  Auth::user()->id .'/'. Auth::user()->foto) }}" alt="{{ Auth::user()->name }}" class="img-circle" style="width:36px; height: 36px;">
+                                <img src="{{ asset('file_photo/'.  Auth::user()->id .'/'. Auth::user()->foto) }}" class="img-circle" style="width:36px; height: 36px;">
                             @else 
                                 <img src="{{ asset('admin-css/images/user.png') }}" alt="user-img" width="36" class="img-circle"> 
                             @endif 
@@ -74,7 +74,7 @@
                                 <div class="dw-user-box">
                                     <div class="u-img pull-left">
                                         @if(Auth::user()->foto != "")
-                                            <img src="{{ asset('file_photo/'.  Auth::user()->id .'/'. Auth::user()->foto) }}" alt="{{ Auth::user()->name }}" class="img-circle" style="width:36px; height: 36px;">
+                                            <img src="{{ asset('file_photo/'.  Auth::user()->id .'/'. Auth::user()->foto) }}" class="img-circle" style="width:36px; height: 36px;">
                                         @else 
                                             <img src="{{ asset('admin-css/images/user.png') }}" alt="user-img" width="36" class="img-circle"> 
                                         @endif 
@@ -87,6 +87,12 @@
                             </li>
                             <li role="separator" class="divider"></li>
                             @if(Auth::user()->access_id == 2)
+                                @if(\Session::get('is_login_rt'))
+                                    <li>
+                                        <a href="{{ route('rt.back-to-rt') }}"> <i class="fa fa-key"></i> Back to RT</a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                @endif
                                 @if(\Session::get('is_login_admin'))
                                     <li>
                                         <a href="{{ route('warga.back-to-admin') }}"> <i class="fa fa-key"></i> Back to Admin</a>

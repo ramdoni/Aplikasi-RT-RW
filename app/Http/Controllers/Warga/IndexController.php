@@ -154,6 +154,8 @@ class IndexController extends Controller
     {
         if(\Session::get('is_login_admin'))
         {
+            \Session::forget('is_login_admin');
+
             $find = \App\User::where('access_id', 1)->first();
             
             if($find)
@@ -165,6 +167,27 @@ class IndexController extends Controller
             else
             {
                 return redirect()->route('warga.dashboard')->with('message-error', 'Access Denied');
+            }
+        }
+    }
+
+    /**
+     * [backtort description]
+     * @return [type] [description]
+     */
+    public function backtort()
+    {
+        if(\Session::get('is_login_rt'))
+        {
+            \Session::forget('is_login_rt');
+
+            $find = \App\User::where('access_id', 4)->where('rt_id', \Auth::user()->rt_id)->where('rw_id', \Auth::user()->rw_id)->first();
+            
+            if($find)
+            {
+                \Auth::loginUsingId($find->id);
+
+                return redirect()->route('rt.dashboard')->with('message-success', 'Welcome Back Admin');
             }
         }
     }
