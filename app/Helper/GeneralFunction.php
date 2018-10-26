@@ -11,7 +11,7 @@ function total_warga_rt()
                             ->where('perumahan_id', \Auth::user()->perumahan_id)
                             ->where('rt_id', \Auth::user()->rt_id)
                             ->where('rw_id', \Auth::user()->rw_id)
-                            ->count();
+                            ->count()+1;
 }
 
 /**
