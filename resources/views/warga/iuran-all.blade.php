@@ -58,7 +58,7 @@
                                     <span class="circle circle-md bg-info"><i class="ti-wallet"></i></span>
                                 </li>
                                 <li class="col-last">
-                                    <h3 class="counter text-right m-t-15">{{ number_format(total_pengeluaran()) }}</h3>
+                                    <h3 class="counter text-right m-t-15">{{ number_format(total_pengeluaran_rt()) }}</h3>
                                 </li>
                                 <li class="col-middle">
                                     <h4>Total Pengeluaran</h4>

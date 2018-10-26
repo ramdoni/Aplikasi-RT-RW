@@ -120,6 +120,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
 // ROUTING WARGA
 Route::group(['prefix' => 'warga', 'namespace' => 'Warga', 'middleware' => ['auth', 'access:2']], function(){
+	Route::resource('rekening-bank-user', 'RekeningBankUserController');
+	Route::resource('simpanan-sukarela', 'SimpananSukarelaController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'warga']);
+	Route::resource('surat-pengantar-domisili', 'SuratPengantarDomisiliController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'warga']);
+	Route::resource('surat-pengantar-rt', 'SuratPengantarRtController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'warga']);
+	Route::resource('surat-pengantar', 'SuratPengantarController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'warga']);
 	Route::get('/', 'IndexController@index')->name('warga.dashboard');
 	Route::get('profile', 'IndexController@profile')->name('warga.profile');
 	Route::get('user/konfirmasi-pembayaran', 'UserController@konfirmasiPembayaran');
@@ -139,11 +144,6 @@ Route::group(['prefix' => 'warga', 'namespace' => 'Warga', 'middleware' => ['aut
 	Route::post('iuran/bayar', 'IuranController@bayar')->name('warga.iuran.bayar');
 	Route::post('surat-pengantar/request-submit', 'SuratPengantarController@requestSubmit')->name('warga.surat-pengantar.request-submit');
 	Route::post('update-profile', 'IndexController@updateProfile')->name('warga.update-profile');
-	Route::resource('rekening-bank-user', 'RekeningBankUserController');
-	Route::resource('simpanan-sukarela', 'SimpananSukarelaController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'warga']);
-	Route::resource('surat-pengantar-domisili', 'SuratPengantarDomisiliController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'warga']);
-	Route::resource('surat-pengantar-rt', 'SuratPengantarRtController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'warga']);
-	Route::resource('surat-pengantar', 'SuratPengantarController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'warga']);
 });
 
 // ROUTING BENDAHARA
@@ -154,7 +154,6 @@ Route::group(['prefix' => 'bendahara', 'namespace' => 'Bendahara', 'middleware' 
 
 // ROUTE RT
 Route::group(['prefix' => 'rt', 'namespace' => 'Rt', 'middleware' => ['auth', 'access:4']], function(){
-	
 	Route::resource('setting-iuran', 'SettingIuranController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'rt']);
 	Route::resource('pengeluaran', 'PengeluaranController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'rt']);
 	Route::resource('pengeluaran-type', 'PengeluaranTypeController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'rt']);
@@ -174,7 +173,7 @@ Route::group(['prefix' => 'rt', 'namespace' => 'Rt', 'middleware' => ['auth', 'a
 	Route::get('surat-pengantar/cetak/{id}', 'SuratPengantarController@print_surat_pengantar')->name('rt.surat-pengantar.cetak');
 	Route::get('pengeluaran/destroy/{id}', 'PengeluaranController@destroy')->name('rt.pengeluaran.destroy');
 	Route::post('iuran/bayar', 'IuranController@bayar')->name('rt.iuran.bayar');
-	
+	Route::post('update-profile', 'IndexController@updateProfile')->name('rt.update-profile');
 });
 
 Auth::routes();

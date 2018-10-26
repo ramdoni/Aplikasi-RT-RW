@@ -61,7 +61,7 @@
                                 </li>
                                 <li class="col-last">
                                     <a href="{{ route('warga.iuran-all') }}">
-                                        <h3 class="counter text-right m-t-15">{{ number_format(total_pengeluaran()) }}</h3>
+                                        <h3 class="counter text-right m-t-15">{{ number_format(total_pengeluaran_rt()) }}</h3>
                                     </a>
                                 </li>
                                 <li class="col-middle">
