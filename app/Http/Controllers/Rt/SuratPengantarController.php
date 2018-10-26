@@ -15,7 +15,7 @@ class SuratPengantarController extends Controller
 	 */
     public function index()
     {
-        $params['data'] = SuratPengantar::join('users','users.id','=','surat_pengantar.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->get();
+        $params['data'] = SuratPengantar::select('surat_pengantar.*')->join('users','users.id','=','surat_pengantar.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->get();
 
     	return view('rt.surat-pengantar.index')->with($params);
     }
@@ -33,5 +33,22 @@ class SuratPengantarController extends Controller
     	$data->save();
 
     	return redirect()->route('rt.surat-pengantar.index')->with('message-success', 'Surat Pengantar berhasil diproses');
+    }
+
+    /**
+     * [print_surat_pengantar description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function print_surat_pengantar($id)
+    {  
+        $params['data'] = SuratPengantar::where('id', $id)->first();
+
+        $view = view('rt.surat-pengantar.print')->with($params);
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        return $pdf->stream();
     }
 }

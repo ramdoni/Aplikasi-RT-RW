@@ -27,6 +27,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * [domisiliKecamatan description]
+     * @return [type] [description]
+     */
+    public function domisiliKecamatan()
+    {
+        return $this->hasOne('\App\Models\Kecamatan', 'id_kec', 'domisili_kecamatan_id');
+    }
     
     /**
      * [perumahan description]

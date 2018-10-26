@@ -51,7 +51,9 @@
                                         <td>{{ $item->created_at }}</td>
                                         <td>
                                             @if($item->status == 1)
-                                            <a href="{{ route('rt.surat-pengantar.proses', $item->id) }}" onclick="return confirm('Proses Surat Pengantar ?')" class="btn btn-info btn-xs"><i class="fa fa-check"></i> Approve Surat Pengantar</a>
+                                                <a href="{{ route('rt.surat-pengantar.proses', $item->id) }}" onclick="return confirm('Proses Surat Pengantar ?')" class="btn btn-info btn-xs"><i class="fa fa-check"></i> Approve Surat Pengantar</a>
+                                            @else
+                                                <a href="{{ route('rt.surat-pengantar.cetak', $item->id) }}"><i class="fa fa-print"></i> Cetak</a>
                                             @endif
                                         </td>
                                     </tr>

@@ -34,8 +34,7 @@ function total_iuran_rt()
  */
 function total_pengeluaran_rt()
 {
-  return \App\Models\IuranWarga::join('users', 'users.id','=','iuran_warga.user_id')
-                                ->where('iuran_warga.status', 2)
+  return \App\Models\Pengeluaran::join('users', 'users.id','=','pengeluaran.user_id')
                                 ->where('users.perumahan_id', \Auth::user()->perumahan_id)
                                 ->where('users.rt_id', \Auth::user()->rt_id)
                                 ->where('users.rw_id', \Auth::user()->rw_id)

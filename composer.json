@@ -6,10 +6,12 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "barryvdh/laravel-dompdf": "^0.8.3",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.2.0",
+        "mpdf/mpdf": "^7.0",
         "yajra/laravel-datatables-oracle": "~8.0"
     },
     "require-dev": {

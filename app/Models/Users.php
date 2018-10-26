@@ -9,6 +9,15 @@ class Users extends Model
    	protected $table = 'users';
     
     /**
+     * [domisiliKecamatan description]
+     * @return [type] [description]
+     */
+    public function domisiliKecamatan()
+    {
+        return $this->hasOne('\App\Models\Kecamatan', 'id_kec', 'domisili_kecamatan_id');
+    }
+
+    /**
      * [perumahan description]
      * @return [type] [description]
      */
