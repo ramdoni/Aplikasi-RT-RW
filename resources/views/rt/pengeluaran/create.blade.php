@@ -38,7 +38,7 @@
                                 <input type="number" name="nominal" class="form-control">
                             </div>
                             <div class="col-md-5">
-                                <input type="text" class="form-control datepicker" name="tanggal">
+                                <input type="text" class="form-control datepicker" name="tanggal" required>
                             </div>
                         </div>
                         <hr />
