@@ -62,6 +62,15 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Rw', 'id', 'rw_id');
     }
+
+    /**
+     * [rt description]
+     * @return [type] [description]
+     */
+    public function rt()
+    {
+        return $this->hasOne('App\Models\Rt', 'id', 'rt_id');
+    }
     
     /**
      * [ktpProvinsi description]

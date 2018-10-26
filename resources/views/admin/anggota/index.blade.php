@@ -25,6 +25,8 @@
                                 <tr>
                                     <th width="70" class="text-center">#</th>
                                     <th>PERUMAHAN</th>
+                                    <th>RW</th>
+                                    <th>RT</th>
                                     <th>NAME</th>
                                     <th>EMAIL</th>
                                     <th>JENIS KELAMIN</th>
@@ -39,6 +41,8 @@
                                     <tr>
                                         <td class="text-center">{{ $no+1 }}</td>
                                         <td>{{ isset($item->perumahan->nama_perumahan) ? $item->perumahan->nama_perumahan : '' }}</td>
+                                        <td>{{ isset($item->rw->no) ? $item->rw->no : '' }}</td>
+                                        <td>{{ isset($item->rt->no) ? $item->rt->no : '' }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->jenis_kelamin }}</td>
