@@ -68,7 +68,7 @@
                                                 <span class="caret"></span>
                                             </button>
                                             <ul role="menu" class="dropdown-menu">
-                                                <li><a href="{{ route('rt.pengeluaran.destroy', ['id' => $item->id]) }}"><i class="fa fa-trash"></i> Delete</a></li>
+                                                <li><a onclick="return confirm('Hapus data ini ?')" href="{{ route('rt.pengeluaran.destroy', $item->id) }}"><i class="fa fa-trash"></i> Delete</a></li>
                                             </ul>
                                         </div>
                                     </td>

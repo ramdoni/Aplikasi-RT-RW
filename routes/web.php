@@ -154,6 +154,11 @@ Route::group(['prefix' => 'bendahara', 'namespace' => 'Bendahara', 'middleware' 
 
 // ROUTE RT
 Route::group(['prefix' => 'rt', 'namespace' => 'Rt', 'middleware' => ['auth', 'access:4']], function(){
+	
+	Route::resource('setting-iuran', 'SettingIuranController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'rt']);
+	Route::resource('pengeluaran', 'PengeluaranController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'rt']);
+	Route::resource('pengeluaran-type', 'PengeluaranTypeController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'rt']);
+	Route::resource('warga', 'WargaController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'rt']);
 	Route::get('/', 'IndexController@index')->name('rt.dashboard');
 	Route::get('back-to-admin', 'IndexController@backtoadmin')->name('rt.back-to-admin');
 	Route::get('iuran', 'IuranController@index')->name('rt.iuran.index');
@@ -169,10 +174,7 @@ Route::group(['prefix' => 'rt', 'namespace' => 'Rt', 'middleware' => ['auth', 'a
 	Route::get('surat-pengantar/cetak/{id}', 'SuratPengantarController@print_surat_pengantar')->name('rt.surat-pengantar.cetak');
 	Route::get('pengeluaran/destroy/{id}', 'PengeluaranController@destroy')->name('rt.pengeluaran.destroy');
 	Route::post('iuran/bayar', 'IuranController@bayar')->name('rt.iuran.bayar');
-	Route::resource('setting-iuran', 'SettingIuranController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'rt']);
-	Route::resource('pengeluaran', 'PengeluaranController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'rt']);
-	Route::resource('pengeluaran-type', 'PengeluaranTypeController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'rt']);
-	Route::resource('warga', 'WargaController', ['only'=> ['index','create','store', 'edit','destroy','update'], 'as' => 'rt']);
+	
 });
 
 Auth::routes();

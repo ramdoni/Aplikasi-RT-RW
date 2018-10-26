@@ -14,7 +14,7 @@ class PengeluaranController extends Controller
 	 */
     public function index()
     {
-        $filter = Pengeluaran::join('users', 'users.id','=','pengeluaran.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->where('users.rw_id', \Auth::user()->rw_id)->where('users.rt_id', \Auth::user()->rt_id)->orderBy('pengeluaran.id', 'DESC');
+        $filter = Pengeluaran::select('pengeluaran.*')->join('users', 'users.id','=','pengeluaran.user_id')->where('users.perumahan_id', \Auth::user()->perumahan_id)->where('users.rw_id', \Auth::user()->rw_id)->where('users.rt_id', \Auth::user()->rt_id)->orderBy('pengeluaran.id', 'DESC');
 
         if(isset($_GET['tahun']) and $_GET['tahun'] != "")
         {

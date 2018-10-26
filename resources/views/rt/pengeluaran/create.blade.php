@@ -32,10 +32,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-5">Nominal</label>
-                            <label class="col-md-6">Tanggal Pengeluaran</label>
+                            <label class="col-md-5">Nominal <small class="text-danger">* Wajib Diisi</small></label>
+                            <label class="col-md-6">Tanggal Pengeluaran <small class="text-danger">* Wajib Diisi</small></label>
                             <div class="col-md-5">
-                                <input type="number" name="nominal" class="form-control">
+                                <input type="number" name="nominal" class="form-control" required>
                             </div>
                             <div class="col-md-5">
                                 <input type="text" class="form-control datepicker" name="tanggal" required>
