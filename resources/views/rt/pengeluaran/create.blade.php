@@ -35,10 +35,10 @@
                             <label class="col-md-5">Nominal <small class="text-danger">* Wajib Diisi</small></label>
                             <label class="col-md-6">Tanggal Pengeluaran <small class="text-danger">* Wajib Diisi</small></label>
                             <div class="col-md-5">
-                                <input type="number" name="nominal" class="form-control" required>
+                                <input type="number" name="nominal" class="form-control" required placeholder="Nominal">
                             </div>
                             <div class="col-md-5">
-                                <input type="text" class="form-control datepicker" name="tanggal" required>
+                                <input type="text" class="form-control datepicker" name="tanggal" required placeholder="Tanggal Pengeluaran">
                             </div>
                         </div>
                         <hr />

@@ -27,12 +27,14 @@
                         <div class="form-group">
                             <label class="col-md-12">IURAN</label>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" required name="name"> </div>
+                                <input type="text" class="form-control" required name="name" placeholder="Iuran"> 
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-12">NOMINAL (RP.)</label>
                             <div class="col-md-12">
-                                <input type="number" class="form-control" required placeholder="Rp. " name="nominal"> </div>
+                                <input type="number" class="form-control" required placeholder="Rp. " name="nominal" placeholder="Nominal"> 
+                            </div>
                         </div>
                         <hr />
                         <a href="{{ route('rt.setting-iuran.index') }}" class="btn btn-sm btn-default waves-effect waves-light m-r-10">Cancel</a>

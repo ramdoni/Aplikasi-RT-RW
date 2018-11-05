@@ -214,7 +214,7 @@ class WargaController extends ControllerLogin
         $data = Users::where('id', $id)->first();
         $data->delete();
 
-        return redirect()->route('rt.anggota.index')->with('message-sucess', 'Data berhasi di hapus');
+        return redirect()->route('rt.warga.index')->with('message-success', 'Data berhasi di hapus');
     }
 
    /**

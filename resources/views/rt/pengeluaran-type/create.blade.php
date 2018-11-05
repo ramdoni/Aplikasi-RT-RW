@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <label class="col-md-12">Jenis Pengeluaran</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="name">
+                                <input type="text" class="form-control" name="name" placeholder="Jenis Pengeluaran">
                             </div>
                         </div>
                         <hr />
